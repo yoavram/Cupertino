@@ -10,7 +10,7 @@ ms_bib=ms/bibtex.bib
 citation_keys=ms/citation_keys
 csl=ms/tpb.csl
 
-pandoc_opts=-r markdown+simple_tables+table_captions+yaml_metadata_block -s -S --filter pandoc-crossref --filter pandoc-citeproc --bibliography=$(ms_bib) --csl $(csl) --template=$(template) --latex-engine=xelatex --variable=version:$(version) --variable geometry:a4paper
+pandoc_opts=-r markdown+simple_tables+table_captions+yaml_metadata_block -s -S --filter pandoc-crossref --filter pandoc-citeproc --bibliography=$(ms_bib) --csl $(csl) --template=$(template) --latex-engine=xelatex --variable=version:$(version) --variable geometry:a4paper --variable classoption:twocolumn
 
 list:
 	@sh -c "$(MAKE) -p no_targets__ | awk -F':' '/^[a-zA-Z0-9][^\$$#\/\\t=]*:([^=]|$$)/ {split(\$$1,A,/ /);for(i in A)print A[i]}' | grep -v '__\$$' | grep -v 'make\[1\]' | grep -v 'Makefile' | sort"
