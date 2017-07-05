@@ -16,6 +16,25 @@ header-includes:
     - \linenumbers
 ---
 
+# Introduction
+
+According to the _reduction principle_, in populations near equilibrium between constant viability-selection and variation production, modifiers that decrease the rate of variation production will increase in frequency.
+The _reduction principle_ was first proposed for modifiers of the recombination rate [@Feldman1972], mutation, and migration or dispersal rates [@Liberman1986a; @Altenberg1987], and these separate principles were recently unified [@Altenberg2009; @Altenberg2017]. 
+
+@Altenberg2017 lay down the assumptions and conditions for the validity of the _unified reduction principle_: effectively infinite population size, constant-viability selection, a population at an equilibrium, and _linear variation_  -- the equal scaling of transition probabilities by the modifier.
+The latter can be violated if two variation producing processes interact [@Altenberg2012], or if there are biases in the mutation or migration process, such that ... 
+
+Another violation to the _linear variation_ assumption of _reduction principle_for mutation rates involves a mechanism commoly called _stress-induced mutagenesis_, in which the mutation rate increases in individuals with poor fitness, which is at least partially determined by poor fit between the genotype and the environment.
+Indeed, @Ram2012 demonstrated that modifiers that increase the mutation rate of individuals with below average fitness actually _increase_ the population mean fitness, rather than decrease it.
+The analysis included an infinite population size and constant-viability selection, such that the only departure from the _reduction principle_ assumptions is due to the differential effect the modifier has on different types.
+@Ram2012 stated that their result represents a departure from the _reduction principle_, but did not explain this departure
+Moreover, their analysis was limited to low mutation rates as it assumed that the number of mutations per individual per generation is less than one.
+These limitations are covered by the analysis presented here.
+
+Here, we present a general model for modifiers that differentialy control the variation production rate, including mutation and migration or dispersal, and show a stronger result, based on optimization of the _reproductive value_ rather then the mean fitness.
+
+# Results
+
 **Lemma.** _Caswell's formula [@Caswell1978]:
 Let _A_ be a matrix with eigenvalue $\lambda$ and left and right eigenvectors _u_ and _v_ such that $\sum{v_i}=1$ and $u\tran v = \sum{u_i v_i} = 1$, then the sensitivity of $\lambda$ to changes in any parameter _x_ of the matrix _A_ is
 $$
