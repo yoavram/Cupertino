@@ -99,6 +99,8 @@ $$
 v_k D_k (u\tran[M]_k - u_k). \;\;\; \blacksquare
 $$
 
+# TODO
+
 $\bar{\omega}$ turns out to be the population mean fitness $\sum_i{f_i D_i}$ by expanding $\bar{\omega} \sum_i{f'_i} = 1$.
 
 _v_ is the stationary distribution such that 
@@ -112,5 +114,7 @@ By the theorem, increasing $C_k$ will increase the leading eigenvalue _iff_ $u\t
 
 Therefore, the derivative of the leading eigenvalue with respect to the increase in the total rate of leaving type $k$
 will be positive if the reproductive value of type $k$, $u_k$, is less than the reproductive value expected by leaving type $k$.
+
+If $C_k = 1$ for all _k_, then @Eq:model becomes $\lambda f' = MDf$.
 
 # References
