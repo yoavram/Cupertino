@@ -1,4 +1,5 @@
 import re
+import warnings
 
 from bibtexparser import load as load_bib
 from bibtexparser.bwriter import BibTexWriter
@@ -28,7 +29,10 @@ def main(keys_filename, bibtex_filename, output_filename, verbose):
 
 	out_bib = BibDatabase()
 	for key in citation_keys:
-		e = main_bib.entries_dict[key]		
+		try:
+			e = main_bib.entries_dict[key]		
+		except KeyError:
+			warnings.warn("Missing citation: {}".format(key))
 		title = e['title']
 		groups = species_pattern.findall(title)
 		for grp in groups:
