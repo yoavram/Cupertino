@@ -35,96 +35,6 @@ Here, we present a general model for modifiers that differentialy control the va
 
 # Results
 
-**Lemma.** _Caswell's formula [@Caswell1978]:
-Let _A_ be a matrix with eigenvalue $\lambda$ and left and right eigenvectors _u_ and _v_ such that $\sum{v_i}=1$ and $u\tr v = \sum{u_i v_i} = 1$, then the sensitivity of $\lambda$ to changes in any parameter _x_ of the matrix _A_ is
-$$
-\frac{\partial \lambda}{\partial x} = u\tr \frac{\partial A}{\partial x} v
-$$ {#eq:Caswells_formula}
-_
-
-**Proof.**
-Using the lemma assumptions, $\lambda = \lambda u\tr v = u\tr \lambda v = u\tr A v$ and differentiating both sides we get $\partial \lambda = \partial (u\tr A v)$.
-Using the product rule (once in each direction), 
-\begin{multline*}
-\partial (u\tr A v) = \\
-\partial u\tr A v + u\tr \partial A v + u\tr A \partial v = \\
-u\tr \partial A v + \partial u\tr \lambda v  + \lambda u\tr \partial v = \\
-u\tr \partial A v + \lambda(\partial u\tr v  + u\tr \partial v) = \\
-u\tr \partial A v + \lambda \partial(u\tr v).
-\end{multline*}
-
-Because $u\tr v = 1$, we have $\partial (u\tr v) = 0$ and 
-$\partial \lambda = u\tr \partial A v$.
-$\blacksquare$
-
-**Theorem.**
-_
-Consider the transformation $f \to f'$ defined by
-$$
-\lambda f' = (I-C+MC)D f
-$$ {#eq:model}
-where $f$ is a stochastic vector ($\sum_i{f_i} = 1$),
-$M$ is a stochastic matrix ($\sum_i {M_{i,j}} = 1$ for any column _j_),
-$C$ is a diagonal non-negative matrix with diagonal elements $C_k$,
-$D$ is a diagonal non-negative matrix with diagonal elements $D_k$,
-$I$ is the identity matrix, and
-$\lambda$ is a normalizing factor such that $\sum_i{f'_i}=1$.
-Then 
-$$
-\frac{\partial \lambda^*}{\partial C_k} = 
-v_k D_k (u\tr [M]_k - u_k),
-$$ {#eq:theorem}
-where $\lambda^*$ is the leading eigenvalue of $(I-C+MC)D$, _u_ and _v_ are the corresponding left and right eigenvectors, and $[M]_k$ is the $k$-th column of $M$.
-_
-
-**Proof.**
-The equilibrium the transformation @Eq:model is defined by the eigenvalue $\lambda^*$ and right eigenvector _v_:
-$$
-\lambda^* v = (I-C+MC)D v
-$$ {#eq:model_equilibrium}
-
-Let _v_ be the corresponding left eigenvector.
-By the _Perron-Frobenius theorem_ [@Otto2007, Appendix A],
-$\lambda^*$ is the leading real positive eigenvalue, 
-and _u_ and _v_ are both non-negative, 
-uniquely defined by $\sum_i{v_i} = 1$ and $\sum_i{u_i v_i} = 1$.
-
-Using _Caswell's formula_ (@Eq:Caswells_formula),
-$$
-\frac{\partial \lambda^*}{\partial C_k} = 
-u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v.
-$$
-
-Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position _k_ and 0 elsewhere,
-$A_k = e_k e\tr_k$ the matrix with 1 at position _(k,k)_ and 0 elsewhere,
-and $[M]_k$ the $k$-th column of $M$.
-
-Then,
-\begin{multline*}
-u\tr \frac{\partial}{\partial C_k}[(I-C+MC)D] v = \\
-u\tr (0 - A_k + M A_k)D v = \\
--u_k D_k v_k + v_k D_k u\tr[M]_k = \\
-v_k D_k (u\tr[M]_k - u_k),
-\end{multline*}
-
-which gives 
-$$
-\frac{\partial}{\partial C_k} \lambda^* = 
-v_k D_k (u\tr[M]_k - u_k). \;\;\; \blacksquare
-$$
-
-**Corrolary.**
-$$
-\frac{\partial \lambda^*}{\partial C_k} = 
-\sum_i{u_i M_{i,k}} - u_k
-$$
-
-**Corrolary.**
-$$
-sign \frac{\partial \lambda^*}{\partial C_k} = 
-sign (u\tr [M]_k - u_k)
-$$
-
 ## Fisher's reproductive value
 The left Perron eigenvector _u_ of matrix _MD_ comprises what is called _Fisher's reproductive value_.  These values can be understood as follows.  
 
@@ -196,6 +106,76 @@ $$
 $$
 This is what @Hermisson2002 call the _ancestor_ or  _ancestral distribution_; it is the distribution among descendants of each type.
 
+# General principle
+
+**Theorem.**
+_
+Consider the transformation $f \to f'$ defined by
+$$
+\lambda f' = (I-C+MC)D f
+$$ {#eq:model}
+where $f$ is a stochastic vector ($\sum_i{f_i} = 1$),
+$M$ is a stochastic matrix ($\sum_i {M_{i,j}} = 1$ for any column _j_),
+$C$ is a diagonal non-negative matrix with diagonal elements $C_k$,
+$D$ is a diagonal non-negative matrix with diagonal elements $D_k$,
+$I$ is the identity matrix, and
+$\lambda$ is a normalizing factor such that $\sum_i{f'_i}=1$.
+Then 
+$$
+\frac{\partial \lambda^*}{\partial C_k} = 
+v_k D_k (u\tr [M]_k - u_k),
+$$ {#eq:theorem}
+where $\lambda^*$ is the leading eigenvalue of $(I-C+MC)D$, _u_ and _v_ are the corresponding left and right eigenvectors, and $[M]_k$ is the $k$-th column of $M$.
+_
+
+**Proof.**
+The equilibrium the transformation @Eq:model is defined by the eigenvalue $\lambda^*$ and right eigenvector _v_:
+$$
+\lambda^* v = (I-C+MC)D v
+$$ {#eq:model_equilibrium}
+
+Let _v_ be the corresponding left eigenvector.
+By the _Perron-Frobenius theorem_ [@Otto2007, Appendix A],
+$\lambda^*$ is the leading real positive eigenvalue, 
+and _u_ and _v_ are both non-negative, 
+uniquely defined by $\sum_i{v_i} = 1$ and $\sum_i{u_i v_i} = 1$.
+
+Using _Caswell's formula_ (@Eq:Caswells_formula),
+$$
+\frac{\partial \lambda^*}{\partial C_k} = 
+u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v.
+$$
+
+Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position _k_ and 0 elsewhere,
+$A_k = e_k e\tr_k$ the matrix with 1 at position _(k,k)_ and 0 elsewhere,
+and $[M]_k$ the $k$-th column of $M$.
+
+Then,
+\begin{multline*}
+u\tr \frac{\partial}{\partial C_k}[(I-C+MC)D] v = \\
+u\tr (0 - A_k + M A_k)D v = \\
+-u_k D_k v_k + v_k D_k u\tr[M]_k = \\
+v_k D_k (u\tr[M]_k - u_k),
+\end{multline*}
+
+which gives 
+$$
+\frac{\partial}{\partial C_k} \lambda^* = 
+v_k D_k (u\tr[M]_k - u_k). \;\;\; \blacksquare
+$$
+
+**Corrolary.**
+$$
+\frac{\partial \lambda^*}{\partial C_k} = 
+\sum_i{u_i M_{i,k}} - u_k
+$$
+
+**Corrolary.**
+$$
+sign \frac{\partial \lambda^*}{\partial C_k} = 
+sign (u\tr [M]_k - u_k)
+$$
+
 # TODO
 
 $\bar{\omega}$ turns out to be the population mean fitness $\sum_i{f_i D_i}$ by expanding $\bar{\omega} \sum_i{f'_i} = 1$.
@@ -215,5 +195,33 @@ will be positive if the reproductive value of type $k$, $u_k$, is less than the 
 If $C_k = 1$ for all _k_, then @Eq:model becomes $\lambda f' = MDf$.
 If the modifier has the same effect on all types, i.e. $C_k = \alpha$ for all _k_, then @Eq:model becomes $\lambda f' = ((1-\alpha)I + \alpha M)Df$, and the  _unified reduction principle_ is in effect [@Altenberg2017, see eqs. 65, 72].
 Therefore we can expect that modifiers that reduce $\alpha$ will be favored by natural selection.
+
+# Appendix A
+
+@Caswell1978 presented a _formula for the sensitivity of the population growth rate to changes in life history parameters_.
+In this formula, the population growth rate is the leading eigenvalue of the population transformation matrix _A_, the life history parameters are elements of _A_, and the _sensitivity_ is the derivative of the former with respect to the latter.
+This is a useful formula, used for example in [@Ram2012, Appendix A; @Hermisson2002].
+
+**Lemma.** _Caswell's formula [@Caswell1978]:
+Let _A_ be a matrix with eigenvalue $\lambda$ and left and right eigenvectors _u_ and _v_ such that $\sum{v_i}=1$ and $u\tr v = \sum{u_i v_i} = 1$, then the sensitivity of $\lambda$ to changes in any parameter _x_ of the matrix _A_ is
+$$
+\frac{\partial \lambda}{\partial x} = u\tr \frac{\partial A}{\partial x} v
+$$ {#eq:Caswells_formula}
+_
+
+**Proof.**
+Using the lemma assumptions, $\lambda = \lambda u\tr v = u\tr \lambda v = u\tr A v$ and differentiating both sides we get $\partial \lambda = \partial (u\tr A v)$.
+Using the product rule (once in each direction), 
+\begin{multline*}
+\partial (u\tr A v) = \\
+\partial u\tr A v + u\tr \partial A v + u\tr A \partial v = \\
+u\tr \partial A v + \partial u\tr \lambda v  + \lambda u\tr \partial v = \\
+u\tr \partial A v + \lambda(\partial u\tr v  + u\tr \partial v) = \\
+u\tr \partial A v + \lambda \partial(u\tr v).
+\end{multline*}
+
+Because $u\tr v = 1$, we have $\partial (u\tr v) = 0$ and 
+$\partial \lambda = u\tr \partial A v$.
+$\blacksquare$
 
 # References
