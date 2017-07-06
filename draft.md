@@ -162,7 +162,7 @@ v_k D_k (u\tr[M]_k - u_k),
 
 which gives 
 $$
-\frac{\partial}{\partial C_k} \lambda^* = 
+\frac{\partial \lambda^*}{\partial C_k} = 
 v_k D_k (u\tr[M]_k - u_k). \;\;\; \blacksquare
 $$
 
@@ -212,8 +212,7 @@ where $\bar{\omega}$ is the population mean fitness.
 Therefore, the leading eigenvalue is the stable population mean fitness: $\bar{\omega}^*=\lambda^*$.
 
 @Ram2012 have demonstrated a weaker version of the above theorem.
-Translated to the notation presented here, they modeled a population at the mutation-selection balance in which no more than one mutation occurs per individual per generation, i.e. the mutation rate is $\mu \ll 1$.
-Specifically, 
+Translated to the notation presented here, they modeled a population at the mutation-selection balance in which no more than one mutation occurs per individual per generation:
 $$
 M_{i,j} = \begin{cases}
 \beta \mu & i = j-1 \\
@@ -224,15 +223,9 @@ M_{i,j} = \begin{cases}
 \end{cases}.
 $$
 
-Using @Eq:Caswells_formula and a recursion on the ratios of the reproductive values (see eqs. A5-6), they found that (using @eq:mean_fitness)
-$$
-\frac{\partial \lambda^*}{\partial C_k} = \\
-\frac{v_k u_k}{C_k \mu}(\lambda^* - D_k)
-$$ {#eq:ram2012_result}
+Using @Eq:Caswells_formula and a recursion on the ratios of the reproductive values (see eqs. A5-6), they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{\omega}^*$) increase their mutation rate, then the population mean fitness will increase.
 
-which means that if individuals with below-average fitness ($D_k < Dv = \bar{\omega}$) increase their mutation rate, then the population mean fitness will increase.
-
-The same conclusion can be made in the general case, as well.
+The same conclusion can be made for a general transition matrix _M_.
 A similar equation to @Eq:model_equilibrium for the left eigenvector _u_ is
 $$
 u\tr \bar{\omega}^* = u\tr (I - C + MC) D,
@@ -248,7 +241,26 @@ $$
 \frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k),
 $$ {#eq:corrolary_mean_fitness}
 
-This is a generalization of @Eq:ram2012_result from @Ram2012, which means that increasing the transition out from type _k_ will increase the population mean fitness _iff_ the mean fitness of type _k_ is below average.
+This is a generalization of [@Ram2012, Eq. 4], which means that increasing the transition out from type _k_ will increase the population mean fitness _iff_ the mean fitness of type _k_ is below average.
+
+## Threshold modifier
+
+We can turn our attention to a modifier that controls the transition out of types $\mathbb{K}$.
+For example, Appendix B in (@Ram2012) considers individuals that are grouped by the number of accumulated deleterious mutations, _k_, and a modifier that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
+
+Similarly, if the transition rates are controled by a threshold rule
+$$
+C_k = \begin{cases}
+\tau, & k \in \mathbb{K} \\
+1, & k \not\in \mathbb{K}
+\end{cases},
+$$
+then the sensitivity of the population mean fitness to changes in the mutation rate of 
+\begin{multline*}
+\frac{\partial \bar{\omega}^*}{\partial \tau} = 
+u\tr \Big( \sum_{k \in \mathbb{K{}}}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) v = \\
+\frac{1}{\tau} \sum_{k \in \mathbb{K}}{u_k v_k (\bar{\omega}^* - D_k)}.
+\end{multline*}
 
 # Appendix A
 
