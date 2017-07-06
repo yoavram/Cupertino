@@ -177,7 +177,7 @@ because $D_k \le 1$ for all _k_.
 
 In addition, without modification, $C_k = 1$ for all _k_, and @Eq:model becomes $\lambda f' = MDf$ which is a standard mutation-selection model [@Johnson1999a; @Gordo2005].
 
-### Expected ancestral frequency
+### Reproductive value interpretation
 A corrolary of @Eq:theorem is 
 $$
 \frac{\partial \lambda^*}{\partial C_k} = 
@@ -195,7 +195,7 @@ sign (u\tr [M]_k - u_k),
 $$
 where the RHS only deals with the difference between the reproductive value of type _k_ and the reproductive value that can be expected if transitioning to another type.
 
-### Mean fitness
+### Mean fitness interpretation
 
 By definition, $\lambda$ is a normalizing factor such that $\sum_i{f'_i}=1$.
 Therefore, using $e\tr M = e\tr$ and $e\tr I = e\tr$, we have
@@ -209,11 +209,7 @@ e\tr D v = \\
 \sum_k{D_k v_k} = \bar{\omega},
 \end{multline}
 where $\bar{\omega}$ is the population mean fitness.
-Therefore, the leading eigenvalue is the stable population mean fitness: $\bar{\omega^*}=\lambda^*$.
-
-Hence, @Eq:theorem provides a condition on how the stable population mean fitness at the mutation-selection balance is affected by increasing the rate of transition from type _k_ to other types.
-
-### Comparison to @Ram2012
+Therefore, the leading eigenvalue is the stable population mean fitness: $\bar{\omega}^*=\lambda^*$.
 
 @Ram2012 have demonstrated a weaker version of the above theorem.
 Translated to the notation presented here, they modeled a population at the mutation-selection balance in which no more than one mutation occurs per individual per generation, i.e. the mutation rate is $\mu \ll 1$.
@@ -232,9 +228,27 @@ Using @Eq:Caswells_formula and a recursion on the ratios of the reproductive val
 $$
 \frac{\partial \lambda^*}{\partial C_k} = \\
 \frac{v_k u_k}{C_k \mu}(\lambda^* - D_k)
-$$
+$$ {#eq:ram2012_result}
 
-from which they concluded that if individuals with below-average fitness ($D_k < Dv = \bar{\omega}$) increase their mutation rate, then the population mean fitness will increase.
+which means that if individuals with below-average fitness ($D_k < Dv = \bar{\omega}$) increase their mutation rate, then the population mean fitness will increase.
+
+The same conclusion can be made in the general case, as well.
+A similar equation to @Eq:model_equilibrium for the left eigenvector _u_ is
+$$
+u\tr \bar{\omega}^* = u\tr (I - C + MC) D,
+$$
+which gives us a relation between $\bar{\omega}^*$ and the _k_ element of _u_:
+$$
+u_k \bar{\omega}^* = (1-C_k) u_k D_k + C_k D_k u\tr [M]_k.
+$$
+Multiplying both sides by $v_k$ and rearranging, we get 
+$\frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k) = v_k D_k(u\tr [M]_k - u_k)$, which yields the corrolary:
+$$
+\frac{\partial \bar{\omega}^*}{\partial C_k} = 
+\frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k),
+$$ {#eq:corrolary_mean_fitness}
+
+This is a generalization of @Eq:ram2012_result from @Ram2012, which means that increasing the transition out from type _k_ will increase the population mean fitness _iff_ the mean fitness of type _k_ is below average.
 
 # Appendix A
 
