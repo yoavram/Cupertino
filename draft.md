@@ -207,11 +207,13 @@ and $u$ is _Fisher's reproductive value_ [@Grafen2006].
 $M_{i,j}$ describes the transition from type $j$ to type $i$,
 and $u_k$ describes the reproductive value of type $k$.
 
-By the theorem, increasing $C_k$ will increase the leading eigenvalue _iff_ $u\tr[M]k-u_k > 0$. 
+By the theorem, increasing $C_k$ will increase the leading eigenvalue _iff_ $u\tr [M]_k - u_k > 0$. 
 
 Therefore, the derivative of the leading eigenvalue with respect to the increase in the total rate of leaving type $k$
 will be positive if the reproductive value of type $k$, $u_k$, is less than the reproductive value expected by leaving type $k$.
 
 If $C_k = 1$ for all _k_, then @Eq:model becomes $\lambda f' = MDf$.
+If the modifier has the same effect on all types, i.e. $C_k = \alpha$ for all _k_, then @Eq:model becomes $\lambda f' = ((1-\alpha)I + \alpha M)Df$, and the  _unified reduction principle_ is in effect [@Altenberg2017, see eqs. 65, 72].
+Therefore we can expect that modifiers that reduce $\alpha$ will be favored by natural selection.
 
 # References
