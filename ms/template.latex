@@ -203,9 +203,12 @@ $endif$
 % set vector to bold
 \let\vec\mathbf
 % transpose
-\newcommand*{\tran}{^\intercal}
-% matrix
-\let\mat\mathbf
+\newcommand*{\tr}{^\intercal}
+% Lee's commands
+\newcommand{\matrx}[1]{{\left[ \stackrel{}{#1}\right]}}
+\newcommand{\diag}[1]{\mbox{ \bf diag}\matrx{#1}}
+\newcommand{\goesto}{\rightarrow}
+\newcommand{\dspfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2} }
 % set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
