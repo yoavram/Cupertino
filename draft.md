@@ -6,7 +6,7 @@ author:
 - Marcus W. Feldman^[Corresponding author; Department of Biology, Stanford University, Stanford, CA 94305-5020, mfeldman@stanford.edu]
 year: 2017
 abstract: |
-    Production of variation is considered detrimental in well-adapted populations evolving under constant selection. Therefore, the rate at which variation is generated through processes such as mutation, migration, and innovation, is cosidered to be reduced by natural selection. However, violations of this _reduction principle_ have been demonstrated before. Here we analyse a general model of evolution under constant selection where the rate of variation generation can depend on the individual fitness. We find a general and simple result: if individuals with below average fitness increase the rate of variation generation, then the population mean fitness increases. This principle applies to phenomena such as stress-induced mutagenesis, condition-dependent dispersal and outcrossing, and even to the famous proverb, _"Necessity is the mother of invention"_.
+    Generation of variation is considered detrimental in well-adapted populations evolving under constant selection. Therefore, the rate at which variation is generated through processes such as mutation, migration, and innovation, is cosidered to be reduced by natural selection. However, violations of this _reduction principle_ have been demonstrated before. Here we analyse a general model of evolution under constant selection where the rate of variation generation can depend on the individual fitness. We find a general and simple result: if individuals with below average fitness increase the rate of variation generation, then the population mean fitness increases. This principle applies to phenomena such as stress-induced mutagenesis, condition-dependent dispersal and outcrossing, and even to the famous proverb, _"Necessity is the mother of invention"_.
 chapters: True
 chaptersDepth: 1
 chapDelim: ""
@@ -16,11 +16,9 @@ header-includes:
     - \linenumbers
 ---
 
-**TODO production->generation**
-
 # Introduction
 
-According to the _reduction principle_, in populations that evolv near an equilibrium between natural selection and production of variation (i.e. mutation, migration, or recombination), natural selection favors modifiers that decrease the rate of variation production .
+According to the _reduction principle_, in populations that evolv near an equilibrium between natural selection and generation of variation (i.e. mutation, migration, or recombination), natural selection favors modifiers that decrease the rate of variation generation .
 The _reduction principle_ was first proposed for modifiers of the recombination [@Feldman1972], mutation, and migration [@Liberman1986a], and dispersal rates [@Altenberg1987].
 
 These separate principles were recently unified by @Altenberg2017 [@Altenberg2009], which laid down the assumptions and conditions for the validity of the _unified reduction principle_: effectively infinite population size, constant-viability selection, a population at an equilibrium, and _linear variation_  -- the equal scaling of transition probabilities by the modifier.
@@ -32,7 +30,7 @@ Their analysis included an infinite population size and constant-viability selec
 @Ram2012 stated that their result represents a departure from the _reduction principle_, but did not explain this departure.
 Moreover, their analysis was limited to low mutation rates as it assumed that the number of mutations per individual per generation is very low.
 
-Here, we present a general evolutionary model where the rate of variation production can be different for each type of individual.
+Here, we present a general evolutionary model where the rate of variation generation can be different for each type of individual.
 This model generalizes both mutation and migration or dispersal models.
 Our result shows that low fitness individuals should produce more variation then high fitness individuals. 
 
@@ -199,7 +197,7 @@ Using @Eq:Caswells_formula (@Sec:AppB) and a recursion on the ratios of the repr
 
 ## Evidence
 
-**TODO** evidence for faster production of variation in low fitness individuals.
+**TODO** evidence for faster generation of variation in low fitness individuals.
 
 ## Conclusions
 
