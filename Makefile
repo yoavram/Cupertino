@@ -2,6 +2,7 @@ version=`git rev-parse --short HEAD`
 
 md=draft.md
 pdf=draft.pdf
+tex=draft.tex
 
 template=./ms/template.latex
 
@@ -25,6 +26,9 @@ $(ms_bib): $(citation_keys) $(main_bib)
 $(pdf): $(md) $(ms_bib) $(template)
 	pandoc $< -o $@ $(pandoc_opts)
 	@open $(pdf)
+
+$(tex): $(md) $(ms_bib) $(template)
+	pandoc $< -o $@ $(pandoc_opts)
 
 version:
 	@echo $(version)
