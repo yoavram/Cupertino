@@ -206,7 +206,7 @@ $endif$
 \newcommand*{\tr}{^\intercal}
 % Lee's commands
 \newcommand{\matrx}[1]{{\left[ \stackrel{}{#1}\right]}}
-\newcommand{\diag}[1]{\mbox{ \bf diag}\matrx{#1}}
+\newcommand{\diag}[1]{\mbox{diag}\matrx{#1}}
 \newcommand{\goesto}{\rightarrow}
 \newcommand{\dspfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2} }
 % set default figure placement to htbp
