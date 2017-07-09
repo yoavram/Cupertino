@@ -1,12 +1,12 @@
 ---
-title: TITLE
+title: Necessity is the mother of invention
 author:
 - Yoav Ram^[Department of Biology, Stanford University, Stanford, CA 94305-5020, yoav@yoavram.com]
 - Lee Altenberg^[Information and Computer Sciences, University of Hawaii atM¯anoa, Honolulu, HI 96822, altenber@hawaii.edu]
 - Marcus W. Feldman^[Corresponding author; Department of Biology, Stanford University, Stanford, CA 94305-5020, mfeldman@stanford.edu]
 year: 2017
 abstract: |
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+    Production of variation is considered detrimental in well-adapted populations evolving under constant selection. Therefore, the rate at which variation is generated through processes such as mutation, migration, and innovation, is cosidered to be reduced by natural selection. However, violations of this _reduction principle_ have been demonstrated before. Here we analyse a general model of evolution under constant selection where the rate of variation generation can depend on the individual fitness. We find a general and simple result: if individuals with below average fitness increase the rate of variation generation, then the population mean fitness increases. This principle applies to phenomena such as stress-induced mutagenesis, condition-dependent dispersal and outcrossing, and even to the famous proverb, _"Necessity is the mother of invention"_.
 chapters: True
 chaptersDepth: 1
 chapDelim: ""
@@ -15,6 +15,8 @@ header-includes:
     - \usepackage[switch]{lineno}
     - \linenumbers
 ---
+
+**TODO production->generation**
 
 # Introduction
 
