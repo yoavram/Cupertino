@@ -30,9 +30,11 @@
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{corollary}{Corollary}
 \newtheorem*{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
 \newtheorem*{mfp}{Theorem: Mean Fitness Principle}
 \newtheorem*{rvp}{Corollary: Reproductive Value Principle}
 \newtheorem*{caswell}{Lemma: Caswell's Formula}
+\newtheorem*{frv}{Fisher's reproductive values}
 \renewcommand\qedsymbol{} % no square at end of proof
 
 % NatBib
@@ -340,11 +342,12 @@ $\partial \lambda = u\tr \partial T v$.
 
 % Appendix C
 \subsection*{Appendix C}\label{sec:AppC}
-
+\begin{frv}
 Let $M$ be a stochastic matrix and $D$ be a diagonal matrix with positive diagonal elements. 
-The elements of the left \emph{Perron} eigenvector $u$ of the matrix $MD$ can be regarded as \textbf{Fisher's reproductive values}.
-These values can be understood as follows.
+The elements of the left \emph{Perron} eigenvector $u$ of the matrix $MD$ can be regarded as \emph{Fisher's reproductive values}~\citep{Fisher1930,Grafen2006}.
+\end{frv}
 
+\emph{Fisher's reproductive values} can be understood as follows.
 Let us look at the dynamics not of frequencies but of absolute population sizes such that the vector of the number of individuals of each type at time $t$ is $n(t)$ and $f_k(t) = n_k(t) / \sum_i{n_i(t)}$.
 The dynamics are
 \begin{equation}
@@ -420,8 +423,6 @@ $\{u_k v_k\}_{Ik}$ is a probability distribution, since
 \sum_k {u_k v_k} = u\tr v = 1.
 \end{equation}
 \citet{Hermisson2002} called this distribution the \emph{ancestor} or \emph{ancestral distribution}.
-
-\textbf{TODO} cite \citep{Grafen2006}?
 
 % Acknowledgements
 {\small
