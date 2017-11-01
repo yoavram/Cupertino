@@ -1,5 +1,5 @@
-\documentclass[a4paper,twocolumn]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
-\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\documentclass[9pt, a4paper, twocolumn]{extarticle}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage[margin=1in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
 \geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
 %\geometry{landscape}                		% Activate for rotated page geometry
 %\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
@@ -22,6 +22,7 @@
 
 % Yoav & Lee commands
 \newcommand*{\tr}{^\intercal}
+\let\vec\mathbf
 \newcommand{\matrx}[1]{{\left[ \stackrel{}{#1}\right]}}
 \newcommand{\diag}[1]{\mbox{diag}\matrx{#1}}
 \newcommand{\goesto}{\rightarrow}
@@ -29,6 +30,9 @@
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{corollary}{Corollary}
 \newtheorem*{lemma}{Lemma}
+\newtheorem*{mfp}{Theorem: Mean Fitness Principle}
+\newtheorem*{rvp}{Corollary: Reproductive Value Principle}
+\newtheorem*{caswell}{Lemma: Caswell's Formula}
 \renewcommand\qedsymbol{} % no square at end of proof
 
 % NatBib
@@ -52,37 +56,38 @@
 % Abstract
 \begin{abstract}
 Generation of variation is considered detrimental in well-adapted
-populations evolving under constant selection. Therefore, the rate at
-which variation is generated through processes such as mutation,
-migration, and innovation, is considered to be reduced by natural
-selection. However, departures from the \emph{reduction principle} have
-been demonstrated before. Here we analyze a general model of evolution
-under constant selection where the rate of variation generation can
-depend on the individual fitness. We find a general and simple result:
-if individuals with below average fitness increase the rate of variation
-generation, then the population mean fitness increases. This principle
-applies to phenomena such as stress-induced mutagenesis,
-condition-dependent dispersal and outcrossing, and even to the famous
-proverb, \emph{"Necessity is the mother of invention"}.
+populations evolving under constant selection.
+Therefore, the rate at which variation is generated through processes such as mutation,
+migration, and innovation is reduced by natural selection.
+However, departures from this \emph{reduction principle} have been demonstrated.
+Here we analyze a general model of evolution under constant selection where the rate at which variation is generated can depend on the individual fitness.
+We find a general and simple result:
+if individuals with below-average fitness increase the rate at which variation is generated,
+then the population mean fitness increases.
+This principle applies to phenomena such as stress-induced mutagenesis,
+condition-dependent dispersal and outcrossing,
+and even to the famous proverb: \emph{"Necessity is the mother of invention"}.
 \end{abstract}
 
 % Introduction
 \section*{Introduction}
 
-According to the \emph{reduction principle}, in populations that evolve near an equilibrium between natural selection and generation of variation (i.e. mutation, migration, or recombination), natural selection favors modifiers that decrease the rate of variation generation. 
-The \emph{reduction principle} was first proposed for modifiers of the recombination~\citep{Feldman1972}, mutation, and migration~\citep{Liberman1986a}, and dispersal rates~\citep{Altenberg1987}.
+According to the \emph{reduction principle}, in populations that evolve near an equilibrium between natural selection and a process that generates variation (i.e. mutation, migration, or recombination), selection favors modifiers that decrease the rate of variation generation. 
 
-These separate principles were recently unified by~\citet{Altenberg2017}, which laid down the assumptions and conditions for the validity of the \emph{unified reduction principle}: effectively infinite population size, constant-viability selection, a population at an equilibrium, and \emph{linear variation} -- the equal scaling of transition probabilities by the modifier.
+The \emph{reduction principle} was demonstrated for modifiers of the recombination~\citep{Feldman1972}, mutation, and migration~\citep{Liberman1986a}, and dispersal rates~\citep{Altenberg1987}.
+These separate principles were recently unified by~\citet{Altenberg2017}
+
+The assumptions and conditions for the validity of the \emph{unified reduction principle} are~\citep{Altenberg2017}:
+(i) effectively infinite population size, (ii) constant-viability selection, (iii) a population at an equilibrium, and (iv) \emph{linear variation} -- the equal scaling of transition probabilities by the modifier.
 A departure from the latter assumption occurs if two variation producing processes interact~\citep{Altenberg2012} [REF: Holsinger?], or if there are biases in the mutation or migration process, such that \ldots{}
 
 Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism commonly called \emph{stress-induced mutagenesis}, in which the mutation rate increases in individuals with poor fitness.
-\citet{Ram2012} demonstrated that modifiers that increase the mutation rate of individuals with below average fitness actually \emph{increase} the population mean fitness, rather than decrease it.
-Their analysis included an infinite population size and constant-viability selection, such that the only departure from the \emph{reduction principle} assumptions is due to the differential effect the modifier has on different genotypes. 
+\citet{Ram2012} demonstrated that modifiers that increase the mutation rate of individuals with below-average fitness actually \textbf{increase} the population mean fitness, rather than decrease it.
+Their analysis included an infinite population size and constant-viability selection, such that the only departure from the \emph{reduction principle} assumptions is due to the differential effect the modifier has on different genotypes.
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
-Moreover, their analysis was limited to low mutation rates as it assumed that the number of mutations per individual per generation is very low.
+Moreover, their analysis was limited to low mutation rates as it neglected double-mutations (i.e. assuming $U<1/\sqrt{N}$ where $U$ is the genome-wide mutation rate and $N$ is the population size). 
 
-Here, we present a general evolutionary model where the rate of variation generation can be different for each type of individual.
-This model generalizes both mutation and migration or dispersal models. 
+Here, we present a general evolutionary model where the rate at which variation is generated depend on the type of individual, and specifically on the its fitness.
 Our result shows that low fitness individuals should produce more variation then high fitness individuals.
 
 % Model
@@ -93,33 +98,28 @@ The change in the frequencies of these types is described by the transformation 
 \begin{equation}\label{eq:model}
 \bar{\omega} f' = (I-C+MC)D f,
 \end{equation}
-where $f_i$ is the frequency if type $A_i$, such that $f$ is a stochastic vector ($\sum_i{f_i} = 1$);
-$C_i$ is the probability that an individual of type $A_i$ will transition to another type ($C$ is a diagonal non-negative matrix with diagonal elements $C_i$);
-$M_{i,j}$ is the transition probability from type $A_j$ to type $A_i$ given that an individual of type $A_j$ is transitioning ($M$ is a stochastic matrix;
-$\sum_i {M_{i,j}} = 1$ for any column \emph{j}); 
-$D_i$ is the relative fitness of type $A_i$ ($D$ is a diagonal matrix with diagonal elements $0 < D_k \le 1$); 
+where $f_k$ is the frequency of type $A_k$, such that $f$ is a stochastic vector ($\sum_k{f_k} = 1$);
+$C_k$ is the probability that an individual of type $A_k$ will transition to another type ($C$ is a diagonal non-negative matrix with diagonal elements $C_k$);
+$M_{i,j}$ is the transition probability from type $A_j$ to type $A_i$ given that an individual of type $A_j$ is transitioning ($M$ is a stochastic matrix: $\sum_j {M_{i,j}} = 1$ for any column \emph{j}); 
+$D_k$ is the relative fitness of type $A_k$ ($D$ is a diagonal matrix with diagonal elements $0 < D_k \le 1$; fitness values are relative to the fitness of the fittest type); 
 $I$ is the identity matrix;
-and $\bar{\omega}$ is a normalizing factor such that $\sum_i{f'_i}=1$, which turns out to be the population mean fitness (see~\nameref{sec:AppA}).
+and $\bar{\omega}$ is a normalizing factor such that $\sum_k{f'_k}=1$, which turns out to be the population mean fitness (see~\nameref{sec:AppA}).
 
-The types $A_i$ can be encoded by a single or multiple genetic loci or non-genetic trait (behavior, technology. etc.).
-The important constraint is that the type is transmitted from a single parent to the offspring, and the transmission infidelity causes type transition (via mutation,
-migration, innovation, etc.).
-More formally, type transmission must vertical and uni-parental, independent of the frequencies of the other types, and fully described by the matrix $M$. Therefore, this model precludes recombination, social learning, sexual outcrossing, and any horizontal or oblique transmission~\cite[pg.~54]{Cavalli-Sforza1981}.
+The types $A_k$ can be encoded by a single or multiple genetic loci or non-genetic traits.
+Importantly, the type is transmitted from a single parent to the offspring, and transmission infidelity causes type transitions. For example, genotypes are transmitted by genetic inheritance, and genetic infidelity, i.e. mutation, generates new genotypes.
+More formally, type transmission is vertical and uni-parental, independent of the frequencies of the other types, and is fully described by the matrix $M$.
+Therefore, this model precludes recombination, social learning, sexual outcrossing, and any horizontal or oblique transmission~\cite[pg.~54]{Cavalli-Sforza1981}.
 
 Transition between types is determined by a combination of two effects:
-(i) the probability to transition \emph{out} of type $A_i$ is determined by $C_i$;
-(ii) the distribution of the destination types $A_i$ is given by $M_{i,j}$.
-We focus on a modifier~\citep{Altenberg2017} that has no direct effect on fitness and whose sole function is to determine the rate of transition out of the different types.
-Importantly, this modifier can determine different rates for different types, therefore $C$ is a diagonal matrix rather than a scalar (the latter is the case in the \emph{reduction principle}~\citep{Altenberg2017}.
-
-\textbf{TODO} Next, we present three interpretations of this model for
-mutation, migration, and cultural evolution.
+(i) the probability to transition \emph{out} of type $A_k$ is determined by $C_k$;
+(ii) given a transition out of type $A_i$, the distribution of the destination types $A_j$ is given by $M_{j,i}$ (note the index order).
+We focus on a modifier that has no direct effect on fitness and whose sole function is to determine the rate of transition out of the different types ($C_k$).
+Importantly, this modifier can determine different rates for different types, therefore $C$ is a diagonal matrix rather than a scalar. The case of a scalar in covered by the \emph{reduction principle}, see~\citet{Altenberg2017}.
 
 % Results
 \section*{Results}
-% Mean fitness principle
-\subsection*{Mean fitness principle}
 
+% Mean fitness principle
 The equilibrium of the frequency vector $f$ in Eq.~\ref{eq:model} is given by the equilibrium frequency vector $v$ and the stable population mean fitness
 $\bar{\omega}^*$, namely
 \begin{equation}\label{eq:model_equilibrium}
@@ -127,33 +127,33 @@ $\bar{\omega}^*$, namely
 \end{equation}
 
 The following theorem presents a \emph{mean fitness principle} for the
-sensitivity of the population mean fitness $\bar{\omega}^*$ to changes
-in $C_k$ the rate of transition out of $A_k$.
+sensitivity of the stable population mean fitness $\bar{\omega}^*$ to changes
+in $C_k$ the probability for transition out of $A_k$.
 
-\begin{theorem}
+\begin{mfp}
 Let $\bar{\omega}^*$ be the leading eigenvalue of $(I-C+MC)D$, $u$ and $v$ be the corresponding left and right eigenvectors, and $[M]_k$ the $k$-th column of $M$. Then
 \begin{equation}\label{eq:theorem}
 \frac{\partial \bar{\omega}^*}{\partial C_k} = 
 \frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k),
 \end{equation}
 or in simpler terms,
-$$
+\begin{equation}
 sign\frac{\partial \bar{\omega}^*}{\partial C_k} = 
 sign(\bar{\omega}^* - D_k), 
-$$
+\end{equation}
 and therefore increased transition out of type $k$ will increase the stable population mean fitness if and only if the fitness of type $k$ is below the stable population mean fitness.
-\end{theorem}
+\end{mfp}
 
 \begin{proof}
 By the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007},
 $\bar{\omega}^*$ is the leading real positive eigenvalue of $(I-C+MC)D$,
-and the corresponding left and right eigenvectors $u$ and $v$ are both non-negative and uniquely defined by $\sum_i{v_i} = 1$ and $\sum_i{u_i v_i} = 1$.
+and the corresponding left and right eigenvectors $u$ and $v$ are both non-negative and uniquely defined by $\sum_k{v_k} = 1$ and $\sum_k{u_k v_k} = 1$.
 
 Using \emph{Caswell's formula} (Eq.~\ref{eq:Caswells_formula} in~\nameref{sec:AppB}),
-$$
+\begin{equation}
 \frac{\partial \bar{\omega}^*}{\partial C_k} = 
 u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v.
-$$
+\end{equation}
 
 Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position $k$ and 0 elsewhere, $Z_k = e_k e\tr_k$ the matrix with 1 at position $(k,k)$ and 0 elsewhere, and $[M]_k$ the $k$-th column of $M$.
 
@@ -169,20 +169,23 @@ v_k D_k (u\tr[M]_k - u_k).
 
 The corresponding equation to Eq.~\ref{eq:model_equilibrium} for the left
 eigenvector $u$ is 
-$$
+\begin{equation}
 u\tr \bar{\omega}^* = u\tr (I - C + MC) D,
-$$
+\end{equation}
 which gives us a relation between $\bar{\omega}^*$ and the $k$
 element of $u$:
-$$
+\begin{equation}
 u_k \bar{\omega}^* = (1-C_k) D_k u_k + C_k D_k u\tr [M]_k.
-$$
-Multiplying both sides by $v_k$ (which is positive if $D_k>0$) and rearranging, we get $\frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k) = v_k D_k(u\tr [M]_k - u_k)$.
-Plugging this in eq. \ref{eq:theorem_intermediate} yields:
-$$
+\end{equation}
+Multiplying both sides by $v_k$ (which is positive if $D_k>0$) and rearranging, we get 
+\begin{equation}
+\frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k) = v_k D_k(u\tr [M]_k - u_k).
+\end{equation}
+Plugging this in Eq.~\ref{eq:theorem_intermediate} yields:
+\begin{equation}
 \frac{\partial \bar{\omega}^*}{\partial C_k} = 
 \frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k),
-$$
+\end{equation}
 which completes the proof.
 \end{proof}
 
@@ -199,77 +202,73 @@ $$
 because $\bar{\omega}^* = \sum_i{v_i D_i}$ (see~\nameref{sec:AppA}) and $D_i \le 1$ for all $i$.
 
 % Reproductive value principle
-\subsection*{Reproductive value principle}
 
-A corollary of Eq.~\ref{eq:theorem} appears in Eq.~\ref{eq:theorem_intermediate}:
+An interesting intermediate result in Eq.~\ref{eq:theorem_intermediate} is
 
-\begin{multline}\label{eq:corollary_reproductive_value}
+\begin{equation}
+\begin{aligned}
 \frac{\partial \bar{\omega}^*}{\partial C_k} = 
 v_k D_k (u\tr[M]_k - u_k) = \\
 D_k (\sum_i{u_i M_{i,k} v_k} - u_k v_k).
-\end{multline}
-
-$u_k$ can be regarded as \emph{Fisher's reproductive value} of type $k$ (see~\nameref{sec:AppC}), which gives the relative contribution of type $k$ to the long-term population.
+\end{aligned}
+\end{equation}
+Here, $u_k$ can be regarded as the \emph{reproductive value} of type $k$ (see~\nameref{sec:AppC}), which gives the relative contribution of type $k$ to the long-term population.
 Subsequently, $u_k v_k$ is the \emph{ancestor frequency} \citep{Hermisson2002} of type $k$, which is the fraction of the equilibrium population descended from type $k$.
 The sum $\sum_i{u_i M_{i,k} v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$).
 
-Given $0 < D_k \le 1$, from Eq.~\ref{eq:theorem_intermediate} we can simplify the mathematical notation to 
-$$
+Given $0 < D_k \le 1$, from Eq.~\ref{eq:theorem_intermediate} we can get the following corollary.
+
+\begin{rvp}
+In the notation of the theorem,
+\begin{equation}
 sign \frac{\partial \bar{\omega}^*}{\partial C_k} = 
 sign (u\tr [M]_k - u_k),
-$$
-which means that increasing the overall transition rate $C_k$ from type $k$ to other types will increase the population mean fitness if and only if the fraction of the population descended from type $k$ is expected to increase due to a transition to another type.
+\end{equation}
+and therefore increased transition out of type $k$ will increase the stable population mean fitness if and only if the fraction of the population descended from type $k$ is expected to increase due to a transition to another type. 
+\end{rvp}
 
-% Threshold modifier
-\subsection*{Threshold modifier}
-
-We can turn our attention to a modifier that concurrently controls the transition out of a subset of types, $K$.
+We turn our attention to a modifier that concurrently controls the transition out of a subset of types, $K$.
 For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated deleterious mutations, $k$, and a modifier that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
 
 Similarly, if the transition rates are controlled by a threshold rule 
-$$
+\begin{equation}
 C_k = \begin{cases}
 \tau, & k \in K \\
 1, & k \not\in K
 \end{cases},
-$$
-then the sensitivity of the population mean fitness to changes in the
+\end{equation}
+then the sensitivity of the stable population mean fitness to changes in the
 rate of transition out of types $K$ is
-\begin{equation*}
+\begin{equation}
 \begin{aligned}
 \frac{\partial \bar{\omega}^*}{\partial \tau} = 
 u\tr \Big( \sum_{k \in \mathbb{K{}}}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) v = \\
 \frac{1}{\tau} \sum_{k \in \mathbb{K}}{u_k v_k (\bar{\omega}^* - D_k)}.
 \end{aligned}
-\end{equation*}
+\end{equation}
+
+\textbf{TODO} summarize result in words.
 
 % Discussion
 \section*{Discussion}
-% Departure from the reduction principle
-\subsection*{Departure from the \emph{reduction principle}}
+\textbf{TODO}: Departure from the \emph{reduction principle}
 
-% Extension of Ram and Hadany, 2012
-\subsection*{Extension of \citealt{Ram2012}}
-
-The theorem Eq.~\ref{eq:theorem} is a generalization of a result from \citet[Eq.~4]{Ram2012}.
+Eq.~\ref{eq:theorem} is a generalization of a result from \citet[Eq.~4]{Ram2012}.
 Translated to the notation presented here, \citeauthor{Ram2012} modeled the accumulation of deleterious mutations in a population at the mutation-selection balance, assuming no more than one mutation occurs per individual per generation: 
-$$
+\begin{equation}
 M_{i,j} = \begin{cases}
 \beta \mu, & i = j-1 \\
 (1-\beta-\delta) \mu, & i = j \\
 \delta \mu, & i = j+1 \\
 (1-\delta \mu), & i=j=0 \\
 0, & \text{otherwise}
-\end{cases}.
-$$
+\end{cases}
+\end{equation}
 
-Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded
-that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{\omega}^*$) increase their mutation rate, then the population mean fitness will increase.
+Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{\omega}^*$) increase their mutation rate, then the population mean fitness will increase.
 
-% Evidence
-\subsection*{Evidence}
-
-\textbf{TODO} evidence for faster generation of variation in low fitness individuals.
+\textbf{TODO} migration model
+\textbf{TODO} cultural evolution model?
 
 % Conclusions
 \subsection*{Conclusions}
@@ -277,53 +276,61 @@ that at the mutation-selection balance, if individuals with below-average fitnes
 \section*{Appendices}
 % Appendix A
 \subsection*{Appendix A}\label{sec:AppA}
-\subsubsection*{The population mean fitness is an eigenvalue}
 
-Given Eq.~\ref{eq:model}, we show that the normalizing factor is the population mean fitness, i.e. $\bar{\omega} = \sum_i{f_i D_i}$.
+\begin{lemma}
+The normalizing factor $\bar{\omega}$ in Eq.~\ref{eq:model} is the population mean fitness
+\begin{equation}
+\bar{\omega} = \sum_k{f_k D_k}.
+\end{equation}
+\end{lemma}
 
-Denote $e = (1, ..., 1)$ the vector with ones at all positions.
-$e\tr M = e\tr$ because $M$ is a stochastic matrix. Together with $e\tr I = e\tr$,
-we have
+\begin{proof}
+By definition, the normalizing factor $\bar{\omega}$ ensures that $\sum_k{f'_k}=1$.
+Denote $e = (1, ..., 1)$ the vector with ones at all positions and rewrite $e\tr f' = 1$.
+Therefore, 
 \begin{multline}\label{eq:mean_fitness}
-\lambda = 
+\bar{\omega} = 
+\bar{\omega} e\tr f' = 
 e\tr (I - C + M C) D f = \\
 (e\tr I - e\tr C + e\tr M C) D f = \\
 (e\tr - e\tr C + e\tr C) D f = \\
-e\tr D f = \\
-\diag{D} f = \\
-\sum_i{D_i f_i} = \bar{\omega} \;\;\; \blacksquare
+e\tr D f = 
+\diag{D} f = 
+\sum_k{f_k D_k},
 \end{multline}
+using the fact that $e\tr M = e\tr$ and $e\tr I = e\tr$ because $M$ and $I$ are stochastic matrices.
+\end{proof}
+
+Note that this lemma also ensures that the stable population mean fitness $\bar{\omega}^*=\sum_k{v_k D_k},$ is the leading eigenvalue of $(I - C + M C) D$; see Eq.~\ref{eq:model_equilibrium} and the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007}.
 
 % Appendix B
 \subsection*{Appendix B}\label{sec:AppB}
-\subsubsection*{Caswell's formula}
 
 \citet{Caswell1978} presented a \emph{formula for the sensitivity of the population growth rate to changes in life history parameters}.
-In this formula, the population growth rate is the leading eigenvalue of the population transformation matrix $T$, the life history parameters are elements of $T$, and the \emph{sensitivity} is the derivative of the former with respect
-to the latter.
-This is a useful formula~\citep{Hermisson2002,Ram2012}.
+In this formula, the \emph{population growth rate} is the leading eigenvalue of the population transformation matrix $T$, the \emph{life history parameters} are elements of $T$, and the \emph{sensitivity} is the derivative of the former with respect to the latter.
+This is a useful formula~\citep{Hermisson2002,Ram2012}, and therefore we reproduce it here.
 
-\begin{lemma}[Caswell's formula~\citep{Caswell1978}]
-Let $T$ be a matrix with eigenvalue $\lambda$ and left and right eigenvectors $u$ and $v$ such that $\sum{v_i}=1$ and $u\tr v = \sum{u_i v_i} = 1$,
-then the sensitivity of $\lambda$ to changes in any parameter $x$ of the matrix $T$ is
+\begin{caswell}
+Let $T$ be a matrix with eigenvalue $\lambda$ and left and right eigenvectors $u$ and $v$ such that $\sum{v_k}=1$ and $u\tr v = \sum{u_k v_k} = 1$.
+Then the sensitivity of $\lambda$ to changes in any element $t$ of the matrix $T$ is
 \begin{equation}\label{eq:Caswells_formula}
-\frac{\partial \lambda}{\partial x} = 
-u\tr \frac{\partial T}{\partial x} v
+\frac{\partial \lambda}{\partial t} = 
+u\tr \frac{\partial T}{\partial t} v
 \end{equation}
-\end{lemma}
+\end{caswell}
 
 \begin{proof} 
 Using the lemma assumptions,
 $\lambda = \lambda u\tr v = u\tr \lambda v = u\tr T v$ and differentiating both sides we get $\partial \lambda = \partial (u\tr T v)$.
 Using the product rule (once in each direction),
 
-\begin{multline*}
-\partial (u\tr T v) = \\
+\begin{multline}
+\partial (u\tr T v) = 
 \partial u\tr T v + u\tr \partial T v + u\tr T \partial v = \\
 u\tr \partial T v + \partial u\tr \lambda v  + \lambda u\tr \partial v = \\
 u\tr \partial T v + \lambda(\partial u\tr v  + u\tr \partial v) = \\
 u\tr \partial T v + \lambda \partial(u\tr v).
-\end{multline*}
+\end{multline}
 
 Because $u\tr v = 1$,
 we have $\partial (u\tr v) = 0$ and
@@ -332,93 +339,86 @@ $\partial \lambda = u\tr \partial T v$.
 
 % Appendix C
 \subsection*{Appendix C}\label{sec:AppC}
-\subsubsection*{Fisher's reproductive value}
 
 Let $M$ be a stochastic matrix and $D$ be a diagonal matrix with positive diagonal elements. 
-The elements of th left \emph{Perron} eigenvector $u$ of matrix $MD$ can be regarded as \emph{Fisher's reproductive values}.
+The elements of the left \emph{Perron} eigenvector $u$ of the matrix $MD$ can be regarded as \textbf{Fisher's reproductive values}.
 These values can be understood as follows.
 
-Let us look at the dynamics not of frequencies but of absolute
-population sizes, $n_i(t)$.
-Let the vector of the number of each type at time $t$ be $n(t)$.
+Let us look at the dynamics not of frequencies but of absolute population sizes such that the vector of the number of individuals of each type at time $t$ is $n(t)$ and $f_k(t) = n_k(t) / \sum_i{n_i(t)}$.
 The dynamics are
-$$
+\begin{equation}
 n(t) = (MD)^t n(0).
-$$
+\end{equation}
 
-Let $n(j, t)$ be the vector when the initial population is a single individual of type $j$.
+Let $n(k, t)$ be the vector when the initial population is a single individual of type $k$.
 The dynamics are
-$$
-n(j,t) = (MD)^t e_j,
-$$
-where $e_i$ is a vector with 1 at position $i$ and 0 elsewhere.
+\begin{equation}
+n(k,t) = (MD)^t e_k,
+\end{equation}
+where $e_k$ is a vector with 1 at position $k$ and 0 elsewhere.
 
-The total population size at time $t$ starting with type $j$ is then
-$$
-N(j,t) = e\tr n(j,t) = e\tr (MD)^t e_j.
-$$
+The total population size at time $t$ starting with type $k$ is then
+\begin{equation}
+N(k,t) = \sum_i{n_i(k,t)} = e\tr (MD)^t e_k.
+\end{equation}
 
-Now we can compare the population sizes based on what type they start
+Now we can compare the sizes of populations based on what type they started
 with:
-$$
+\begin{equation}
 \frac{N(j,t)}{N(k,t)} = \frac{e\tr (MD)^t e_j}{e\tr (MD)^t e_k}.
-$$
+\end{equation}
 
-To further evaluate, we write $MD$ as its Jordan canonical form, 
-$$
+To further evaluate, we write $MD$ in its Jordan canonical form 
+\begin{equation}
 A = V \Lambda U\tr,
-$$
+\end{equation}
 where $V$ is the matrix of right column eigenvectors of $MD$,
 $U\tr$ is the matrix of left row eigenvectors of $MD$,
 $V U\tr = U\tr V = I$, 
-and $\Lambda$ is the diagonal matrix of
-eigenvalues of $A$ (for a nongeneric set of matrices $M$, the
-geometric and algebraic multiplicities of the eigenvalues of $MD$
-differ, and $\Lambda$ will not be a diagonal matrix, a case we can
-ignore).
+and $\Lambda$ is the diagonal matrix of eigenvalues of $A$ 
+(for a non-generic set of matrices $M$, the geometric and algebraic multiplicities of the eigenvalues of $MD$ differ, and $\Lambda$ will not be a diagonal matrix, a case we can ignore).
 
 Hence,
-\begin{multline*}
-N(i, t) = 
-e\tr n(t) = \\
-e\tr (MD)^t e_i =
-e\tr  (V \Lambda U\tr)^t e_i = \\
-e\tr V \Lambda^t U\tr e_i.
-\end{multline*}
+\begin{multline}
+N(k, t) = 
+e\tr (MD)^t e_k =
+e\tr  (V \Lambda U\tr)^t e_k = \\
+e\tr V \Lambda^t U\tr e_k.
+\end{multline}
 
 For the ratio, we can divide $\Lambda$ by $\lambda_1 = \rho(MD)$,
 the spectral radius of $MD$:
-\begin{multline*}
+\begin{multline}
 \frac{N(j,t)}{N(k,t)} =
 \frac{ e\tr V \Lambda^t U\tr e_j}{ e\tr V \Lambda^t U\tr e_k} = \\
-\frac{ e\tr V \diag{1, (\frac{\lambda_2}{\lambda_1})^t, \cdots} U\tr e_j} { e\tr V \diag{1,(\frac{\lambda_2}{\lambda_1})^t, \cdots} U\tr e_k}.
-\end{multline*}
+\frac{ e\tr V \diag{1, \Big(\frac{\lambda_2}{\lambda_1}\Big)^t, \cdots} U\tr e_j} { e\tr V \diag{1,\Big(\frac{\lambda_2}{\lambda_1}\Big)^t, \cdots} U\tr e_k}.
+\end{multline}
 
-Now take the long term limit.
-By assumption $MD$ is irreducible,
-hence $\lambda_i < \lambda_1$ for all $i > 1$.
-Hence $\lim_{t \goesto \infty} \lambda_i / \lambda_1 = 0$ for all $i > 1$.
-Thus:
-\begin{multline*}
+Now take the long term limit $t \goesto \infty$.
+By assumption, $MD$ is irreducible, so $\lambda_i < \lambda_1$ for all $i > 1$.
+Therefore,
+\begin{equation}
+\lim_{t \goesto \infty} \Big( \frac{\lambda_k}{\lambda_1} \Big)^t = 0
+\end{equation}
+for all $k > 1$, and
+\begin{equation}
 \lim_{t \goesto \infty}\frac{N(j,t)}{N(k,t)} =
-\lim_{t \goesto \infty} \frac{ e\tr V \Lambda^t U\tr e_j}{ e\tr V \Lambda^t U\tr e_k} = \\
-\lim_{t \goesto \infty} \frac{ e\tr V diag {1, (\dspfrac{\lambda_2}{\lambda_1})^t, \cdots} U\tr e_h} { e\tr V diag {1,(\dspfrac{\lambda_2}{\lambda_1})^t, \cdots} U\tr e_k} = \\
-\frac{e\tr V (e_1 e_1\tr) U\tr e_j} { e\tr V (e_1 e_1\tr) U\tr e_k} = \\
+\frac{e\tr V (e_1 e_1\tr) U\tr e_j} { e\tr V (e_1 e_1\tr) U\tr e_k} = 
 \frac{ e\tr v u_j} { e\tr v  u_k} =
 \frac{u_j} {u_k}.
-\end{multline*}
+\end{equation}
 
-The vector $u$ is the left \emph{Perron} eigenvector of $MD$, and $u_i$ is element $i$ of $u$.
-This is why the value $u_i$ can be interpreted as the \emph{reproductive value} of type $i$, as it is a weight for the size of the population generated by a single individual of type $i$.
+The vector $u$ is the left \emph{Perron} eigenvector of $MD$, and $u_k$ is element $k$ of $u$.
+This is why the value $u_k$ can be interpreted as the \emph{reproductive value} of type $i$: it is a weight for the size of the population generated by a single individual of type $k$.
 
 If we begin with a population at the equilibrium distribution $v$,
-and ask what fraction of long-term descendants descended from type $i$ at that time,
-we weight $v_i$ by the reproductive value $u_i$, to get $u_i v_i$.
-We note that $\{u_i v_i\}_{i}$ is a normalized probability distribution, since
-$$
-\sum_i {u_i v_i} = u\tr v = 1.
-$$ 
-\citet{Hermisson2002} called the $u_i v_i$ the \emph{ancestor} or \emph{ancestral distribution}.
+and ask what fraction of long-term descendants descended from type $k$ at that time,
+we weight the equilibrium frequency $v_k$ by the reproductive value $u_k$, to get $u_k v_k$.
+$\{u_k v_k\}_{Ik}$ is a probability distribution, since
+\begin{equation}
+\sum_k {u_k v_k} = u\tr v = 1.
+\end{equation}
+\citet{Hermisson2002} called this distribution the \emph{ancestor} or \emph{ancestral distribution}.
 
 \textbf{TODO} cite \citep{Grafen2006}?
 
