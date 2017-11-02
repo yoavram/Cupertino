@@ -10,7 +10,11 @@
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
 \usepackage[unicode=true]{hyperref}
 \usepackage[auth-sc]{authblk}
+\usepackage{titlesec}
 
+\titleformat{\subsection}[runin]
+  {\bf}{\thesection}{1em}{}
+  
 %SetFonts
 % newtxtext+newtxmath
 \usepackage{newtxtext} %loads helv for ss, txtt for tt
@@ -88,14 +92,15 @@ Another departure from the \emph{linear variation} assumption of the \emph{reduc
 \citet{Ram2012} demonstrated that modifiers that increase the mutation rate of individuals with below-average fitness actually \textbf{increase} the population mean fitness, rather than decrease it.
 Their analysis included an infinite population size and constant-viability selection, such that the only departure from the \emph{reduction principle} assumptions is due to the differential effect the modifier has on different genotypes.
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
-Moreover, their analysis was limited to low mutation rates as it neglected double-mutations (i.e. assuming $U<1/\sqrt{N}$ where $U$ is the genome-wide mutation rate and $N$ is the population size). 
+Their analysis was specific to a model that classified individuals by the number of mutant genes in their genotype, similar to~\citet{Kimura1966} and~\citet{Haigh1978}. 
 
 Here, we present a general evolutionary model where the rate at which variation is generated depend on the type of individual, and specifically on the its fitness.
 Our result shows that low fitness individuals should produce more variation then high fitness individuals.
 
 % Model
-\section*{Model}
+\section*{The Models}
 
+\subsection*{General model.}
 Consider a large haploid population with an arbitrary set of types $A_1, A_2, ...$.
 The change in the frequencies of these types is described by the transformation $f \to f'$: 
 \begin{equation}\label{eq:model}
@@ -109,15 +114,82 @@ $I$ is the identity matrix;
 and $\bar{\omega}$ is a normalizing factor such that $\sum_k{f'_k}=1$, which turns out to be the population mean fitness (see~\nameref{sec:AppA}).
 
 The types $A_k$ can be encoded by a single or multiple genetic loci or non-genetic traits.
-Importantly, the type is transmitted from a single parent to the offspring, and transmission infidelity causes type transitions. For example, genotypes are transmitted by genetic inheritance, and genetic infidelity, i.e. mutation, generates new genotypes.
-More formally, type transmission is vertical and uni-parental, independent of the frequencies of the other types, and is fully described by the matrix $M$.
-Therefore, this model precludes recombination, social learning, sexual outcrossing, and any horizontal or oblique transmission~\cite[pg.~54]{Cavalli-Sforza1981}.
+Importantly, type transmission is vertical and uni-parental (the type is transmitted from a single parent to the offspring), independent of the frequencies of the other types, and is fully described by the matrix $M$. Specifically, transmission infidelity causes type transitions.
+Therefore, this model precludes processes such as recombination, social learning, sexual outcrossing, and any horizontal or oblique transmission, as these processes are frequency-dependent~\cite[pg.~54]{Cavalli-Sforza1981}.
 
 Transition between types is determined by a combination of two effects:
 (i) the probability to transition \emph{out} of type $A_k$ is determined by $C_k$;
 (ii) given a transition out of type $A_i$, the distribution of the destination types $A_j$ is given by $M_{j,i}$ (note the index order).
 We focus on a modifier that has no direct effect on fitness and whose sole function is to determine the rate of transition out of the different types ($C_k$).
 Importantly, this modifier can determine different rates for different types, therefore $C$ is a diagonal matrix rather than a scalar. The case of a scalar in covered by the \emph{reduction principle}, see~\citet{Altenberg2017}.
+
+In the following section we present three particular examples of this model for the modification of mutation, migration, and learning.
+
+\subsection*{Mutation modification model 1.}
+Here we consider a large population of haploids and a trait determined by a major locus with $n$ possible alleles $A_1, A_2, ..., A_n$.
+Linked to to this locus is a modifier locus that determines the mutation rates $\mu_k$ of individuals with allele $A_k$.
+Specifically, with probability $1-mu_k$, the allele $A_k$ does not mutate, and with probability $\frac{\mu_k}{n-1}$, the allele $A_k$ mutates to $A_j$ for any $j \ne k$.
+This is an extension of a model presented by~\citet{Altenberg2017}, allowing for the mutation rate of an individual $\mu_k$ to depend on the identity of the allele $A_k$.
+
+Let the frequency of $A_k$ in the present generation be $f_k$ such that $f_k \ge 0$, $\sum_k{f_k}=1$, $\vec{f}=(f_1, \ldots, f_n)\tr$.
+Then after selection and mutation $\vec{f'}$ in the next generation is given by
+\begin{equation}
+f_k' = (1 - \mu_k) \frac{w_k}{\bar{w}} f_k + \frac{1}{n-1} \sum_{k \ne j}{\mu_j \frac{w_j}{\bar{w}} x_j},
+\label{eq:mutation_model_1}
+\end{equation}
+for all $k=1,2,\ldots,n$, where $\bar{w} = \sum_{k=1}^{n}{w_k f_k}$ is the population mean fitness.
+
+This model can be rephrased in terms of the general model: 
+Eq.~\ref{eq:mutation_model_1} is equivalent to Eq.~\ref{eq:model} if we define
+\begin{equation} 
+C_k = \mu_k, \quad
+D_k = w_k, \quad
+M_{i,j} = \begin{cases}
+\frac{1}{n-1}, & i \ne j \\
+0, & i=j
+\end{cases}.
+\end{equation}
+
+\subsection*{Mutation modification model 2.}
+
+Here, we consider a large population of haploids in which individuals with genotype $A_k$ are characterized by the number of deleterious or mutant alleles in their genotype, $k$.
+A modifier locus then determines the probability that a mutation occurs in individuals with $k$ mutant alleles, $m_k$.
+In this case, if we assume a low mutation rate $m_k$ such that two mutations are unlikely to occur in the same individual in one generation.
+When a mutation occurs it is \emph{deleterious} with probability $\delta$, generating a new mutant allele and moving the individual from $A_k$ to $A_{k+1}$, or it is beneficial with probability $\beta$, moving the individual from $A_k$ to $A_{k-1}$.
+Note that such beneficial mutations can be either compensatory or back-mutations, and that mutations are neutral with probability $1-\delta-\beta$.
+This model has been presented and analyzed by~\citet{Ram2012}.
+
+Let the frequency of $A_k$ in the present generation be $f_k$ such that $f_k \ge 0$, $\sum_k{f_k}=1$, $\vec{f}=(f_1, \ldots, f_n)\tr$.
+Then after selection and mutation $\vec{f'}$ in the next generation is given by
+\begin{equation}
+f_0' = (1 - \delta m_0) \frac{w_0}{\bar{w}} f_0 + \beta m_{1} \frac{w_{1}}{\bar{w}} f_{1},
+\end{equation}
+and
+\begin{multline}
+f_k' = (1 - m_k(\beta+\delta)) \frac{w_k}{\bar{w}} f_k + \\
+\delta m_{k-1} \frac{w_{k-1}}{\bar{w}} f_{k-1} + \beta m_{k+1} \frac{w_{k+1}}{\bar{w}} f_{k+1},
+\label{eq:mutation_model_2}
+\end{multline}
+for all $k=1,2,\ldots$, where $w_k$ is the fitness of an individual with $k$ mutant alleles and $\bar{w} = \sum_{k \ge 0}{w_k f_k}$ is the population mean fitness.
+
+To rephrase this model in the terms of the general model, we define
+
+\begin{align}
+C_k = m_k, \quad
+D_k = w_k, \quad
+M_{i,j} = \begin{cases}
+\beta, & i = j-1 \\
+1-\beta-\delta, & i = j \\
+\delta, & i = j+1 \\
+1-\delta, & i=j=0 \\
+0, & \text{otherwise}
+\end{cases}
+\end{align}
+so that Eq.~\ref{eq:mutation_model_2} is equivalent to Eq.~\ref{eq:model}.
+
+\subsection*{Migration modification model.}
+
+\textbf{TODO}
 
 % Results
 \section*{Results}
@@ -257,24 +329,14 @@ u\tr \Big( \sum_{k \in \mathbb{K{}}}{\frac{\partial (I - C + MC)D}{\partial \tau
 \textbf{TODO}: Departure from the \emph{reduction principle}
 
 Eq.~\ref{eq:theorem} is a generalization of a result from \citet[Eq.~4]{Ram2012}.
-Translated to the notation presented here, \citeauthor{Ram2012} modeled the accumulation of deleterious mutations in a population at the mutation-selection balance, assuming no more than one mutation occurs per individual per generation: 
-\begin{equation}
-M_{i,j} = \begin{cases}
-\beta \mu, & i = j-1 \\
-(1-\beta-\delta) \mu, & i = j \\
-\delta \mu, & i = j+1 \\
-(1-\delta \mu), & i=j=0 \\
-0, & \text{otherwise}
-\end{cases}
-\end{equation}
+Translated to the notation presented here, \citeauthor{Ram2012} modeled the accumulation of deleterious mutations in a population at the mutation-selection balance, assuming no more than one mutation occurs per individual per generation... \textbf{TODO} continue this...
 
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{\omega}^*$) increase their mutation rate, then the population mean fitness will increase.
 
-\textbf{TODO} migration model
-\textbf{TODO} cultural evolution model?
-
 % Conclusions
 \subsection*{Conclusions}
+
+\textbf{TODO}
 
 \section*{Appendices}
 % Appendix A
