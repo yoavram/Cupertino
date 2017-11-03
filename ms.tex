@@ -1,10 +1,10 @@
-\documentclass[9pt, a4paper, twocolumn]{extarticle}   	% use "amsart" instead of "article" for AMSLaTeX format
-\usepackage[margin=1in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
-%\geometry{landscape}                		% Activate for rotated page geometry
-%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex		
+\documentclass[9pt, a4paper, twocolumn]{extarticle}
+\usepackage[margin=1in]{geometry} % See geometry.pdf to learn the layout options.
+\geometry{a4paper}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx} % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+% TeX will automatically convert eps --> pdf in pdflatex		
+
 \usepackage{amssymb,amsmath,amsthm}
 \usepackage{longtable,booktabs}
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
@@ -53,7 +53,7 @@
 \affil[a]{Department of Biology, Stanford University, Stanford, CA}
 \affil[b]{Information and Computer Sciences, University of Hawai`i at M{\=a}noa, Honolulu, HI}
 
-\date{\today} % Activate to display a given date or no date
+\date{\today}
 
 % Document
 \begin{document}
@@ -88,7 +88,7 @@ Another departure from the \emph{linear variation} assumption of the \emph{reduc
 \citet{Ram2012} demonstrated that modifiers that increase the mutation rate of individuals with below-average fitness actually \textbf{increase} the population mean fitness, rather than decrease it.
 Their analysis assumed an infinite population size and constant-viability selection, such that the only departure from the \emph{reduction principle} assumptions is due to the differential effect the modifier has on different genotypes.
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
-Their analysis was specific to a model that classified individuals by the number of mutant genes in their genotype, similar to those of~\citet{Kimura1966} and~\citet{Haigh1978}. 
+Their analysis was specific to a model that classified individuals by the number of mutant genes in their genotype, similar to those of~\citet{Kimura1966a} and~\citet{Haigh1978}. 
 
 Here, we present a general evolutionary model where the rate at which variation is generated depends on the type of individual, and specifically on the its fitness.
 Our result shows that low fitness individuals should produce more variation than high fitness individuals.
@@ -121,7 +121,7 @@ Importantly, this modifier can determine different rates for different types; th
 
 In the following section we present three particular examples of this model for the modification of mutation, migration, and learning.
 
-\subsection*{Mutation modification model 1.}
+\subsection*{Mutation modification model 1.}\label{mut_model_1}
 
 Here we consider a large population of haploids and a trait determined by a major locus with $n$ possible alleles $A_1, A_2, ..., A_n$.
 Linked to to this locus is a modifier locus that determines the mutation rates $\mu_k$ of individuals with allele $A_k$.
@@ -147,7 +147,7 @@ M_{i,j} = \begin{cases}
 \end{cases}.
 \end{equation}
 
-\subsection*{Mutation modification model 2.}
+\subsection*{Mutation modification model 2.}\label{mut_model_2}
 
 Here, we consider a large population of haploids in which individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype.
 A modifier locus then determines the probability $m_k$ that a mutation occurs in individuals with $k$ mutant alleles.
@@ -194,7 +194,7 @@ M_{i,j} = \begin{bmatrix}
 so that Eq.~\ref{eq:mutation_model_2} is equivalent to Eq.~\ref{eq:model}.
 
 
-\subsection*{Migration modification model.}
+\subsection*{Migration modification model.}\label{mig_model_2}
 
 Here we assume a large population of haploids that occupies two demes and a modifier locus that determine the migration rates between the demes, $m_k$. 
 Let the fitness of genotypes $A_k$ be $w_k$ in deme 1 and $u_k$ in deme 2 for $k=1,2,\ldots,n$.
@@ -242,7 +242,7 @@ Let $\bar{\omega}^*$ be the leading eigenvalue of $(I-C+MC)D$, $u$ and $v$ be th
 \frac{u_k v_k}{C_k} (\bar{\omega}^* - D_k),
 \end{equation}
 or in simpler terms,
-\begin{equation}
+\begin{equation}\label{eq:sign_theorem}
 sign\frac{\partial \bar{\omega}^*}{\partial C_k} = 
 sign(\bar{\omega}^* - D_k), 
 \end{equation}
@@ -337,9 +337,10 @@ sign (u\tr [M]_k - u_k),
 and therefore increased transition out of type $k$ will increase the stable population mean fitness if and only if the fraction of the population descended from type $k$ is expected to increase due to a transition to another type. 
 \end{rvp}
 
+% Threshold rule
+
 We turn our attention to a modifier that concurrently controls the transition out of a subset of types, $K$.
 For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated deleterious mutations, $k$, and a modifier that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
-
 Similarly, if the transition rates are controlled by a threshold rule 
 \begin{equation}
 C_k = \begin{cases}
@@ -347,17 +348,23 @@ C_k = \begin{cases}
 1, & k \not\in K
 \end{cases},
 \end{equation}
-then the sensitivity of the stable population mean fitness to changes in the
-rate of transition out of types $K$ is
+where $\tau > 0$, then the sensitivity of the stable population mean fitness to changes in the
+rate of transition from types $K$ is
 \begin{equation}
 \begin{aligned}
 \frac{\partial \bar{\omega}^*}{\partial \tau} = 
 u\tr \Big( \sum_{k \in \mathbb{K{}}}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) v = \\
-\frac{1}{\tau} \sum_{k \in \mathbb{K}}{u_k v_k (\bar{\omega}^* - D_k)}.
+\frac{1}{\tau} \sum_{k \in \mathbb{K}}{u_k v_k (\bar{\omega}^* - D_k)},
 \end{aligned}
 \end{equation}
-
-\textbf{TODO} summarize result in words.
+which can be simplified to
+\begin{multline}
+sign \frac{\partial \bar{\omega}^*}{\partial \tau} = 
+sign \sum_{k \in \mathbb{K}}{u_k v_k (\bar{\omega}^* - D_k)} = \\ 
+sign \Big(\bar{\omega}^* - \frac{\sum_{k \in \mathbb{K}}{u_k v_k D_k}}{\sum_{k \in \mathbb{K}}{u_k v_k}}\Big), 
+\end{multline}
+a generalization of Eq.~\ref{eq:sign_theorem}.
+Therefore, increased transition from types $K$ will increase the stable population mean fitness if and only if the average fitness of individuals descended from types $K$ is below the stable population mean fitness.
 
 % Discussion
 \section*{Discussion}
@@ -530,6 +537,6 @@ This manuscript was supported in part by the Stanford Center for Computational, 
 }
 
 \bibliographystyle{plainnat}
-\bibliography{/Users/yoavram/Documents/library}
+\bibliography{ms}
 
 \end{document}  
