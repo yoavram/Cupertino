@@ -323,7 +323,7 @@ D_k (\sum_i{u_i M_{i,k} v_k} - u_k v_k).
 \end{aligned}
 \end{equation}
 Here, $u_k$ can be regarded as the \emph{reproductive value} of type $k$ (see~\nameref{sec:AppC}), which gives the relative contribution of type $k$ to the long-term population.
-Subsequently, $u_k v_k$ is the \emph{ancestor frequency} \citep{Hermisson2002} of type $k$, which is the fraction of the equilibrium population descended from type $k$.
+Consequently, $u_k v_k$ is the \emph{ancestor frequency} \citep{Hermisson2002} of type $k$, which is the fraction of the equilibrium population descended from type $k$.
 The sum $\sum_i{u_i M_{i,k} v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$).
 
 Given $0 < D_k \le 1$, from Eq.~\ref{eq:theorem_intermediate} we can get the following corollary.
@@ -374,8 +374,9 @@ Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the
 \textbf{TODO}
 
 \section*{Appendices}
-% Appendix A
+% Appendix A: mean fitness
 \subsection*{Appendix A}\label{sec:AppA}
+\textbf{TODO} reference to Fisher 1930 or Fisher 1958 (Caswell 1978 cites the latter in pg. 217 just above eq. 4).
 
 \begin{lemma}
 The normalizing factor $\bar{\omega}$ in Eq.~\ref{eq:model} is the population mean fitness
@@ -403,15 +404,15 @@ using the fact that $e\tr M = e\tr$ and $e\tr I = e\tr$ because $M$ and $I$ are 
 
 Note that this lemma also ensures that the stable population mean fitness $\bar{\omega}^*=\sum_k{v_k D_k},$ is the leading eigenvalue of $(I - C + M C) D$; see Eq.~\ref{eq:model_equilibrium} and the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007}.
 
-% Appendix B
+% Appendix B: Caswell
 \subsection*{Appendix B}\label{sec:AppB}
 
-\citet{Caswell1978} presented a \emph{formula for the sensitivity of the population growth rate to changes in life history parameters}.
+\citet{Caswell1978} gave a \emph{formula for the sensitivity of the population growth rate to changes in life history parameters}.
 In this formula, the \emph{population growth rate} is the leading eigenvalue of the population transformation matrix $T$, the \emph{life history parameters} are elements of $T$, and the \emph{sensitivity} is the derivative of the former with respect to the latter.
-This is a useful formula~\citep{Hermisson2002,Ram2012}, and therefore we reproduce it here.
+This is a useful formula~\citep{Caswell1978,Hermisson2002,Ram2012}, and therefore we reproduce it here.
 
 \begin{caswell}
-Let $T$ be a matrix with eigenvalue $\lambda$ and left and right eigenvectors $u$ and $v$ such that $\sum{v_k}=1$ and $u\tr v = \sum{u_k v_k} = 1$.
+Let $T$ be a non-negative matrix with leading eigenvalue $\lambda$ and left and right eigenvectors $u$ and $v$ such that $\sum{v_k}=1$ and $u\tr v = \sum{u_k v_k} = 1$.
 Then the sensitivity of $\lambda$ to changes in any element $t$ of the matrix $T$ is
 \begin{equation}\label{eq:Caswells_formula}
 \frac{\partial \lambda}{\partial t} = 
@@ -437,7 +438,7 @@ we have $\partial (u\tr v) = 0$ and
 $\partial \lambda = u\tr \partial T v$.
 \end{proof}
 
-% Appendix C
+% Appendix C: Fisher's reproductive value
 \subsection*{Appendix C}\label{sec:AppC}
 \begin{frv}
 Let $M$ be a stochastic matrix and $D$ be a diagonal matrix with positive diagonal elements. 
@@ -445,7 +446,7 @@ The elements of the left \emph{Perron} eigenvector $u$ of the matrix $MD$ can be
 \end{frv}
 
 \emph{Fisher's reproductive values} can be understood as follows.
-Let us look at the dynamics not of frequencies but of absolute population sizes such that the vector of the number of individuals of each type at time $t$ is $n(t)$ and $f_k(t) = n_k(t) / \sum_i{n_i(t)}$.
+Consider the dynamics not of frequencies but of absolute population sizes such that the vector of the number of individuals of each type at time $t$ is $n(t)$ and $f_k(t) = n_k(t) / \sum_i{n_i(t)}$.
 The dynamics are
 \begin{equation}
 n(t) = (MD)^t n(0).
@@ -469,7 +470,7 @@ with:
 \frac{N(j,t)}{N(k,t)} = \frac{e\tr (MD)^t e_j}{e\tr (MD)^t e_k}.
 \end{equation}
 
-To further evaluate, we write $MD$ in its Jordan canonical form 
+Now write $MD$ in its Jordan canonical form 
 \begin{equation}
 A = V \Lambda U\tr,
 \end{equation}
@@ -495,7 +496,7 @@ the spectral radius of $MD$:
 \frac{ e\tr V \diag{1, \Big(\frac{\lambda_2}{\lambda_1}\Big)^t, \cdots} U\tr e_j} { e\tr V \diag{1,\Big(\frac{\lambda_2}{\lambda_1}\Big)^t, \cdots} U\tr e_k}.
 \end{multline}
 
-Now take the long term limit $t \goesto \infty$.
+Now take the long termlimit $t \goesto \infty$.
 By assumption, $MD$ is irreducible, so $\lambda_i < \lambda_1$ for all $i > 1$.
 Therefore,
 \begin{equation}
@@ -510,12 +511,12 @@ for all $k > 1$, and
 \end{equation}
 
 The vector $u$ is the left \emph{Perron} eigenvector of $MD$, and $u_k$ is element $k$ of $u$.
-This is why the value $u_k$ can be interpreted as the \emph{reproductive value} of type $i$: it is a weight for the size of the population generated by a single individual of type $k$.
+This is why the value $u_k$ can be interpreted as the \emph{reproductive value} of type $i$: it is a weighting for the size of the population generated by a single individual of type $k$.
 
 If we begin with a population at the equilibrium distribution $v$,
 and ask what fraction of long-term descendants descended from type $k$ at that time,
 we weight the equilibrium frequency $v_k$ by the reproductive value $u_k$, to get $u_k v_k$.
-$\{u_k v_k\}_{Ik}$ is a probability distribution, since
+$\{u_k v_k\}_{k}$ is a probability distribution, since
 \begin{equation}
 \sum_k {u_k v_k} = u\tr v = 1.
 \end{equation}
