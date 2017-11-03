@@ -1,8 +1,6 @@
 # https://github.com/rubeonline/Latex-gitignore-for-Mac/raw/master/.gitignore
 *.synctex.gz
 .project
-output/
-dokumentation.pdf
 
 *.swp
 
