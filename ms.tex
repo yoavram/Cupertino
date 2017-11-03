@@ -121,7 +121,7 @@ Importantly, this modifier can determine different rates for different types; th
 
 In the following section we present three particular examples of this model for the modification of mutation, migration, and learning.
 
-\subsection*{Mutation modification model 1.}\label{mut_model_1}
+\subsection*{Mutation modification model 1.}\label{sec:mut_model_1}
 
 Here we consider a large population of haploids and a trait determined by a major locus with $n$ possible alleles $A_1, A_2, ..., A_n$.
 Linked to to this locus is a modifier locus that determines the mutation rates $\mu_k$ of individuals with allele $A_k$.
@@ -147,7 +147,7 @@ M_{i,j} = \begin{cases}
 \end{cases}.
 \end{equation}
 
-\subsection*{Mutation modification model 2.}\label{mut_model_2}
+\subsection*{Mutation modification model 2.}\label{sec:mut_model_2}
 
 Here, we consider a large population of haploids in which individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype.
 A modifier locus then determines the probability $m_k$ that a mutation occurs in individuals with $k$ mutant alleles.
@@ -194,7 +194,7 @@ M_{i,j} = \begin{bmatrix}
 so that Eq.~\ref{eq:mutation_model_2} is equivalent to Eq.~\ref{eq:model}.
 
 
-\subsection*{Migration modification model.}\label{mig_model_2}
+\subsection*{Migration modification model.}\label{sec:mig_model_1}
 
 Here we assume a large population of haploids that occupies two demes and a modifier locus that determine the migration rates between the demes, $m_k$. 
 Let the fitness of genotypes $A_k$ be $w_k$ in deme 1 and $u_k$ in deme 2 for $k=1,2,\ldots,n$.
@@ -358,7 +358,7 @@ u\tr \Big( \sum_{k \in \mathbb{K{}}}{\frac{\partial (I - C + MC)D}{\partial \tau
 \end{aligned}
 \end{equation}
 which can be simplified to
-\begin{multline}
+\begin{multline}\label{eq:sign_theorem_threshold}
 sign \frac{\partial \bar{\omega}^*}{\partial \tau} = 
 sign \sum_{k \in \mathbb{K}}{u_k v_k (\bar{\omega}^* - D_k)} = \\ 
 sign \Big(\bar{\omega}^* - \frac{\sum_{k \in \mathbb{K}}{u_k v_k D_k}}{\sum_{k \in \mathbb{K}}{u_k v_k}}\Big), 
@@ -368,17 +368,27 @@ Therefore, increased transition from types $K$ will increase the stable populati
 
 % Discussion
 \section*{Discussion}
-\textbf{TODO}: Departure from the \emph{reduction principle}
+
+We have shown that under constant-viability selection and in an effectively infinite haploid populations at an equilibrium, the stable population mean fitness increases if below-fitness individuals increase the rate at which variation is generated.
+We have given several examples on variation-generating processes for which this principle applies -- mainly mutation and migration -- but our model is general enough to possibly apply to other processes as well.
+For example, the \emph{reduction principle} appears some ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the population mean fitness and is favored by selection over uniform dispersal.
+Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type of the type or fitness of the transmitting individual, we expect that our \emph{mean fitness principle} will hold.
 
 Eq.~\ref{eq:theorem} is a generalization of a result from \citet[Eq.~4]{Ram2012}.
-Translated to the notation presented here, \citeauthor{Ram2012} modeled the accumulation of deleterious mutations in a population at the mutation-selection balance, assuming no more than one mutation occurs per individual per generation... \textbf{TODO} continue this...
+\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2}).
+Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{\omega}^*$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{mean fitness principle} in Eqs.~\ref{eq:sign_theorem} and~\ref{eq:sign_theorem_threshold}.
 
-Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{\omega}^*$) increase their mutation rate, then the population mean fitness will increase.
+Our analysis focuses on populations at equilibrium.
+Nevertheless, it has been demonstrated that a modifier which increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and reduce the adaptation rate~\citep{Ram2014}.
+Similar results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003a,Hadany2003b}.
+Importantly, there are empirical evidence both for stress-induced mutagenesis~\citep{Rosenberg2012} and for condition-dependent recombination and sex~\citep{Ram2016}.
 
 % Conclusions
 \subsection*{Conclusions}
 
-\textbf{TODO}
+General examples of departures from the \emph{reduction principle} are rare~\citep{Altenberg2017}.
+However, it has been demonstrated that higher mutation, recombination, and migration rates are favored by selection in populations evolving under fluctuating selection; see~\citet{Carja2014} and references therein.
+Here we have provided another general example, which suggests that if maladapted or below-average individuals increase the rate at which variation is generated, the population mean fitness will increase.
 
 \section*{Appendices}
 % Appendix A: mean fitness
@@ -537,6 +547,7 @@ This manuscript was supported in part by the Stanford Center for Computational, 
 }
 
 \bibliographystyle{plainnat}
+%\bibliography{/Users/yoavram/Documents/library}
 \bibliography{ms}
 
 \end{document}  
