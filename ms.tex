@@ -98,9 +98,11 @@ A similar result has been demonstrated for fitness-associated recombination~\cit
 
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
 Their analysis was specific to a model that classified individuals by the number of mutant genes in their genotype, similar to models studied by~\citet{Kimura1966a} and~\citet{Haigh1978}.
+Moreover, their argument was based on expected increase of the population mean fitness by alleles that modify the mutation rate, rather than on the invasion success of such modifiers~\citep[i.e., analysis of \emph{evolutionary genetic stability}, see][]{Lessard1990}.
 
-Here, we present a general evolutionary model where the rate at which variation is generated depends on the type of individual, and specifically on the its fitness.
-Our result shows that if below-average individuals produce more variation than above-average individuals, then the population mean fitness increases.
+Here, we present a general evolutionary model where the rate at which variation is generated depends on the type of the individual, and specifically on its fitness.
+Our results show that the population mean fitness increases if below-average individuals produce more variation than above-average individuals,
+and that modifier alleles that induce below-average to produce more variation are favored by natural selection.
 
 % Model
 \section*{The Models}
@@ -119,23 +121,24 @@ $I$ is the identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness (see~\nameref{sec:AppA}).
 
 The types $A_k$ can represent a single or multiple genetic loci or non-genetic traits.
-Importantly, type transmission is vertical and uni-parental (the type is transmitted from a single parent to the offspring), independent of the frequencies of the other types, and is fully described by the matrix $M$. Specifically, transmission infidelity causes type transitions.
-Therefore, this model precludes processes such as recombination, social learning, sexual outcrossing, and any horizontal or oblique transmission, as these processes are frequency-dependent~\cite[pg.~54]{Cavalli-Sforza1981}.
+Importantly, type transmission is vertical and uni-parental (the type is transmitted from a single parent to the offspring) and is independent of the frequencies of the other types.
+Specifically, this model precludes processes such as recombination, social learning, sexual outcrossing, and any horizontal or oblique transmission, as these processes are frequency-dependent~\cite[pg.~54]{Cavalli-Sforza1981}.
 
 Transition between types is determined by a combination of two effects:
 (i) the probability to transition \emph{out} of type $A_k$ is determined by $C_k$;
 (ii) given a transition out of type $A_k$, the distribution of the destination types $A_j$ is given by $M_{j,k}$ (note the index order).
 
-We focus on a neutral modifier locus in complete linkage to the types $A_k$, with no direct effect on fitness, and whose sole function is to determine the rate of transition out of the different types ($C_k$).
-Importantly, this modifier can determine different rates for different types; that is, $C_j \ne C_i$ for some $i,j$. The case $C_j = C_j$ for all $i,j$ is covered by the \emph{reduction principle}, see~\citet{Altenberg2017}.
+We focus on a neutral modifier locus in complete linkage to the types $A_k$, with no direct effect on fitness, and whose sole function is to determine $C_k$ the rates of transition out of the different types.
+Importantly, this modifier can determine different rates for different types; that is, $C_j \ne C_i$ for some $i,j$. The case $C_j = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~\citep[see][]{Altenberg2017}.
 
 % Modifier model
 \paragraph*{Modifier model.}
-Considering the case of two modifier alleles, $m$ and $M$, inducing different transition probabilities out of types $A_k$, with transition matrices $C=diag[C_1, \ldots, C_n]$ and $\tilde{C}=diag[\tilde{C}_1, \ldots, \tilde{C}_n]$.
-The frequencies of type $A_k$ linked to modifier $m$ or $M$ are $f_k$ and $g_k$, respectively, such that $\sum_k{f_k+g_k}=1$;
-$\bar{w}$ now ensures that $\sum_{k}{f_k'+g_k'}=1$;
-the rest of the model parameters are the same as in Eq.~\ref{eq:model};
-and the frequencies in the next generation, $f'$ and $g'$, are given by
+Consider the case of two modifier alleles, $m$ and $M$, inducing different transition probabilities $C=\diag{C_1, \ldots, C_n}$ and $\tilde{C}=\diag{\tilde{C}_1, \ldots, \tilde{C}_n}$, respectively.
+The frequencies of type $A_k$ linked to modifier $m$ or $M$ are $f_k$ and $g_k$, respectively, such that $\sum_{k=1}^{n}{(f_k + g_k)}=1$.
+$\bar{w}$ now ensures that $\sum_{k=1}^{n}{(f_k' + g_k')}=1$, 
+and the rest of the model parameters are the same as in Eq.~\ref{eq:model}.
+
+The frequencies in the next generation, $f'$ for allele $m$ and $g'$ for allele $M$, are given by
 \begin{equation}
 \begin{cases}
 \bar{w} f' &= (I-C+MC)D f \\
@@ -143,10 +146,11 @@ and the frequencies in the next generation, $f'$ and $g'$, are given by
 \end{cases}.
 \label{eq:modifier_model}
 \end{equation}
-Note that Eq.~\ref{eq:model} is a special case for $g_k=0$ for all $k$.
-Here, $\bar{w}=\sum_{k}{(f_k+g_k)D_k}$ is the mean fitness of the entire population (see~\nameref{sec:AppA}). 
+Note that Eq.~\ref{eq:model} is a special case for the absence of allele $M$, with $g_k=0$ for all $k$.
+Here, $\bar{w}=\sum_{k=1}^{n}{(f_k+g_k)D_k}$ is the mean fitness of the entire population (see~\nameref{sec:AppA}). 
 
 In the following section we present three particular examples of the model presented in Eq.~\ref{eq:model} for the modification of mutation and migration.
+For simplicity of the presentation we focus on one modifier allele in these examples.
 
 % Mutation model 1
 \paragraph*{Mutation modification model 1.}\label{sec:mut_model_1}
@@ -257,21 +261,21 @@ where $I_n$ is the n-by-n identity matrix.
 % Mean fitness principle
 Write the equilibrium of the frequency vector $f$ in Eq.~\ref{eq:model} as $v$ and the stable population mean fitness as $\bar{w}^*$, then
 \begin{equation}\label{eq:model_equilibrium}
-\bar{w}^* v = (I-C+MC)D v
+\bar{w}^* v = (I-C+MC)D v.
 \end{equation}
 
-The following theorem presents a \emph{mean fitness principle} for the
+The following lemma presents a \emph{mean fitness principle} for the
 sensitivity of the stable population mean fitness $\bar{w}^*$ to changes
-in $C_k$ the probability of transition from $A_k$.
+in $C_k$, the probability of transition from $A_k$.
 
-\begin{lemma}[Mean fitness principle]
+\begin{lemma}[Mean fitness principle]\label{lemma:mfp}
 Let $\bar{w}^*$ be the leading eigenvalue of $(I-C+MC)D$, $u$ and $v$ be the corresponding left and right eigenvectors, and $[M]_k$ the $k$-th column of $M$. Then
-\begin{equation}\label{eq:theorem}
+\begin{equation}\label{mfp}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
 \frac{u_k v_k}{C_k} (\bar{w}^* - D_k),
 \end{equation}
 or in simpler terms,
-\begin{equation}\label{eq:sign_theorem}
+\begin{equation}\label{mfp_sign}
 sign\frac{\partial \bar{w}^*}{\partial C_k} = 
 sign(\bar{w}^* - D_k).
 \end{equation}
@@ -293,7 +297,7 @@ u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v.
 Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position $k$ and 0 elsewhere, $Z_k = e_k e\tr_k$ the matrix with 1 at position $(k,k)$ and 0 elsewhere, and $[M]_k$ the $k$-th column of $M$.
 
 Then,
-\begin{equation}\label{eq:theorem_intermediate}
+\begin{equation}\label{mfp_intermediate}
 \begin{aligned}
 u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v = 
 u\tr (0 - Z_k + M Z_k)D v = \\
@@ -316,7 +320,7 @@ Multiplying both sides by $v_k$ (which is positive if $D_k>0$) and rearranging, 
 \begin{equation}
 \frac{u_k v_k}{C_k} (\bar{w}^* - D_k) = v_k D_k(u\tr [M]_k - u_k),
 \end{equation}
-which when substituted into Eq.~\ref{eq:theorem_intermediate} yields:
+which when substituted into Eq.~\ref{mfp_intermediate} yields:
 \begin{equation}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
 \frac{u_k v_k}{C_k} (\bar{w}^* - D_k).
@@ -329,12 +333,12 @@ sign (\bar{w}^* - D_k),
 which completes the proof.
 \end{proof}
 
-The above theorem provides a condition for the effect of a modifier in control of $C_k$, the probability for transition from $A_k$, on the stable population mean fitness.
+The above lemma provides a condition for the effect of changing $C_k$, the probability for transition from $A_k$, on the stable population mean fitness.
 Specifically, if $A_k$ individuals have below-average fitness, then a modifier that increases $C_k$ will increase the population mean fitness.
 
 % Reproductive value principle
 
-An interesting intermediate result in Eq.~\ref{eq:theorem_intermediate} is
+An interesting intermediate result in Eq.~\ref{mfp_intermediate} is
 
 \begin{equation}
 \begin{aligned}
@@ -344,13 +348,13 @@ D_k (\sum_i{u_i M_{i,k} v_k} - u_k v_k).
 \end{aligned}
 \end{equation}
 Here, $u_k$ can be regarded as the \emph{reproductive value}~\citep[pg.~27]{Fisher1930} of type $k$ (see~\nameref{sec:AppC}), which gives the relative contribution of type $k$ to the long-term population.
-Consequently, $u_k v_k$ is the \emph{ancestor frequency} \citep{Hermisson2002} of type $k$, namely the fraction of the equilibrium population descended from type $k$.
+Consequently, $u_k v_k$ is the \emph{ancestor frequency} of type $k$~\citep{Hermisson2002}, namely the fraction of the equilibrium population descended from type $k$.
 The sum $\sum_i{u_i M_{i,k} v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$), conditioned on transition occuring.
 
-Given $0 < D_k \le 1$, from Eq.~\ref{eq:theorem_intermediate} we can get the following corollary.
+Given $0 < D_k \le 1$, from Eq.~\ref{mfp_intermediate} we can get the following corollary.
 
 \begin{corollary}[Reproductive value principle]
-In the notation of the theorem,
+In the notation of Lemma~\ref{lemma:mfp},
 \begin{equation}
 sign \frac{\partial \bar{w}^*}{\partial C_k} = 
 sign (u\tr [M]_k - u_k),
@@ -360,8 +364,9 @@ and therefore increased transition out of type $k$ will increase the stable popu
 
 % Threshold rule
 
-We turn our attention to a modifier that concurrently controls the transition out of a subset of types, $K$.
-For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated deleterious mutations, $k$, and a modifier that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
+We turn our attention to a modifier allele that concurrently controls the transition out of a subset of types, $K$.
+For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated deleterious mutations, $k$, 
+and a modifier allele that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
 Similarly, if the transition rates are controlled by a threshold rule 
 \begin{equation}
 C_k = \begin{cases}
@@ -379,12 +384,12 @@ u\tr \Big( \sum_{k \in K}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) v 
 \end{aligned}
 \end{equation}
 which can be simplified to
-\begin{multline}\label{eq:sign_theorem_threshold}
+\begin{multline}\label{mfp_sign_threshold}
 sign \frac{\partial \bar{w}^*}{\partial \tau} = 
 sign \sum_{k \in K}{u_k v_k (\bar{w}^* - D_k)} = \\ 
 sign \Big(\bar{w}^* - \frac{\sum_{k \in K}{u_k v_k D_k}}{\sum_{k \in K}{u_k v_k}}\Big), 
 \end{multline}
-a generalization of Eq.~\ref{eq:sign_theorem}.
+a generalization of Eq.~\ref{mfp_sign}.
 Therefore, increased transition from types $K$ will increase the stable population mean fitness if the average fitness of individuals descended from types $K$ is below the stable population mean fitness.
 
 If such a modifier has the same effect on all individuals (i.e., $C_k = \alpha$ for all $k$) then Eq.~\ref{eq:model_equilibrium} $\bar{w}^* v = ((1-\alpha)I + \alpha M)Dv$,
@@ -395,16 +400,16 @@ $$
 \frac{\partial \bar{w}^*}{\partial \alpha} = 
 \bar{w}^* - 1 \le 0,
 $$
-because $\bar{w}^* = \sum_i{v_i D_i}$ (see~\nameref{sec:AppA}), and $D_i \le 1$ for all $i$.
+because $\bar{w}^* = \sum_{k=1}^{n}{v_k D_k}$ (see~\nameref{sec:AppA}), and $D_k \le 1$ for all $k$.
 
 % Evolutionary stability
 
-We determined a condition for a modifier that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness.
-Could such a modifier increase in frequency when initially rare in the population?
-To answer this question we analyze the stability of modifier $m$ with transition rates $C_k$ to the invasion of modifier $M$ with rates $\tilde{C}_k$, as described in Eqs.~\ref{eq:modifier_model}.
+We determined a condition for a modifier allele that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness.
+Could such an allele increase in frequency when initially rare in the population?
+To answer this question we analyze the stability of resident modifier allele $m$ with transition rates $C_k$ to the invasion of a modifier allele $M$ with rates $\tilde{C}_k$, as described in Eqs.~\ref{eq:modifier_model}.
 
-The equilibrium of Eqs.~\ref{eq:modifier_model} when modifier allele $M$ is absent from the population is $(v, 0)$, where $v$ is given in eq.~\ref{eq:model_equilibrium} and $g_k=0$ for all $k$. 
-The stability of modifier allele $m$ to invasion by allele $M$ is determined by the leading eigenvalue $\lambda$ of the external stability matrix $\cl_{ex}$ of the equilibrium $(v,0)$, which, in turn, is determined by the Jacobian $\cj$ of Eq.~\ref{eq:modifier_model} evaluated at the equilibrium $(v,0)$, where
+The equilibrium of Eqs.~\ref{eq:modifier_model} when modifier allele $M$ is absent from the population is $(v, 0)$, where $v$ is given in Eq.~\ref{eq:model_equilibrium} and $g_k=0$ for all $k$. 
+The stability of allele $m$ to invasion by allele $M$ is determined by the leading eigenvalue $\lambda$ of the external stability matrix $\cl_{ex}$ of the equilibrium $(v,0)$, which, in turn, is determined by the Jacobian $\cj$ of Eq.~\ref{eq:modifier_model} evaluated at the equilibrium $(v,0)$, where
 \begin{equation}
 \cj = \begin{pmatrix}\cl_{in} & 0 \\ 0 & \cl_{ex} \end{pmatrix}.
 \end{equation}
@@ -417,14 +422,14 @@ $\cl_{ex}$ can be written as
 where $\bar{w}^*$ is the stable population mean fitness in the absence of modifier allele $M$ (see~\nameref{sec:AppA}). 
 
 \begin{theorem}[Evolution of increased genetic variation]
-The sign of the derivative of the leading eigenvalue $\lambda$ of the external stability matrix of $\cl_{ex}$ of modifier $M$, when evaluated at $\tilde{C}_k=C_k$, is
+The sign of the derivative of the leading eigenvalue $\lambda$ of the external stability matrix $\cl_{ex}$, when evaluated at $\tilde{C}_k=C_k$, is
 \begin{equation}
 sign \frac{\partial \lambda}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C_k} = 
 sign(\bar{w}^* - D_k).
 \end{equation}
-In addition, the leading eigenvalue is $\lambda=1$ when transition rates are equal $\tilde{C}_k=C_k$ for all $k$.
+In addition, the leading eigenvalue is $\lambda=1$ when transition rates of modifier alleles $m$ and $M$ are equal ($\tilde{C}_k=C_k$ for all $k$).
 
-Therefore, an initially rate modifier allele $M$ with transition rates slightly different from the resident modifier $m$ can successfully invade the population ($\lambda>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.
+Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident modifier $m$ can successfully invade the population ($\lambda>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.
 \end{theorem}
 
 \begin{proof}
@@ -436,12 +441,12 @@ Substituting $\tilde{C}=C$ in Eq.~\ref{eq:Lex} and multiplying both sides by $\b
 and since $\bar{w}^*$ is the leading eigenvalue of the RHS (\nameref{sec:AppA}),
 the leading eigenvalue of $\cl_{ex}$ is $\lambda=1$.
 
-Now, applying Eq.~\ref{eq:sign_theorem} to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda$ with respect to $\tilde{C_k}$ is
+Now, applying Lemma~\ref{lemma:mfp} (eq.~\ref{mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda$ with respect to $\tilde{C_k}$ is
 \begin{equation}
 sign \frac{\partial \lambda}{\partial \tilde{C}_k} =
 sign\Big(\lambda - \frac{D_k}{\bar{w}^*}\Big),
 \end{equation}
-and evaluating this expression at $\lambda=1$ (the case for $\tilde{C}_k = C_k$) gives us
+and evaluating this expression for $\tilde{C}_k = C_k$), i.e. at $\lambda=1$, gives us
 \begin{equation}
 sign \frac{\partial \lambda}{\partial \tilde{C}_k}\bigg\rvert_{\lambda=1} = 
 sign(\bar{w}^* - D_k),
@@ -453,14 +458,15 @@ This completes the proof.
 % Discussion
 \section*{Discussion}
 
-We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if below-fitness individuals increase the rate at which variation is generated.
+We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if below-average individuals increase the rate at which variation is generated. Furthermore, modifier alleles that induce increased generation of variation in such individuals are favored by natural evolution.
+
 We have given several examples of variation-generating processes for which this principle applies -- mainly mutation and migration -- but our model may apply to other processes as well.
 For example, the \emph{reduction principle} applies to ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the population mean fitness and is favored by selection over uniform dispersal.
-Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type of the type or fitness of the transmitting individual, we expect that our \emph{mean fitness principle} will hold.
+Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type of the type or fitness of the transmitting individual, we expect that our results will hold.
 
-Eq.~\ref{eq:theorem} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
+Eq.~\ref{mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
 \citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2}).
-Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{w}^*$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{mean fitness principle} in Eqs.~\ref{eq:sign_theorem} and~\ref{eq:sign_theorem_threshold}.
+Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{w}^*$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{mean fitness principle} in Eqs.~\ref{mfp_sign} and~\ref{mfp_sign_threshold}.
 
 Our analysis focuses on populations at equilibrium.
 Nevertheless, it has been demonstrated that a modifier which increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and reduce the adaptation rate~\citep{Ram2014}.
@@ -471,7 +477,7 @@ Similar results have been demonstrated for a modifier that increases the recombi
 
 General examples of departures from the \emph{reduction principle} are rare~\citep{Altenberg2017}.
 However, it has been demonstrated that higher mutation, recombination, and migration rates are favored by selection in populations evolving under fluctuating selection; see~\citet{Carja2014} and references therein.
-Here we have provided another general example, which suggests that if maladapted or below-average individuals increase the rate at which variation is generated, the population mean fitness will increase.
+Here we have provided another general example, which suggests that a modifier allele that prompts maladapted or below-average individuals increase the rate at which variation is generated, will be favored by selection and will lead to increased population mean fitness.
 
 \section*{Appendices}
 % Appendix A: mean fitness
