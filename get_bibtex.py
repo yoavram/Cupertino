@@ -1,7 +1,12 @@
+import re
+
 from bibtexparser import load as load_bib
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 import click
+
+species_name_pattern = re.compile(
+	r"^(.*?)\{\\textless\}i\{\\textgreater\}(.*?)\{\\textless\}\/i\{\\textgreater\}(.*?)$")
 
 @click.command()
 @click.argument('keys_filename', type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True))
@@ -26,6 +31,13 @@ def main(keys_filename, bibtex_filename, output_filename, verbose):
 	
 	if verbose:
 		print("Writing {} entries to {}".format(len(out_bib.entries), output_filename))
+
+	for ent in out_bib.entries:
+		m = species_name_pattern.match(ent['title'])
+		if m:
+			prefix, species, postfix = m.groups()
+			ent['title'] = prefix + r"\emph{" + species + r"}" + postfix
+
 	writer = BibTexWriter()
 	with open(output_filename, 'w') as f:
 	    f.write(writer.write(out_bib))
