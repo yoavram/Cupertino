@@ -114,7 +114,7 @@ The change in the frequencies of these types is described by the transformation 
 \end{equation}
 where $f_k$ is the frequency of type $A_k$: $f=(f_1, f_2, \ldots, f_n)$ is a stochastic vector such that $\sum_{k=1}^n{f_k} = 1$;
 $C_k$ is the probability that an individual of type $A_k$ will transition to another type ($C$ is a diagonal non-negative matrix with diagonal elements $C_k$);
-$M_{i,j}$ is the transition probability from type $A_j$ to type $A_i$ given that an individual of type $A_j$ is transitioning ($M$ is a column-stochastic matrix: $\sum_{j=1}^n {M_{i,j}} = 1$ for all \emph{j}); 
+$M_{i,j}$ is the transition probability from type $A_j$ to type $A_i$ given that an individual of type $A_j$ is transitioning ($M$ is a column-stochastic matrix: $M_{i,j} \ge 0$ for all $i,j$ and $\sum_{j=1}^n {M_{i,j}} = 1$ for all $j$); 
 $D_k$ is the relative fitness of type $A_k$ ($D$ is a diagonal matrix with diagonal elements $D_k$, where we can assume $0 < D_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type); 
 $I$ is the identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness (see~\nameref{sec:AppA}).
@@ -243,10 +243,13 @@ We first focus on the stable population mean fitness.
 We will show that if the transition rate from types with below-average fitness increases, then the stable population mean fitness increases, too.
 
 % Mean fitness principle
+
 Write the equilibrium of the frequency vector $f$ in Eq.~\ref{eq:model} as $v$ and the stable population mean fitness as $\bar{w}^*$, then
 \begin{equation}\label{eq:model_equilibrium}
 \bar{w}^* v = (I-C+MC)D v.
 \end{equation}
+The existence of the leading eigenvalue $\bar{w}^*$ and its corresponding right eigenvector $v$ are guaranteed by the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007} because $(I-C+MC)D$ is a non-negative matrix
+(the leading eigenvalue $\bar{w}^*$ is identified as the stable population mean fitness in~\nameref{sec:AppA}).
 
 The following lemma presents a \emph{mean fitness principle} for the
 sensitivity of the stable population mean fitness $\bar{w}^*$ to changes
@@ -268,8 +271,7 @@ Therefore increased transition from type $k$ will increase the stable population
 \end{lemma}
 
 \begin{proof}
-By the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007},
-$\bar{w}^*$ is the leading real positive eigenvalue of $(I-C+MC)D$,
+$\bar{w}^*$ is the leading (real positive) eigenvalue of $(I-C+MC)D$ (see eq.~\ref{eq:model_equilibrium}),
 and the corresponding left and right eigenvectors $u$ and $v$ are both non-negative and uniquely defined by $\sum_k{v_k} = 1$ and $\sum_k{u_k v_k} = 1$.
 
 Using \emph{Caswell's formula} (Eq.~\ref{eq:Caswells_formula} in~\nameref{sec:AppB}),
@@ -348,7 +350,7 @@ therefore, increased transition from type $k$ will increase the stable populatio
 
 % Threshold rule
 
-We turn our attention to the case where transition from a subset of types, $K$, is concurrently controlled.
+We turn our attention to the case where the transition occurs from a subset $K$ of the types.
 For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated deleterious mutations, $k$, 
 and a modifier allele that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
 Similarly, if the transition rates are controlled by a threshold rule 
@@ -356,9 +358,9 @@ Similarly, if the transition rates are controlled by a threshold rule
 C_k = \begin{cases}
 \tau, & k \in K \\
 1, & k \not\in K
-\end{cases},
+\end{cases}.
 \end{equation}
-where $\tau > 0$, then the sensitivity of the stable population mean fitness to changes in the
+If $\tau > 0$, then the sensitivity of the stable population mean fitness to changes in the
 rate of transition from types in $K$ can be written 
 \begin{equation}
 \begin{aligned}
@@ -367,7 +369,7 @@ u\tr \Big( \sum_{k \in K}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) v 
 \frac{1}{\tau} \sum_{k \in K}{u_k v_k (\bar{w}^* - D_k)}.
 \end{aligned}
 \end{equation}
-Then
+Thus
 \begin{multline}\label{mfp_sign_threshold}
 sign \frac{\partial \bar{w}^*}{\partial \tau} = 
 sign \sum_{k \in K}{u_k v_k (\bar{w}^* - D_k)} = \\ 
@@ -401,16 +403,16 @@ Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} 
 
 % Evolutionary stability
 
-We havefound a condition for a modifier allele that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness (Lemma~\ref{lemma:mfp}).
+We have found a condition for a modifier allele that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness (Lemma~\ref{lemma:mfp}).
 Could such an allele increase in frequency when initially rare in the population?
-To answer this we analyze the stability of resident modifier allele $m$ with transition rates $C_k$ to the invasion of a modifier allele $M$ with rates $\tilde{C}_k$~\ref{eq:modifier_model}~\citep[for an introduction to \emph{evolutionary invasion analysis}, see][ch.~12]{Otto2007}
+To answer this we analyze the stability of resident modifier allele $m$ with transition rates $C_k$ to the invasion by a modifier allele $M$ with rates $\tilde{C}_k$, see Eq.~\ref{eq:modifier_model}~\citep[for an introduction to \emph{evolutionary invasion analysis}, see][ch.~12]{Otto2007}
 
 The equilibrium of Eqs.~\ref{eq:modifier_model} when modifier allele $M$ is absent from the population is $(v, 0)$, where $v$ is given in Eq.~\ref{eq:model_equilibrium} and $g_k=0$ for all $k$. 
-The stability of allele $m$ to invasion by allele $M$ is determined by the leading eigenvalue $\lambda_1$ of $\cl_{ex}$ the external stability matrix of the equilibrium $(v,0)$, which, in turn, is determined by the Jacobian $\cj$ of Eq.~\ref{eq:modifier_model} evaluated at the equilibrium $(v,0)$, where
+The stability of allele $m$ to invasion by allele $M$ is determined by the leading eigenvalue $\lambda_1$ of $\cl_{ex}$ the external stability matrix of the equilibrium $(v,0)$, which, in turn, is determined by the Jacobian $\cj$ of the system in Eq.~\ref{eq:modifier_model} evaluated at the equilibrium $(v,0)$, where
 \begin{equation}
 \cj = \begin{pmatrix}\cl_{in} & 0 \\ 0 & \cl_{ex} \end{pmatrix},
 \end{equation}
-and $\cl_{in}$ is the local stability matrix of the equilibrium $(v,0)$.
+and $\cl_{in}$ is the local stability matrix of the equilibrium $(v,0)$ in the space $\sum_{k=1}^n{v_k}=1$.
 The zero block matrices are due to the complete linkage between the modifier and the types $A_k$ and to the lack of transition (i.e., mutation) between the modifier alleles.
 
 $\cl_{ex}$ can be written as
@@ -418,17 +420,18 @@ $\cl_{ex}$ can be written as
 \cl_{ex} = (I - \tilde{C} + M \tilde{C}) D /\bar{w}^*,
 \end{equation}
 where $\bar{w}^*$ is the stable population mean fitness in the absence of modifier allele $M$ (see~\nameref{sec:AppA}).
-Note that $\bar{w}^*$ is not an eigenvalue of $\cl_{ex}$.
+Note that, in general, $\bar{w}^*$ is not an eigenvalue of $\cl_{ex}$.
 
 \begin{theorem}[Evolution of increased genetic variation]
-Let $\lambda_1$ be the The leading eigenvalue of the external stability matrix $\cl_{ex}$.
+Let $\lambda_1$ be the the leading eigenvalue of the external stability matrix $\cl_{ex}$.
 If the transition rates induced by the modifier alleles $m$ and $M$ are equal, i.e., $\tilde{C}_k=C_k$ for all $k$, then the following applies
 \begin{equation}
-\begin{aligned}
-\lambda_1=1, \\
+\lambda_1=1,
+\end{equation}
+and
+\begin{equation}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C_k} = 
 sign(\bar{w}^* - D_k).
-\end{aligned}
 \end{equation}
 
 Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.
@@ -437,17 +440,17 @@ Therefore, an initially rare modifier allele $M$ with transition rates slightly 
 \begin{proof}
 Substituting $\tilde{C}=C$ in Eq.~\ref{eq:Lex} and multiplying both sides by $\bar{w}^*$,
 \begin{equation}
-\bar{w}^* L_{ex} = (I-C+MC) D,
+\bar{w}^* \cl_{ex}\big\rvert_{\tilde{C}_k = C_k} = (I-C+MC) D,
 \end{equation}
 and since $\bar{w}^*$ is the leading eigenvalue of the RHS (see Eq.~\ref{eq:model_equilibrium} and \nameref{sec:AppA}),
-the leading eigenvalue of $\cl_{ex}$ is $\lambda_1=1$.
+the leading eigenvalue of $\cl_{ex}\big\rvert_{\tilde{C}_k = C_k}$ is $\lambda_1=1$.
 
 Now, applying Lemma~\ref{lemma:mfp} (eq.~\ref{mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda_1$ with respect to $\tilde{C_k}$ is
 \begin{equation}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k} =
 sign\Big(\lambda_1 - \frac{D_k}{\bar{w}^*}\Big).
 \end{equation}
-Evaluating this expression for $\tilde{C}_k = C_k$, i.e. at $\lambda_1=1$, gives us
+Evaluating this expression at $\tilde{C}_k = C_k$, i.e. at $\lambda_1=1$, gives us
 \begin{multline}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C_k} = 
 sign\Big(1 - \frac{D_k}{\bar{w}^*}\Big) =  
