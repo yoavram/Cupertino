@@ -6,6 +6,7 @@
 % TeX will automatically convert eps --> pdf in pdflatex		
 
 \usepackage{amssymb,amsmath,amsthm}
+\usepackage{commath}
 \usepackage{longtable}
 \usepackage[hyphens]{url}
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
@@ -248,8 +249,9 @@ Write the equilibrium of the frequency vector $f$ in Eq.~\ref{eq:model} as $v$ a
 \begin{equation}\label{eq:model_equilibrium}
 \bar{w}^* v = (I-C+MC)D v.
 \end{equation}
-The existence of the leading eigenvalue $\bar{w}^*$ and its corresponding right eigenvector $v$ are guaranteed by the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007} because $(I-C+MC)D$ is a non-negative matrix
-(the leading eigenvalue $\bar{w}^*$ is identified as the stable population mean fitness in~\nameref{sec:AppA}).
+Note that (i) the existence of $\bar{w}^*$ and $v$ are guaranteed by the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007} because $(I-C+MC)D$ is a non-negative matrix; 
+(ii) the local stability of this equilibrium is proven in~\nameref{sec:AppD}; and
+(iii) $\bar{w}^*$ is identified as the stable population mean fitness in~\nameref{sec:AppA}.
 
 The following lemma presents a \emph{mean fitness principle} for the
 sensitivity of the stable population mean fitness $\bar{w}^*$ to changes
@@ -645,6 +647,68 @@ $\{u_k v_k\}_{k}$ is a probability distribution, since
 \end{equation}
 \citet{Hermisson2002} called this distribution the \emph{ancestor} or \emph{ancestral distribution}.
 
+% Appendix D: inner stability
+\subsection*{Appendix D}\label{sec:AppD}
+\begin{lemma}[Stability of the equilibrium $v$]
+The equilibrium $v$ of the system in Eq.~\ref{eq:model_equilibrium} is locally stable.
+In addition,
+\begin{enumerate}
+\item If $M$ is irreducible and $D$ and $C$ are positive, then the equilibrium is globally stable.
+\item If $M$ is irreducible and either $D$ or $C$ are non-negative but not strictly positive, then the equilibrium is globally stable except possibly for initial conditions on the boundary, i.e., when starting with zero elements in the initial frequency vector.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Set $A=(I-C+MC)D$ and rewrite Eq.~\ref{eq:model} such that $f(t)$ is the frequency vector at time $t$ and
+\begin{equation}
+f(t) = \frac{Af(t-1)}{\norm{Af(t-1)}},
+\end{equation}
+where $\norm{f(t)} = \sum_{k=1}^{n}f_k(t)$.
+Denote the eigenvalues of $A$ as $\lambda_1, \ldots, \lambda_n$ such that $\abs{\lambda_1} \ge \ldots \ge \abs{\lambda_n}$ and $\lambda_1$ is the \emph{Perron} leading eigenvalue, that is, the largest real eigenvalue with corresponding real non-negative right eigenvector $v$ ($\lambda_1$ is shown in~\nameref{sec:AppA} to be the stable population mean fitness $\bar{w}^*$).
+
+First, note that the normalization $x \goesto \frac{1}{\norm{x}}$ can be applied once instead of $t$ times~\citep[Appendix~A]{Wakano2004}, that is,
+\begin{equation}
+f(t) = \frac{A^t f(0)}{\norm{A^t f(0)}}.
+\label{eq:ftplus1}
+\end{equation}
+
+We write $f(0)$ as a linear combination of eigenvectors $v^k$ of $A$ for $k=1, \ldots, n$:
+\begin{equation}
+f(0) = a_1 v^1 + a_2 v^2 + \ldots + a_n v^n,
+\label{eq:linear_combination}
+\end{equation}
+such that the eigenvector corresponding to the leading eigenvalue is $v=v_1$.
+
+To proceed we need to make sure that $a_1 \ne 0$.
+If $M$ is reducible then $A$ is reducible. 
+In this case, $a_1 \ne 0$ can be guaranteed by setting $f(0)=v + \epsilon$ such that $\epsilon_k$ is small enough and $v_k+\epsilon_k \ge 0$ for all $k$, and $\sum_{k=1}^{n}{\epsilon_k} = 0$.
+
+If $M$ is irreducible and $D$ and $C$ are positive, then $A$ is irreducible and  any choice of $f(0)$ guarantees $a_1 \ne 0$.
+
+If $M$ is reducible and either $D$ or $C$ are non-negative but not strictly positive, than any choice of $f(0)$ such that $f_k(0)>0$ for all $k$ guarantees $a_1 \ne 0$.
+
+We write, using Eq.~\ref{eq:linear_combination},
+\begin{multline}
+A^t f(0) = 
+a_1 A^t v^1 + a_2 A^t v^2 + \ldots + a_n A^t v^n = \\
+a_1 \lambda_1^t v^1 + a_2 \lambda_2^t v^2 + \ldots + a_n \lambda_n^t v^n = \\
+\lambda_1^t \bigg(a_ 1v^1 + a_2 \bigg(\frac{\lambda_2}{\lambda_1}\bigg)^t v^2 + \ldots +  a_n \bigg(\frac{\lambda_n}{\lambda_1}\bigg)^t v^n\bigg).
+\end{multline}
+Therefore,
+\begin{equation}
+\frac{A^t f(0)}{\lambda_1^t} \goesto a_1 v_1
+\end{equation}
+as $t \goesto \infty$, because $\abs{\frac{\lambda_k}{\lambda_1}} < 1$
+for all $k=2, \ldots, n$.
+Finally, 
+\begin{equation}
+f(t) = 
+\frac{A^t f(0)}{\norm{A^t f(0)}} =
+\frac{\frac{A^t f(0)}{\lambda_1^t}}{\norm{\frac{A^t f(0)}{\lambda_1^t}}} \goesto
+\frac{a_1 v^1}{\norm{a_1 v^1}} = v,
+\end{equation}
+as $t \goesto \infty$, which completes the proof.
+\end{proof}
+
 % Acknowledgements
 {\small
 \section*{Acknowledgements}
@@ -653,7 +717,7 @@ This research was supported in part by the Stanford Center for Computational, Ev
 }
 
 \bibliographystyle{agsm}
-%\bibliography{/Users/yoavram/Documents/library}
-\bibliography{ms}
+\bibliography{/Users/yoavram/Documents/library}
+%\bibliography{ms}
 
 \end{document}  
