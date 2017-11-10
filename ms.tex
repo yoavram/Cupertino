@@ -73,15 +73,14 @@ In a constant environment, genetic modifiers that reduce the rate at which varia
 However, departures from this \emph{reduction principle} have been demonstrated.
 Here we analyze a general model of evolution under constant selection where the rate at which variation is generated can depend on the fitness of the individual.
 We find that if a modifier allele increases the rate at which individuals of below-average fitness generate variation, then it will increase in frequency and increase the  population mean fitness.
-This principle applies to phenomena such as stress-induced mutagenesis, condition-dependent dispersal and outcrossing,
-and demonstrates the proverb: \emph{"Necessity is the mother of genetic invention"}.
+This principle applies to phenomena such as stress-induced mutagenesis, condition-dependent dispersal and fitness-associated outcrossing,
+and exhibits the paraphrase: \emph{"Necessity is the mother of genetic invention."}
 \end{abstract}
 
 % Introduction
 \section*{Introduction}
 
-According to the \emph{reduction principle}, in populations that evolve near an equilibrium between natural selection and a process that generates variation (i.e. mutation, migration, or recombination), selection favors neutral modifiers that decrease the rate at which variation is generated. 
-
+According to the \emph{reduction principle}, in populations at a balance between natural selection and a process that generates variation (i.e. mutation, migration, or recombination), selection favors neutral modifiers that decrease the rate at which variation is generated. 
 The \emph{reduction principle} was demonstrated for modifiers of the recombination~\citep{Feldman1972}, mutation, and migration~\citep{Liberman1986a}, and dispersal rates~\citep{Altenberg1987}.
 These separate principles were recently unified by~\citet{Altenberg2017}
 
@@ -90,33 +89,35 @@ The assumptions and conditions for the validity of the \emph{unified reduction p
 A departure from the latter assumption occurs if two variation-producing processes interact~\citep{Feldman1980,Altenberg2012}.
 Departures from the \emph{reduction principle} have also been demonstrated when conditions (i)-(iii) are not met, see for example~\citet{Holsinger1986} and references therein.
 
-Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves \emph{stress-induced mutagenesis}, a mechanism in which the mutation rate increases in individuals with poor fitness.
-Empirical evidence suggests \emph{stress-induced mutagenesis} is common in bacteria and yeast, and may be prevalent in plants, flies, and human cancer cells~\citep{Rosenberg2012,Fitzgerald2017b}.
-\citet{Ram2012} demonstrated that modifiers that increase the mutation rate of individuals with below-average fitness actually \textbf{increase} the population mean fitness, rather than decrease it.
-Their analysis assumed an infinite population size and constant-viability selection, where the only departure from the \emph{reduction principle} assumptions is due to the differential effect the modifier has on different genotypes.
+Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism in which the mutation rate increases in individuals with poor fitness -- a mechanism first observed in stressed bacteria~\citep{Foster2007}, although not in a constant environment.
+\citet{Ram2012} demonstrated that even in a constant environment, modifiers that increase the mutation rate of individuals with below-average fitness increase the population mean fitness, rather than decrease it.
+Their analysis assumed an infinite population size and constant-viability selection in which fitness is determined by the number of mutant alleles accumulated in the genotype.
+The only departure from the \emph{reduction principle} assumptions was due to the differential effect the modifier has on different genotypes.
 A similar result has been demonstrated for fitness-associated recombination~\citep{Hadany2003a} and for condition-dependent sexual reproduction~\citep{Hadany2007a}, and evidence suggests that both mechanisms are common in nature~\citep{Ram2016}.
 
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
 Their analysis was specific to a model that classified individuals by the number of mutant genes in their genotype, similar to models studied by~\citet{Kimura1966a} and~\citet{Haigh1978}.
 Moreover, their argument was based on expected increase of the population mean fitness by alleles that modify the mutation rate, rather than on the invasion success of such modifiers~\citep[i.e., analysis of \emph{evolutionary genetic stability}, see][]{Eshel1982, Lessard1990}.
 
-Here, we present a general evolutionary model where the rate at which variation is generated depends on the type of the individual, and specifically on its fitness.
-Our results show that the population mean fitness increases if below-average individuals produce more variation than above-average individuals,
-and that modifier alleles that induce below-average to produce more variation are favored by natural selection.
+Here, we present a general evolutionary model where the the type of the individual determines both its fitness and the rate at which it generates variation.
+Our results show that the population mean fitness increases if individuals with below-average fitness produce more variation than individuals with above-average fitness,
+and that modifier alleles that induce below-average individuals to produce more variation are favored by natural selection.
 
 % Model
 \section*{Models}
 
 \paragraph*{General model.}\label{sec:general_model}
 Consider a large haploid population with an arbitrary set of types $A_1, A_2, \ldots, A_n$.
-The change in the frequencies of these types is described by the transformation $f \to f'$: 
+The frequency and fitness of individuals of type $A_k$ are $f_k$ and $D_k$, respectively.
+The probability that an individual of type $A_k$ will transition to some other type is $C_k$, and given a transition occurs, the probability that it will transition to type $A_i$ is $M_{i,k}$.
+Therefore, the change in the frequencies of types $A_k$ is described by the transformation $f \to f'$: 
 \begin{equation}\label{eq:model}
 \bar{w} f' = (I-C+MC)D f,
 \end{equation}
-where $f_k$ is the frequency of type $A_k$: $f=(f_1, f_2, \ldots, f_n)$ is a stochastic vector such that $\sum_{k=1}^n{f_k} = 1$;
-$C_k$ is the probability that an individual of type $A_k$ will transition to another type ($C$ is a diagonal non-negative matrix with diagonal elements $C_k$);
-$M_{i,j}$ is the transition probability from type $A_j$ to type $A_i$ given that an individual of type $A_j$ is transitioning ($M$ is a column-stochastic matrix: $M_{i,j} \ge 0$ for all $i,j$ and $\sum_{j=1}^n {M_{i,j}} = 1$ for all $j$); 
-$D_k$ is the relative fitness of type $A_k$ ($D$ is a diagonal matrix with diagonal elements $D_k$, where we can assume $0 < D_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type); 
+where $f=(f_1, f_2, \ldots, f_n)$ is a stochastic vector such that $\sum_{k=1}^n{f_k} = 1$;
+$D$ is a diagonal matrix with diagonal elements $D_k$, where we can assume $0 < D_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type; 
+$C$ is a diagonal non-negative matrix with diagonal elements $C_k$;
+$M$ is a column-stochastic matrix: $M_{i,k} \ge 0$ for all $i,k$ and $\sum_{k=1}^n {M_{i,k}} = 1$ for all $j$; 
 $I$ is the identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness (see~\nameref{sec:AppA}).
 
@@ -126,8 +127,8 @@ Specifically, this model precludes processes such as recombination, social learn
 
 Transition between types is determined by a combination of two effects:
 (i) the probability to transition \emph{out} of type $A_k$ is determined by $C_k$;
-(ii) given a transition out of type $A_k$, the distribution of the destination types $A_j$ is given by $M_{j,k}$ (note the index order).
-Importantly, different types can have different rates; that is, $C_j \ne C_i$ for some $i,j$. The case $C_j = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~\citep[see][]{Altenberg2017}.
+(ii) given a transition out of type $A_k$, the distribution of the destination types $A_i$ is given by $M_{i,k}$ (note the index order).
+Importantly, different types can have different rates; that is, $C_i \ne C_j$ for some $i,j$. The case $C_i = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~\citep[see][]{Altenberg2017}.
 
 In the following section we present three examples of the model presented in Eq.~\ref{eq:model} for mutation and migration.
 
@@ -157,6 +158,7 @@ M_{i,j} = \begin{cases}
 0, & i=j
 \end{cases}.
 \end{equation}
+Note that here $M$ is irreducible and therefore so is $(I-C+MC)D$.
 
 % Mutation model 2
 \paragraph*{Mutation model 2.}\label{sec:mut_model_2}
@@ -201,9 +203,9 @@ M_{i,j} = \begin{bmatrix}
 \delta & 1-\delta-\beta & \beta &  \ddots \\
 0 & \delta & 1-\delta-\beta & \ddots \\
 \vdots & \ddots & \ddots & \ddots 
-\end{bmatrix},
+\end{bmatrix}.
 \end{equation}
-in which case Eq.~\ref{eq:mutation_model_2} is a specific case of Eq.~\ref{eq:model}.
+Here, too, $M$ and $(I-C+MC)D$ are irreducible.
 
 % Migration model
 \paragraph*{Migration model.}\label{sec:mig_model_1}
@@ -234,6 +236,7 @@ I_n & 0
 \end{aligned}
 \end{equation}
 where $I_n$ is the n-by-n identity matrix.
+In this case, $M$ is reducible and so is $(I-C+MC)D$.
 
 % Results
 \section*{Results}
@@ -490,15 +493,16 @@ Eq.~\ref{mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{w}^*$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{mean fitness principle} in Eqs.~\ref{mfp_sign} and~\ref{mfp_sign_threshold}.
 
 Our analysis focuses on populations at equilibrium.
-Nevertheless, it has been demonstrated that a modifier which increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and reduce the adaptation rate~\citep{Ram2014}.
-Similar results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003a,Hadany2003b}.
+Nevertheless, it has been demonstrated that a modifier which increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and reduce the adaptation rate~\citep{Ram2014},
+and empirical evidence suggests that \emph{stress-induced mutagenesis} is common in bacteria and yeast, and may be prevalent in plants, flies, and human cancer cells~\citep{Rosenberg2012,Fitzgerald2017b}.
+Similar theoretical results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003a,Hadany2003b}.
 
 % Conclusions
 \subsection*{Conclusions}
 
 General examples of departures from the \emph{reduction principle} are rare~\citep{Altenberg2017}.
-However, it has been demonstrated that higher mutation, recombination, and migration rates are favored by selection in populations evolving under fluctuating selection; see~\citet{Carja2014} and references therein.
-Here we have provided another general example, which suggests that a modifier allele that prompts maladapted or below-average individuals increase the rate at which variation is generated, will be favored by selection and will lead to increased population mean fitness.
+For example, it has been demonstrated that higher mutation, recombination, and migration rates are favored by selection in populations evolving under fluctuating selection; see~\citet{Carja2014} and references therein.
+Here we have provided another general example, which suggests that a modifier allele that prompts individuals with below-average fitness to increase the rate at which variation is generated, will be favored by selection and will lead to increased population mean fitness.
 
 \section*{Appendices}
 % Appendix A: mean fitness
@@ -651,11 +655,6 @@ $\{u_k v_k\}_{k}$ is a probability distribution, since
 \subsection*{Appendix D}\label{sec:AppD}
 \begin{lemma}[Stability of the equilibrium $v$]
 The equilibrium $v$ of the system in Eq.~\ref{eq:model_equilibrium} is locally stable.
-In addition,
-\begin{enumerate}
-\item If $M$ is irreducible and $D$ and $C$ are positive, then the equilibrium is globally stable.
-\item If $M$ is irreducible and either $D$ or $C$ are non-negative but not strictly positive, then the equilibrium is globally stable except possibly for initial conditions on the boundary, i.e., when starting with zero elements in the initial frequency vector.
-\end{enumerate}
 \end{lemma}
 \begin{proof}
 Set $A=(I-C+MC)D$ and rewrite Eq.~\ref{eq:model} such that $f(t)$ is the frequency vector at time $t$ and
@@ -667,25 +666,19 @@ Denote the eigenvalues of $A$ as $\lambda_1, \ldots, \lambda_n$ such that $\abs{
 
 First, note that the normalization $x \goesto \frac{1}{\norm{x}}$ can be applied once instead of $t$ times~\citep[Appendix~A]{Wakano2004}, that is,
 \begin{equation}
-f(t) = \frac{A^t f(0)}{\norm{A^t f(0)}}.
+f(t+k) = \frac{A^t f(k)}{\norm{A^t f(k)}}.
 \label{eq:ftplus1}
 \end{equation}
 
-We write $f(0)$ as a linear combination of eigenvectors $v^k$ of $A$ for $k=1, \ldots, n$:
+To check local stability, we make a perturbation $\epsilon$ to $v$, such that this perturbation is small enough so that when $v+\epsilon$ is written as a linear combination of $\{v^k\}_{k=1}^{n}$ the eigenvalues of $A$, the coefficient of $v=v^1$ is not zero.
+That is, the frequency vector after the perturbation $f(0)=v+\epsilon$ can be written
 \begin{equation}
-f(0) = a_1 v^1 + a_2 v^2 + \ldots + a_n v^n,
+f(0) = a_1 v^1 + \ldots + a_n v^n,
 \label{eq:linear_combination}
 \end{equation}
-such that the eigenvector corresponding to the leading eigenvalue is $v=v_1$.
+with $\sum_{k=1}^{n}{f_k(0)}=1$ and $a_1 \ne 0$. 
 
-To proceed we need to make sure that $a_1 \ne 0$.
-If $M$ is reducible then $A$ is reducible. 
-In this case, $a_1 \ne 0$ can be guaranteed by setting $f(0)=v + \epsilon$ such that $\epsilon_k$ is small enough and $v_k+\epsilon_k \ge 0$ for all $k$, and $\sum_{k=1}^{n}{\epsilon_k} = 0$.
-
-If $M$ is irreducible and $D$ and $C$ are positive, then $A$ is irreducible and  any choice of $f(0)$ guarantees $a_1 \ne 0$.
-
-If $M$ is reducible and either $D$ or $C$ are non-negative but not strictly positive, than any choice of $f(0)$ such that $f_k(0)>0$ for all $k$ guarantees $a_1 \ne 0$.
-
+We now check that $f(t) \goesto v$ as $t \goesto \infty$, which will indicate that $v$ is locally stable.
 We write, using Eq.~\ref{eq:linear_combination},
 \begin{multline}
 A^t f(0) = 
@@ -717,7 +710,7 @@ This research was supported in part by the Stanford Center for Computational, Ev
 }
 
 \bibliographystyle{agsm}
-\bibliography{/Users/yoavram/Documents/library}
-%\bibliography{ms}
+%\bibliography{/Users/yoavram/Documents/library}
+\bibliography{ms}
 
 \end{document}  
