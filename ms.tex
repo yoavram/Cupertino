@@ -217,13 +217,13 @@ Here, too, $M$ and $(I-C+MC)D$ are irreducible.
 
 % Migration model
 \paragraph*{Migration model.}\label{sec:mig_model_1}
-% TODO explain why sum x y is 1 and wbar is sum xw yq
+
 Here we assume a large haploid population of haploids that occupies two demes (the model can be easily extended to an arbitrary number demes).
 Let the frequencies of $A_k$ be $x_k$ in deme 1 and $y_k$ in deme 2 for $k=1,2,\ldots,n$ with $x_k \ge 0$, $y_k \ge 0$, and $\sum_{k=1}^{n}{x_k + y_k} = 1$.
 
-In this model, the fitness of the individual is determines by both its type and its deme, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition between individuals of both demes.
+In this model, the fitness of the individual is determines by both its type and its deme, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition between individuals of both demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
 Therefore, the fitness of genotypes $A_k$ is $w_{1,k}$ in deme 1 and $w_{2,k}$ in deme 2 for $k=1,2,\ldots,n$, and the population mean fitnesses of the entire population is $\bar{w} = \sum_{k \ge 0}{w_{1,k} x_k + w_{2,k} y_k}$.
-In addition, we assume that the fitness of type $k$ is different in deme 1 and 2, that is, $w_{1,k} \ne w_{2,k}$ for any $k=1,\ldots,n$.
+In addition, we assume that the fitness of individuals of type $k$ is different in deme 1 and 2, that is, $w_{1,k} \ne w_{2,k}$ for any $k=1,\ldots,n$.
 
 The probability that offspring of an individual from deme $a$ with type $A_k$ return to their parent home deme is $1-m_{j,k}$.
 That is, migration rates also depend on both the type and the deme.
