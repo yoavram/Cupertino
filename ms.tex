@@ -53,12 +53,15 @@
 
 % Title page
 \title{Variation generation and mean fitness increase: \\ Necessity is the mother of genetic invention}
+% \title{A General Principle for the Evolution of Fitness-Associated Generation of Variation}
 
 \author[a]{Yoav Ram}
 \author[b]{Lee Altenberg}
+\author[c]{Uri Liberman}
 \author[a]{Marcus W. Feldman}
 \affil[a]{Department of Biology, Stanford University, Stanford, CA}
 \affil[b]{Information and Computer Sciences, University of Hawai`i at M{\=a}noa, Honolulu, HI}
+\affil[c]{School of Mathematical Sciences, Tel Aviv University, Israel}
 
 \date{\today}
 
@@ -86,7 +89,7 @@ These separate principles were recently unified by~\citet{Altenberg2017}
 
 The assumptions and conditions for the validity of the \emph{unified reduction principle} by neutral genetic modifiers are~\citep{Altenberg2017}:
 (i) effectively infinite population size, (ii) constant-viability selection, (iii) a population at an equilibrium, and (iv) \emph{linear variation} -- the equal scaling of transition probabilities by the modifier.
-A departure from the latter assumption occurs if two variation-producing processes interact~\citep{Feldman1980,Altenberg2012}.
+A departure from the latter assumption occurs if two variation-producing processes interact~\citep{Feldman1980,Altenberg2012b}.
 Departures from the \emph{reduction principle} have also been demonstrated when conditions (i)-(iii) are not met, see for example~\citet{Holsinger1986} and references therein.
 
 Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism in which the mutation rate increases in individuals with poor fitness -- a mechanism first observed in stressed bacteria~\citep{Foster2007}, although not in a constant environment.
@@ -109,15 +112,20 @@ and that modifier alleles that induce below-average individuals to produce more 
 \paragraph*{General model.}\label{sec:general_model}
 Consider a large haploid population with an arbitrary set of types $A_1, A_2, \ldots, A_n$.
 The frequency and fitness of individuals of type $A_k$ are $f_k$ and $D_k$, respectively.
-The probability that an individual of type $A_k$ will transition to some other type is $C_k$, and given a transition occurs, the probability that it will transition to type $A_i$ is $M_{i,k}$.
-Therefore, the change in the frequencies of types $A_k$ is described by the transformation $f \to f'$: 
-\begin{equation}\label{eq:model}
+The probability that an individual of type $A_k$ will transition to some other type is $C_k$, and given a transition occurs, the probability that it will transition to type $A_j$ is $M_{j,k}$.
+Therefore, the change in the frequencies of type $A_k$ is described by the transformation $f \to f'$: 
+\begin{equation}
+f'_k = (1-C_k)D_k f_k + \sum_{j=1}^{n}{C_j M_{k,j} D_j f_j},
+\end{equation}
+or in matrix form
+\begin{equation}
 \bar{w} f' = (I-C+MC)D f,
+\label{eq:model}
 \end{equation}
 where $f=(f_1, f_2, \ldots, f_n)$ is a stochastic vector such that $\sum_{k=1}^n{f_k} = 1$;
 $D$ is a diagonal matrix with diagonal elements $D_k$, where we can assume $0 < D_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type; 
 $C$ is a diagonal non-negative matrix with diagonal elements $C_k$;
-$M$ is a column-stochastic matrix: $M_{i,k} \ge 0$ for all $i,k$ and $\sum_{k=1}^n {M_{i,k}} = 1$ for all $j$; 
+$M$ is a column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$ and $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$; 
 $I$ is the identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness (see~\nameref{sec:AppA}).
 
@@ -209,26 +217,31 @@ Here, too, $M$ and $(I-C+MC)D$ are irreducible.
 
 % Migration model
 \paragraph*{Migration model.}\label{sec:mig_model_1}
+% TODO explain why sum x y is 1 and wbar is sum xw yq
+Here we assume a large haploid population of haploids that occupies two demes (the model can be easily extended to an arbitrary number demes).
+Let the frequencies of $A_k$ be $x_k$ in deme 1 and $y_k$ in deme 2 for $k=1,2,\ldots,n$ with $x_k \ge 0$, $y_k \ge 0$, and $\sum_{k=1}^{n}{x_k + y_k} = 1$.
 
-Here we assume a large population of haploids that occupies two demes.
-Let the fitness of genotypes $A_k$ be $w_k$ in deme 1 and $q_k$ in deme 2 for $k=1,2,\ldots,n$.
-The probability that an individual with genotype $A_k$ migrates between the deme is $m_k$; that is, migration rates depend on the genotypes.
-Let the frequencies of $A_k$ be $x_k$ in deme 1 and $y_k$ in deme 2 for $k=1,2,\ldots,n$ with $x_k \ge 0$, $y_k \ge 0$, $\sum_{k=1}^{n}{x_k} = 1$, and $\sum_{k=1}^{n}{y_k} = 1$.
+In this model, the fitness of the individual is determines by both its type and its deme, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition between individuals of both demes.
+Therefore, the fitness of genotypes $A_k$ is $w_{1,k}$ in deme 1 and $w_{2,k}$ in deme 2 for $k=1,2,\ldots,n$, and the population mean fitnesses of the entire population is $\bar{w} = \sum_{k \ge 0}{w_{1,k} x_k + w_{2,k} y_k}$.
+In addition, we assume that the fitness of type $k$ is different in deme 1 and 2, that is, $w_{1,k} \ne w_{2,k}$ for any $k=1,\ldots,n$.
+
+The probability that offspring of an individual from deme $a$ with type $A_k$ return to their parent home deme is $1-m_{j,k}$.
+That is, migration rates also depend on both the type and the deme.
+
 
 Following selection and migration the new frequencies $x_k'$ and $y_k'$ are given by
 \begin{align}
-x_k' = (1-m_k) \frac{w_k}{\bar{w}} x_k + m_k \frac{q_k}{\bar{q}} y_k \\
-y_k' = m_k \frac{w_k}{\bar{w}} x_k + (1 - m_k) \frac{q_k}{\bar{q}} y_k
+x_k' = (1-m_{1,k}) \frac{w_{1,k}}{\bar{w}} x_k + m_{2,k} \frac{w_{2,k}}{\bar{w}} y_k \\
+y_k' = m_{1,k} \frac{w_{1,k}}{\bar{w}} x_k + (1 - m_{2,k}) \frac{w_{2,k}}{\bar{w}} y_k
 \end{align}
-for $k=1,2,\ldots,n$, where $\bar{w} = \sum_{k \ge 0}{w_k x_k}$ and $\bar{q} = \sum_{k \ge 0}{q_k y_k}$ are the population mean fitnesses in deme 1 and 2, respectively.
-This is an extension of a model presented by~\citet{Altenberg2017}.
+for $k=1,2,\ldots,n$.
 
 To rephrase this model in terms of the general model, we define
 \begin{equation}
 \begin{aligned}
 f = (x_1, \ldots, x_n, y_1, \ldots, y_n)\tr, \\
-C = diag[m_1, \ldots, m_n, m_1, \ldots, m_n], \\
-D = diag[w_1, \ldots, w_n, q_1, \ldots, q_n], \\
+C = diag[m_{1,1}, \ldots, m_{1,n}, m_{2,1}, \ldots, m_{2,n}], \\
+D = diag[w_{1,1}, \ldots, w_{1,n}, w_{2,1}, \ldots, w_{2,n}], \\
 M = \begin{bmatrix}
 0 & I_n \\
 I_n & 0
@@ -236,7 +249,7 @@ I_n & 0
 \end{aligned}
 \end{equation}
 where $I_n$ is the n-by-n identity matrix.
-In this case, $M$ is reducible and so is $(I-C+MC)D$.
+In this case, $M$ is block matrix with each block an irreducible 2-by-2 matrix, and so is $(I-C+MC)D$.
 
 % Results
 \section*{Results}
@@ -253,7 +266,7 @@ Write the equilibrium of the frequency vector $f$ in Eq.~\ref{eq:model} as $v$ a
 \bar{w}^* v = (I-C+MC)D v.
 \end{equation}
 Note that (i) the existence of $\bar{w}^*$ and $v$ are guaranteed by the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007} because $(I-C+MC)D$ is a non-negative matrix; 
-(ii) the local stability of this equilibrium is proven in~\nameref{sec:AppD}; and
+(ii) the global stability of this equilibrium is proven in~\nameref{sec:AppD}; and
 (iii) $\bar{w}^*$ is identified as the stable population mean fitness in~\nameref{sec:AppA}.
 
 The following lemma presents a \emph{mean fitness principle} for the
@@ -261,7 +274,9 @@ sensitivity of the stable population mean fitness $\bar{w}^*$ to changes
 in $C_k$, the probability of transition from $A_k$.
 
 \begin{lemma}[Mean fitness principle]\label{lemma:mfp}
-Let $\bar{w}^*$ be the leading eigenvalue of $(I-C+MC)D$, $u$ and $v$ be the corresponding left and right eigenvectors, and $[M]_k$ the $k$-th column of $M$. Then
+Let $\bar{w}^*$ be the leading eigenvalue of $(I-C+MC)D$, $u$ and $v$ be the corresponding left and right eigenvectors, and $[M]_k$ the $k$-th column of $M$.
+%TODO If $MCD$ is primitive, then
+Then,
 \begin{equation}\label{mfp}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
 \frac{u_k v_k}{C_k} (\bar{w}^* - D_k),
@@ -279,7 +294,7 @@ Therefore increased transition from type $k$ will increase the stable population
 $\bar{w}^*$ is the leading (real positive) eigenvalue of $(I-C+MC)D$ (see eq.~\ref{eq:model_equilibrium}),
 and the corresponding left and right eigenvectors $u$ and $v$ are both non-negative and uniquely defined by $\sum_k{v_k} = 1$ and $\sum_k{u_k v_k} = 1$.
 
-Using \emph{Caswell's formula} (Eq.~\ref{eq:Caswells_formula} in~\nameref{sec:AppB}),
+Using the formula in~\citet{Caswell1978} (see eq.~\ref{eq:Caswells_formula} in~\nameref{sec:AppB}),
 \begin{equation}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
 u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v.
@@ -484,9 +499,11 @@ because $\bar{w}^* = \sum_{k=1}^{n}{v_k D_k}$ (see~\nameref{sec:AppA}), and $D_k
 
 We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that induce increased generation of variation in such individuals are favored by natural evolution.
 
+% see Altenberg 2012 Ecological Monographs for a condition-dependent migration model
 We have given several examples of variation-generating processes for which this principle applies -- namely mutation and migration -- but our model may apply to other processes as well.
 For example, the \emph{reduction principle} applies to ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the population mean fitness and is favored by selection over uniform dispersal.
-Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type of the type or fitness of the transmitting individual, we expect that our results will hold.
+% TODO see cultural transmission model in Lee's thesis
+Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold.
 
 Eq.~\ref{mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
 \citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2}).
@@ -534,15 +551,15 @@ using the fact that $e\tr M = e\tr$ and $e\tr I = e\tr$ because $M$ and $I$ are 
 
 Note that this lemma also ensures that the stable population mean fitness $\bar{w}^*=\sum_k{v_k D_k}$ is the leading eigenvalue of $(I - C + M C) D$; see Eq.~\ref{eq:model_equilibrium} and the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007}.
 
-% Appendix B: Caswell's formula
+% Appendix B: Caswell formula
 \subsection*{Appendix B}\label{sec:AppB}
 
 \citet{Caswell1978} gave a \emph{formula for the sensitivity of the population growth rate to changes in life history parameters}.
 In this formula, the \emph{population growth rate} is the leading eigenvalue of the population transformation matrix $T$, the \emph{life history parameters} are elements of $T$, and the \emph{sensitivity} is the derivative of the former with respect to the latter.
-This is a useful formula~\citep{Caswell1978,Hermisson2002,Ram2012}, and therefore we reproduce it here.
+This is a useful formula~\citep[ch.~10]{Caswell1978,Hermisson2002,Ram2012,Otto2007}, and therefore we reproduce it here.
 
-\begin{lemma}[Caswell's formula]
-Let $T$ be a non-negative matrix with leading eigenvalue $\lambda$ and left and right eigenvectors $u$ and $v$ such that $\sum{v_k}=1$ and $u\tr v = \sum{u_k v_k} = 1$.
+\begin{lemma}
+$T$ be a non-negative matrix with leading eigenvalue $\lambda$ and left and right eigenvectors $u$ and $v$ such that $\sum{v_k}=1$ and $u\tr v = \sum{u_k v_k} = 1$.
 Then the sensitivity of $\lambda$ to changes in any element $t$ of the matrix $T$ is
 \begin{equation}\label{eq:Caswells_formula}
 \frac{\partial \lambda}{\partial t} = 
@@ -575,7 +592,7 @@ Let $M$ be a stochastic matrix and $D$ be a diagonal matrix with positive diagon
 The elements of the left \emph{Perron} eigenvector $u$ of the matrix $MD$ can be regarded as \emph{Fisher's reproductive values}~\citep[pg.~27]{Fisher1930}
 \end{remark}
 
-\emph{Fisher's reproductive values} can be understood as follows~\citep{Grafen2006}.
+\emph{Fisher's reproductive values} can be understood as follows~\citep[ch.~10]{Grafen2006,Otto2007}.
 Consider the dynamics not of frequencies but of absolute population sizes such that the vector of the number of individuals of each type at time $t$ is $n(t)$ and the corresponding frequencies are $f_k(t) = n_k(t) / \sum_i{n_i(t)}$.
 The dynamics are
 \begin{equation}
@@ -654,52 +671,59 @@ $\{u_k v_k\}_{k}$ is a probability distribution, since
 % Appendix D: inner stability
 \subsection*{Appendix D}\label{sec:AppD}
 \begin{lemma}[Stability of the equilibrium $v$]
-The equilibrium $v$ of the system in Eq.~\ref{eq:model_equilibrium} is locally stable.
-\end{lemma}
+If $C$ and $D$ are positive diagonal matrices, and $M$ is block irreducible, then
+the equilibrium $v$ of the system in Eq.~\ref{eq:model_equilibrium} is globally stable. \end{lemma}
 \begin{proof}
-Set $A=(I-C+MC)D$ and rewrite Eq.~\ref{eq:model} such that $f(t)$ is the frequency vector at time $t$ and
-\begin{equation}
-f(t) = \frac{Af(t-1)}{\norm{Af(t-1)}},
-\end{equation}
-where $\norm{f(t)} = \sum_{k=1}^{n}f_k(t)$.
-Denote the eigenvalues of $A$ as $\lambda_1, \ldots, \lambda_n$ such that $\abs{\lambda_1} \ge \ldots \ge \abs{\lambda_n}$ and $\lambda_1$ is the \emph{Perron} leading eigenvalue, that is, the largest real eigenvalue with corresponding real non-negative right eigenvector $v$ ($\lambda_1$ is shown in~\nameref{sec:AppA} to be the stable population mean fitness $\bar{w}^*$).
+Let $A=(I-C+MC)D$ and denote the leading eigenvalue of $A$ as $\bar{w}^*$.
 
-First, note that the normalization $x \goesto \frac{1}{\norm{x}}$ can be applied once instead of $t$ times~\citep[Appendix~A]{Wakano2004}, that is,
+According to the \emph{Perron-Frobenius theorem}, 
 \begin{equation}
-f(t+k) = \frac{A^t f(k)}{\norm{A^t f(k)}}.
-\label{eq:ftplus1}
+\bigg(\frac{A}{\bar{w}^*}\bigg)^t \goesto \frac{v u\tr}{u\tr v} = v u\tr,
 \end{equation}
-
-To check local stability, we make a perturbation $\epsilon$ to $v$, such that this perturbation is small enough so that when $v+\epsilon$ is written as a linear combination of $\{v^k\}_{k=1}^{n}$ the eigenvalues of $A$, the coefficient of $v=v^1$ is not zero.
-That is, the frequency vector after the perturbation $f(0)=v+\epsilon$ can be written
+where $u$ and $v$ are the left and right Perron eigenvectors of $A$ such that 
 \begin{equation}
-f(0) = a_1 v^1 + \ldots + a_n v^n,
-\label{eq:linear_combination}
+\sum_{k=1}^{n}{v_k}=1, \quad
+u\tr v=\sum_{k=1}^{n}{u_k v_k}=1,
+\label{eq:sum_uv}
 \end{equation}
-with $\sum_{k=1}^{n}{f_k(0)}=1$ and $a_1 \ne 0$. 
+and $v u\tr$ is the \emph{Perron projection} into the eigenspace corresponding to $\bar{w}^*$.
 
-We now check that $f(t) \goesto v$ as $t \goesto \infty$, which will indicate that $v$ is locally stable.
-We write, using Eq.~\ref{eq:linear_combination},
+Therefore, for any positive frequency vector $f$
+\begin{equation}
+\bigg(\frac{A}{\bar{w}^*}\bigg)^t \cdot f \goesto v u\tr \cdot f = \alpha v,
+\label{eq:perron_projection}
+\end{equation}
+where $\alpha \in \mathbb{R}$.
+Using eqs.~\ref{eq:sum_uv} and~\ref{eq:perron_projection}
+\begin{equation}
+\alpha = \alpha u\tr v = u\tr \alpha v = u\tr v u\tr f = u\tr f = \sum_{k=1}^{n}{u_k f_k} > 0,
+\label{eq:alpha0}
+\end{equation}
+because $f$ is positive and $u$ is non-negative.
+
+Now, let $\norm{x} = \sum_{k=1}^{n}{x_k}$, and therefore $x_t \goesto x$ implies
+\begin{equation}
+\norm{x_t} \goesto \norm{x}
+\label{eq:norm_limit}
+\end{equation}
+as $t \goesto \infty$.
+
+Rewrite Eq.~\ref{eq:model} as 
+\begin{equation}
+f' = \frac{A f}{\norm{A f}} 
+\label{eq:model_norm}
+\end{equation}
+Note that when applying eq.~\ref{eq:model_norm} $t$ times, the normalization can be applied once~\cite[Appendix~A]{Wakano2004}.
+
+Therefore, for a positive frequency vector $f$, we can apply $f \goesto f'$ (Eq.~\ref{eq:model_norm}) $t$ times, and using eqs.~\ref{eq:perron_projection} and ~\ref{eq:norm_limit}, we have
 \begin{multline}
-A^t f(0) = 
-a_1 A^t v^1 + a_2 A^t v^2 + \ldots + a_n A^t v^n = \\
-a_1 \lambda_1^t v^1 + a_2 \lambda_2^t v^2 + \ldots + a_n \lambda_n^t v^n = \\
-\lambda_1^t \bigg(a_ 1v^1 + a_2 \bigg(\frac{\lambda_2}{\lambda_1}\bigg)^t v^2 + \ldots +  a_n \bigg(\frac{\lambda_n}{\lambda_1}\bigg)^t v^n\bigg).
+\frac{A^t f}{\norm{A^t f}} = 
+\frac{\frac{1}{(\bar{w}^*)^t} A^t f}{\frac{1}{(\bar{w}^*)^t} \norm{A^t f}} = 
+\frac{\big(\frac{A}{\bar{w}^*}\big)^t \cdot f }{ \norm{ \big(\frac{A}{\bar{w}^*}\big)^t \cdot f }} \goesto
+\frac{\alpha v}{\norm{\alpha v}} = v,
 \end{multline}
-Therefore,
-\begin{equation}
-\frac{A^t f(0)}{\lambda_1^t} \goesto a_1 v_1
-\end{equation}
-as $t \goesto \infty$, because $\abs{\frac{\lambda_k}{\lambda_1}} < 1$
-for all $k=2, \ldots, n$.
-Finally, 
-\begin{equation}
-f(t) = 
-\frac{A^t f(0)}{\norm{A^t f(0)}} =
-\frac{\frac{A^t f(0)}{\lambda_1^t}}{\norm{\frac{A^t f(0)}{\lambda_1^t}}} \goesto
-\frac{a_1 v^1}{\norm{a_1 v^1}} = v,
-\end{equation}
-as $t \goesto \infty$, which completes the proof.
+as $t \goesto \infty$, as $\norm{v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
+This completes the proof.
 \end{proof}
 
 % Acknowledgements
