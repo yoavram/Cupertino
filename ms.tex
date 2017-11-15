@@ -76,7 +76,7 @@ In a constant environment, genetic modifiers that reduce the rate at which varia
 However, departures from this \emph{reduction principle} have been demonstrated.
 Here we analyze a general model of evolution under constant selection where the rate at which variation is generated can depend on the fitness of the individual.
 We find that if a modifier allele increases the rate at which individuals of below-average fitness generate variation, then it will increase in frequency and increase the  population mean fitness.
-This principle applies to phenomena such as stress-induced mutagenesis, condition-dependent dispersal and fitness-associated outcrossing,
+This principle applies to phenomena such as stress-induced mutagenesis and condition-dependent dispersal,
 and exhibits the paraphrase: \emph{"Necessity is the mother of genetic invention."}
 \end{abstract}
 
@@ -115,7 +115,8 @@ The frequency and fitness of individuals of type $A_k$ are $f_k$ and $D_k$, resp
 The probability that an individual of type $A_k$ will transition to some other type is $C_k$, and given a transition occurs, the probability that it will transition to type $A_j$ is $M_{j,k}$.
 Therefore, the change in the frequencies of type $A_k$ is described by the transformation $f \to f'$: 
 \begin{equation}
-f'_k = (1-C_k)D_k f_k + \sum_{j=1}^{n}{C_j M_{k,j} D_j f_j},
+\bar{w} f'_k = (1-C_k)D_k f_k + \sum_{j=1}^{n}{C_j M_{k,j} D_j f_j},
+\label{eq:model_sum}
 \end{equation}
 or in matrix form
 \begin{equation}
@@ -171,7 +172,7 @@ Note that here $M$ is irreducible and therefore so is $(I-C+MC)D$.
 % Mutation model 2
 \paragraph*{Mutation model 2.}\label{sec:mut_model_2}
 
-Here, we consider a large population of haploids in which individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype, where $0 \le k \le n$.
+Here we consider a large population of haploids in which individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype, where $0 \le k \le n$.
 Importantly, the probability $m_k$ that a mutation occurs in individuals with $k$ mutant alleles depends on $k$.
 We assume a low mutation rate $m_k$ so that two mutations are unlikely to occur in the same individual in one generation.
 When a mutation occurs it is \emph{deleterious} with probability $\delta$, generating a mutant allele and converting the individual from $A_k$ to $A_{k+1}$, or it is beneficial with probability $\beta$, converting the individual from $A_k$ to $A_{k-1}$.
@@ -206,7 +207,7 @@ D_k = w_k,
 \end{equation}
 and
 \begin{equation}
-M_{i,j} = \begin{bmatrix}
+M = \begin{bmatrix}
 1-\delta & \beta & 0 &  \cdots \\
 \delta & 1-\delta-\beta & \beta &  \ddots \\
 0 & \delta & 1-\delta-\beta & \ddots \\
@@ -218,38 +219,30 @@ Here, too, $M$ and $(I-C+MC)D$ are irreducible.
 % Migration model 1
 \paragraph*{Migration model 1.}\label{sec:mig_model_1}
 
-Here we assume a large haploid population of haploids that occupies two demes (the model can be easily extended to an arbitrary number demes).
-Let the frequencies of $A_k$ be $x_k$ in deme 1 and $y_k$ in deme 2 for $k=1,2,\ldots,n$ with $x_k \ge 0$, $y_k \ge 0$, and $\sum_{k=1}^{n}{x_k + y_k} = 1$.
+Here we assume a large haploid population of haploids that occupies $n$ demes, $A_1, \ldots, A_n$. In this case we directly use the notation of Eq.~\ref{eq:model}.
+Let the frequencies of individuals in deme $A_k$ be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k} = 1$.
+The fitness of individuals in deme $A_k$ is $D_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition between individuals of both demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
+The population mean fitness is $\bar{w} = \sum_{k=1}^{n}{D_k f_k}$.
 
-In this model, the fitness of the individual is determines by both its type and its deme, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition between individuals of both demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
-Therefore, the fitness of genotypes $A_k$ is $w_{1,k}$ in deme 1 and $w_{2,k}$ in deme 2 for $k=1,2,\ldots,n$, and the population mean fitnesses of the entire population is $\bar{w} = \sum_{k \ge 0}{w_{1,k} x_k + w_{2,k} y_k}$.
-In addition, we assume that the fitness of individuals of type $k$ is different in deme 1 and 2, that is, $w_{1,k} \ne w_{2,k}$ for any $k=1,\ldots,n$.
+After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k M_{k,j}$, where $C_k \ge 0$, $M_{k,j} \ge 0$ and $\sum_{k=1}^{n}{M_{k,j}} = 1$ for all $j=1, \ldots, n$.
+Therefore, $1-C_k$ can be interpreted as a \emph{homing rate}.
 
-The probability that offspring of an individual from deme $a$ with type $A_k$ return to their parent home deme is $1-m_{j,k}$.
-That is, migration rates also depend on both the type and the deme.
-
-
-Following selection and migration the new frequencies $x_k'$ and $y_k'$ are given by
-\begin{align}
-x_k' = (1-m_{1,k}) \frac{w_{1,k}}{\bar{w}} x_k + m_{2,k} \frac{w_{2,k}}{\bar{w}} y_k \\
-y_k' = m_{1,k} \frac{w_{1,k}}{\bar{w}} x_k + (1 - m_{2,k}) \frac{w_{2,k}}{\bar{w}} y_k
-\end{align}
-for $k=1,2,\ldots,n$.
-
-To rephrase this model in terms of the general model, we define
+Following selection and migration the new frequencies $x'_k$ are given by Eq.~\ref{eq:model_sum}.
+If the rows of $M$ are equal, that is, $M_{k,j}=m_k$ for all $j$,
+then $m_k$ can be considered the relative population size of deme $A_k$;
+this is the non-homogeneous extension to Deakin's \emph{homing model}~\citep{Deakin1966,Karlin1982}.
+The transition matrix $M$ can account for other factors that determine the probability of non-homing juveniles from deme $A_j$ to migrate to deme $A_k$ -- for example, deme adjacency:
+if demes are arranged in a circle, 
+then $M$ can take the form
 \begin{equation}
-\begin{aligned}
-f = (x_1, \ldots, x_n, y_1, \ldots, y_n)\tr, \\
-C = diag[m_{1,1}, \ldots, m_{1,n}, m_{2,1}, \ldots, m_{2,n}], \\
-D = diag[w_{1,1}, \ldots, w_{1,n}, w_{2,1}, \ldots, w_{2,n}], \\
 M = \begin{bmatrix}
-0 & I_n \\
-I_n & 0
-\end{bmatrix}
-\end{aligned}
+p_0 & p_1 & \ldots & p_n \\
+p_n & p_0 & \ldots & p_{n-1} \\
+\vdots & \vdots & \ddots & \vdots \\
+p_1 & p_n & \ldots & p_0
+\end{bmatrix}.
 \end{equation}
-where $I_n$ is the n-by-n identity matrix.
-In this case, $M$ is block matrix with each block an irreducible 2-by-2 matrix, and so is $(I-C+MC)D$.
+where $p_{-k} = p_{n-k}$, $p_k \ge 0$, and $\sum_{k=1}^{n}{p_k}=1$.
 
 % Results
 \section*{Results}
@@ -730,7 +723,12 @@ This completes the proof.
 {\small
 \section*{Acknowledgements}
 
-This work was supported in part by the Department of Information and Computer Sciences at the University of Hawai`i at M{\=a}noa, the Konrad Lorenz Institute for Evolution and Cognition Research, the Mathematical Biosciences Institute through National Science Foundation Award \#DMS 0931642, the Stanford Center for Computational, Evolutionary and Human Genomics, by the Morrison Institute for Population and Resources Studies Stanford University.
+This work was supported in part by 
+the Department of Information and Computer Sciences at the University of Hawai`i at M{\=a}noa, 
+the Konrad Lorenz Institute for Evolution and Cognition Research, 
+the Mathematical Biosciences Institute through National Science Foundation Award \#DMS 0931642, 
+the Stanford Center for Computational, Evolutionary and Human Genomics, 
+and the Morrison Institute for Population and Resources Studies, Stanford University.
 }
 
 \bibliographystyle{agsm}
