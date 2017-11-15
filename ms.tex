@@ -84,7 +84,7 @@ and exhibits the paraphrase: \emph{"Necessity is the mother of genetic invention
 \section*{Introduction}
 
 According to the \emph{reduction principle}, in populations at a balance between natural selection and a process that generates variation (i.e. mutation, migration, or recombination), selection favors neutral modifiers that decrease the rate at which variation is generated. 
-The \emph{reduction principle} was demonstrated for modifiers of the recombination~\citep{Feldman1972}, mutation, and migration~\citep{Liberman1986a}, and dispersal rates~\citep{Altenberg1987}.
+The \emph{reduction principle} was demonstrated for modifiers of the recombination~\citep{Feldman1972}, mutation~\citep{Liberman1986a}, migration~\citep{Feldman1986}, and dispersal rates~\citep{Altenberg1987}.
 These separate principles were recently unified by~\citet{Altenberg2017}
 
 The assumptions and conditions for the validity of the \emph{unified reduction principle} by neutral genetic modifiers are~\citep{Altenberg2017}:
@@ -94,7 +94,7 @@ Departures from the \emph{reduction principle} have also been demonstrated when 
 
 Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism in which the mutation rate increases in individuals with poor fitness -- a mechanism first observed in stressed bacteria~\citep{Foster2007}, although not in a constant environment.
 \citet{Ram2012} demonstrated that even in a constant environment, modifiers that increase the mutation rate of individuals with below-average fitness increase the population mean fitness, rather than decrease it.
-Their analysis assumed an infinite population size and constant-viability selection in which fitness is determined by the number of mutant alleles accumulated in the genotype.
+Their analysis assumed an infinite population in which fitness is determined by the number of mutant alleles accumulated in the genotype.
 The only departure from the \emph{reduction principle} assumptions was due to the differential effect the modifier has on different genotypes.
 A similar result has been demonstrated for fitness-associated recombination~\citep{Hadany2003a} and for condition-dependent sexual reproduction~\citep{Hadany2007a}, and evidence suggests that both mechanisms are common in nature~\citep{Ram2016}.
 
@@ -120,62 +120,66 @@ Therefore, the change in the frequencies of type $A_k$ is described by the trans
 \end{equation}
 or in matrix form
 \begin{equation}
-\bar{w} f' = (I-C+MC)D f,
+\bar{w} f' = (\ci - C + MC)D f,
 \label{eq:model}
 \end{equation}
 where $f=(f_1, f_2, \ldots, f_n)$ is a stochastic vector such that $\sum_{k=1}^n{f_k} = 1$;
-$D$ is a diagonal matrix with diagonal elements $D_k$, where we can assume $0 < D_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type; 
+$D$ is a diagonal matrix with diagonal elements $D_k$ such that $D_k \ne D_j$ for $k \ne j$, and we can assume $0 < D_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type; 
 $C$ is a diagonal non-negative matrix with diagonal elements $C_k$;
 $M$ is a column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$ and $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$; 
-$I$ is the identity matrix;
+$\ci$ is the identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness (see~\nameref{sec:AppA}).
 
 The types $A_k$ can represent a single or multiple haploid genetic loci or non-genetic traits.
 Importantly, type transmission is vertical and uni-parental (the type is transmitted from a single parent to the offspring) and is independent of the frequencies of the other types.
-Specifically, this model precludes processes such as recombination, social learning, sexual outcrossing, and any horizontal or oblique transmission, as these processes are frequency-dependent~\cite[pg.~54]{Cavalli-Sforza1981}.
+Specifically, this model precludes processes such as recombination, social learning, sexual outcrossing, and horizontal or oblique transmission, as these processes are frequency-dependent~\cite[pg.~54]{Cavalli-Sforza1981}.
 
 Transition between types is determined by a combination of two effects:
 (i) the probability to transition \emph{out} of type $A_k$ is determined by $C_k$;
 (ii) given a transition out of type $A_k$, the distribution of the destination types $A_i$ is given by $M_{i,k}$ (note the index order).
-Importantly, different types can have different rates; that is, $C_i \ne C_j$ for some $i,j$. The case $C_i = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~\citep[see][]{Altenberg2017}.
+Importantly, different types can have different rates.
+That is, $C_i \ne C_j$ for some $i,j$. The case $C_i = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~\citep[see][]{Altenberg2017}.
 
-In the following section we present three examples of the model presented in Eq.~\ref{eq:model} for mutation and migration.
+In the following section we present three examples of the model (Eq.~\ref{eq:model}) for mutation and migration.
 
 % Mutation model 1
 \paragraph*{Mutation model 1.}\label{sec:mut_model_1}
 
-Here we consider a large population of haploids and a trait determined by a major locus with $n$ possible alleles $A_1, A_2, ..., A_n$.
-The mutation rates $\mu_k$ of individuals with allele $A_k$ are potentially different;
-specifically, with probability $1-\mu_k$, the allele $A_k$ does not mutate, and with probability $\frac{\mu_k}{n-1}$, the allele $A_k$ mutates to $A_j$ for any $j \ne k$.
-This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of an individual, $\mu_k$, to depend on the identity of the allele $A_k$.
+Here we consider a large population of haploids and a trait determined by a single genetic locus with $n$ possible alleles $A_1, A_2, \ldots, A_n$ and corresponding fitness values $D_1, D_2, \ldots, D_n$.
+The mutation rates $C_k$ of individuals with allele $A_k$ are potentially different;
+specifically, with probability $1-C_k$, the allele $A_k$ does not mutate, and with probability $\frac{C_k}{n-1}$, the allele $A_k$ mutates to $A_j$ for any $j \ne k$.
+This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of an individual, $C_k$, to depend on the identity of the allele $A_k$.
 
-Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_k{f_k}=1$.
+Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
 Then after selection and mutation, $f'_k$ in the next generation is given by
 \begin{equation}
-f_k' = (1 - \mu_k) \frac{w_k}{\bar{w}} f_k + \frac{1}{n-1} \sum_{k \ne j}{\mu_j \frac{w_j}{\bar{w}} f_j},
+f_k' = \big(1 - C_k\big) \frac{D_k}{\bar{w}} f_k + \frac{1}{n-1} \sum_{k \ne j}{C_j \frac{D_j}{\bar{w}} f_j},
 \label{eq:mutation_model_1}
 \end{equation}
-for all $k=1,2,\ldots,n$, where $\bar{w} = \sum_{k=1}^{n}{w_k f_k}$ is the population mean fitness.
+for all $k=1,2,\ldots,n$, where $\bar{w} = \sum_{k=1}^{n}{D_k f_k}$ is the population mean fitness.
 
-This model can be rephrased in terms of the general model: 
-Eq.~\ref{eq:mutation_model_1} is equivalent to Eq.~\ref{eq:model} if we set
+This model is a special case of the general model (Eq.~\ref{eq:model}) where
 \begin{equation} 
-C_k = \mu_k, \quad
-D_k = w_k, \quad
-M_{i,j} = \begin{cases}
-\frac{1}{n-1}, & i \ne j \\
-0, & i=j
-\end{cases}.
+{M} = \frac{1}{n-1} \begin{bmatrix}
+0 & 1 & 1 & \ldots & 1 \\
+1 & 0 & 1 & \ldots & \vdots \\
+1 & 1 & 0 & \ldots & \vdots \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \ldots & \ldots & \ldots & 0
+\end{bmatrix},
 \end{equation}
-Note that here $M$ is irreducible and therefore so is $(I-C+MC)D$.
+with zeros on the diagonal and $\frac{1}{n-1}$ elsewhere.
+Note that here ${M}$ is irreducible.
 
 % Mutation model 2
 \paragraph*{Mutation model 2.}\label{sec:mut_model_2}
 
-Here we consider a large population of haploids in which individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype, where $0 \le k \le n$.
-Importantly, the probability $m_k$ that a mutation occurs in individuals with $k$ mutant alleles depends on $k$.
-We assume a low mutation rate $m_k$ so that two mutations are unlikely to occur in the same individual in one generation.
-When a mutation occurs it is \emph{deleterious} with probability $\delta$, generating a mutant allele and converting the individual from $A_k$ to $A_{k+1}$, or it is beneficial with probability $\beta$, converting the individual from $A_k$ to $A_{k-1}$.
+Again, we consider a large population of haploids, but here individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype, where $0 \le k \le n$.
+Specifically, the fitness of individuals with $k$ mutant alleles is $D_k$,
+And the probability $C_k$ that a mutation occurs in individuals with $k$ mutant alleles depends on $k$.
+We assume a low mutation rate $C_k$ so that two mutations are unlikely to occur in the same individual in one generation.
+When a mutation occurs it is \emph{deleterious} with probability $\delta$, generating a mutant allele and converting the individual from $A_k$ to $A_{k+1}$,
+or it is \emph{beneficial} with probability $\beta$, converting the individual from $A_k$ to $A_{k-1}$.
 Note that such beneficial mutations can be either compensatory or back-mutations, and that mutations are neutral with probability $1-\delta-\beta$.
 This model has been analyzed by~\citet{Ram2012}.
 
@@ -183,66 +187,66 @@ Let the frequency of $A_k$ in the present generation be $f_k$ such that $f_k \ge
 Then after selection and mutation $f'$ in the next generation is given by
 \begin{equation}
 \begin{aligned}
-f_0' &= (1 - \delta m_0) \frac{w_0}{\bar{w}} f_0 + \beta m_{1} \frac{w_{1}}{\bar{w}} f_{1}, \\
-f_n' &= (1 - \beta m_n) \frac{w_n}{\bar{w}} f_n + \delta m_{n-1} \frac{w_{n-1}}{\bar{w}} f_{n-1}, \\
-f_k' &= (1 - m_k(\delta+\beta)) \frac{w_k}{\bar{w}} f_k + \\
-	 & \delta m_{k-1} \frac{w_{k-1}}{\bar{w}} f_{k-1} + 
-	 \beta m_{k+1} \frac{w_{k+1}}{\bar{w}} f_{k+1},
+f_0' &= \big(1 - \delta C_0\big) \frac{D_0}{\bar{w}} f_0 + \beta C_{1} \frac{D_{1}}{\bar{w}} f_{1}, \\
+f_n' &= \big(1 - \beta C_n\big) \frac{D_n}{\bar{w}} f_n + \delta C_{n-1} \frac{D_{n-1}}{\bar{w}} f_{n-1}, \\
+f_k' &= \big(1 - C_k(\delta+\beta)\big) \frac{D_k}{\bar{w}} f_k + \\
+	 & \delta C_{k-1} \frac{D_{k-1}}{\bar{w}} f_{k-1} + 
+	 \beta C_{k+1} \frac{D_{k+1}}{\bar{w}} f_{k+1},
 \end{aligned}
 \label{eq:mutation_model_2}
 \end{equation}
-for $k=1,2,\ldots, n-1$, where $w_k$ is the fitness of an individual with $k$ mutant alleles and $\bar{w} = \sum_{k=0}^{n}{w_k f_k}$ is the population mean fitness.
+for $k=1,2,\ldots, n-1$.
 
-In terms of the general model, we can write
+Therefore, setting 
 \begin{equation}
-C_k = m_k, \quad
-D_k = w_k,
-%M_{i,j} = \begin{cases}
-%\beta, & i = j-1 \\
-%1-\beta-\delta, & i = j \\
-%\delta, & i = j+1 \\
-%1-\delta, & i=j=0 \\
-%0, & \text{otherwise}
-%\end{cases}
+{M} = \begin{bmatrix}
+1-\delta & \beta & 0 &  \cdots & 0\\
+\delta & 1-\delta-\beta & \beta &  \ddots & 0\\
+0 & \delta & 1-\delta-\beta & \ddots & 0 \\
+\vdots & \ddots & \ddots & \ddots & \beta \\
+0 & 0 & 0 & \delta & 1-\beta
+\end{bmatrix},
 \end{equation}
-and
-\begin{equation}
-M = \begin{bmatrix}
-1-\delta & \beta & 0 &  \cdots \\
-\delta & 1-\delta-\beta & \beta &  \ddots \\
-0 & \delta & 1-\delta-\beta & \ddots \\
-\vdots & \ddots & \ddots & \ddots 
-\end{bmatrix}.
-\end{equation}
-Here, too, $M$ and $(I-C+MC)D$ are irreducible.
+with the beneficial, neutral, and deleterious mutation probabilities on the three main digonals and zeros elsewhere, 
+Eq.~\ref{eq:mutation_model_2} can be viewed as a special case of Eq.~\ref{eq:model}.
+Here, too, ${M}$ is irreducible.
 
 % Migration model 1
 \paragraph*{Migration model 1.}\label{sec:mig_model_1}
 
-Here we assume a large haploid population of haploids that occupies $n$ demes, $A_1, \ldots, A_n$. In this case we directly use the notation of Eq.~\ref{eq:model}.
+In this case we consider a large population of haploids that occupy $n$ demes, $A_1, \ldots, A_n$.
 Let the frequencies of individuals in deme $A_k$ be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k} = 1$.
 The fitness of individuals in deme $A_k$ is $D_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition between individuals of both demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
-The population mean fitness is $\bar{w} = \sum_{k=1}^{n}{D_k f_k}$.
 
-After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k M_{k,j}$, where $C_k \ge 0$, $M_{k,j} \ge 0$ and $\sum_{k=1}^{n}{M_{k,j}} = 1$ for all $j=1, \ldots, n$.
+After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k \cdot M_{j,k}$, where $C_k > 0$, $M_{j,k} \ge 0$, and $\sum_{k=1}^{n}{M_{j,k}} = 1$ for all $j=1, \ldots, n$.
 Therefore, $1-C_k$ can be interpreted as a \emph{homing rate}.
 
-Following selection and migration the new frequencies $x'_k$ are given by Eq.~\ref{eq:model_sum}.
-If the rows of $M$ are equal, that is, $M_{k,j}=m_k$ for all $j$,
-then $m_k$ can be considered the relative population size of deme $A_k$;
-this is the non-homogeneous extension to Deakin's \emph{homing model}~\citep{Deakin1966,Karlin1982}.
-The transition matrix $M$ can account for other factors that determine the probability of non-homing juveniles from deme $A_j$ to migrate to deme $A_k$ -- for example, deme adjacency:
-if demes are arranged in a circle, 
-then $M$ can take the form
+Following selection and migration the new frequencies $f'_k$ are given exactly by Eq.~\ref{eq:model_sum}.
+If columns of ${M}$ are identical
 \begin{equation}
-M = \begin{bmatrix}
-p_0 & p_1 & \ldots & p_n \\
-p_n & p_0 & \ldots & p_{n-1} \\
-\vdots & \vdots & \ddots & \vdots \\
-p_1 & p_n & \ldots & p_0
-\end{bmatrix}.
+{M} = \begin{bmatrix}
+m_1 & m_1 & \ldots & m_1 \\
+m_2 & m_2 & \ldots & m_2 \\
+\vdots & \vdots & \vdots & \vdots \\
+m_n & m_n & \ldots & m_n
+\end{bmatrix},
 \end{equation}
-where $p_{-k} = p_{n-k}$, $p_k \ge 0$, and $\sum_{k=1}^{n}{p_k}=1$.
+with $\sum_{k=1}^{n}{m_k}=1$,
+then $m_k$ can be considered the relative population size of deme $A_k$ --
+this is the non-homogeneous extension of Deakin's \emph{homing model}~\citep{Deakin1966,Karlin1982}.
+
+Similarly, if demes are arranged in a circle, for example around a lake, 
+then we can denote the probability $p_k$ of migrating $k$ demes away from the parental deme (conditioned on migration which occurs with probability $C_k$)
+and ${M}$ takes the form
+\begin{equation}
+{M} = \begin{bmatrix}
+p_0 & p_1 & \ldots & p_{n-1} \\
+p_{n-1} & p_0 & \ldots & p_{n-2} \\
+\vdots & \vdots & \ddots & \vdots \\
+p_1 & p_2 & \ldots & p_0
+\end{bmatrix},
+\end{equation}
+where $p_k \ge 0$ and $\sum_{k=1}^{n}{p_k}=1$.
 
 % Results
 \section*{Results}
@@ -267,7 +271,8 @@ sensitivity of the stable population mean fitness $\bar{w}^*$ to changes
 in $C_k$, the probability of transition from $A_k$.
 
 \begin{lemma}[Mean fitness principle]\label{lemma:mfp}
-Let $\bar{w}^*$ be the leading eigenvalue of $(I-C+MC)D$, $u$ and $v$ be the corresponding left and right eigenvectors, and $[M]_k$ the $k$-th column of $M$.
+Let $\bar{w}^*$ be the leading eigenvalue of $(I-C+MC)D$,
+and $u$ and $v$ be the corresponding left and right eigenvectors.
 %TODO If $MCD$ is primitive, then
 Then,
 \begin{equation}\label{mfp}
@@ -356,9 +361,11 @@ Given $0 < D_k \le 1$, from Eq.~\ref{mfp_intermediate} we have the following cor
 In the notation of Lemma~\ref{lemma:mfp},
 \begin{equation}
 sign \frac{\partial \bar{w}^*}{\partial C_k} = 
-sign (u\tr [M]_k - u_k);
+sign (u\tr [M]_k - u_k),
 \end{equation}
-therefore, increased transition from type $k$ will increase the stable population mean fitness if the fraction of the population descended from type $k$ is expected to increase due to a transition to another type. 
+where $[M]_k$ is the $k$-th column of $M$.
+
+Therefore, increased transition from type $k$ will increase the stable population mean fitness if the fraction of the population descended from type $k$ is expected to increase due to a transition to another type. 
 \end{corollary}
 
 % Threshold rule
