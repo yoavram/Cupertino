@@ -111,11 +111,11 @@ and that modifier alleles that induce below-average individuals to produce more 
 
 \paragraph*{General model.}\label{sec:general_model}
 Consider a large haploid population with an arbitrary set of types $A_1, A_2, \ldots, A_n$.
-The frequency and fitness of individuals of type $A_k$ are $f_k$ and $D_k$, respectively.
+The frequency and fitness of individuals of type $A_k$ are $f_k$ and $w_k$, respectively.
 The probability that an individual of type $A_k$ will transition to some other type is $C_k$, and given a transition occurs, the probability that it will transition to type $A_j$ is $M_{j,k}$.
 Therefore, the change in the frequencies of type $A_k$ is described by the transformation $f \to f'$: 
 \begin{equation}
-\bar{w} f'_k = (1-C_k)D_k f_k + \sum_{j=1}^{n}{C_j M_{k,j} D_j f_j},
+\bar{w} f'_k = (1-C_k) w_k f_k + \sum_{j=1}^{n}{C_j M_{k,j} w_j f_j},
 \label{eq:model_sum}
 \end{equation}
 or in matrix form
@@ -124,7 +124,7 @@ or in matrix form
 \label{eq:model}
 \end{equation}
 where $f=(f_1, f_2, \ldots, f_n)$ is a stochastic vector such that $\sum_{k=1}^n{f_k} = 1$;
-$D$ is a diagonal matrix with diagonal elements $D_k$ such that $D_k \ne D_j$ for $k \ne j$, and we can assume $0 < D_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type; 
+$D$ is a diagonal matrix with diagonal elements $w_k$ such that $w_k \ne w_j$ for $k \ne j$, and we can assume $0 < w_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type; 
 $C$ is a diagonal non-negative matrix with diagonal elements $C_k$;
 $M$ is a column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$ and $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$; 
 $\ci$ is the identity matrix;
@@ -145,7 +145,7 @@ In the following section we present three examples of the model (Eq.~\ref{eq:mod
 % Mutation model 1
 \paragraph*{Mutation model 1.}\label{sec:mut_model_1}
 
-Here we consider a large population of haploids and a trait determined by a single genetic locus with $n$ possible alleles $A_1, A_2, \ldots, A_n$ and corresponding fitness values $D_1, D_2, \ldots, D_n$.
+Here we consider a large population of haploids and a trait determined by a single genetic locus with $n$ possible alleles $A_1, A_2, \ldots, A_n$ and corresponding fitness values $w_1, w_2, \ldots, w_n$.
 The mutation rates $C_k$ of individuals with allele $A_k$ are potentially different;
 specifically, with probability $1-C_k$, the allele $A_k$ does not mutate, and with probability $\frac{C_k}{n-1}$, the allele $A_k$ mutates to $A_j$ for any $j \ne k$.
 This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of $A_k$, $C_k$, to depend on the identity of the allele $A_k$.
@@ -153,10 +153,10 @@ This is an extension of a model studied by~\citet{Altenberg2017} that allows for
 Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
 Then after selection and mutation, $f'_k$ in the next generation is given by
 \begin{equation}
-f_k' = \big(1 - C_k\big) \frac{D_k}{\bar{w}} f_k + \frac{1}{n-1} \sum_{k \ne j}{C_j \frac{D_j}{\bar{w}} f_j},
+f_k' = \big(1 - C_k\big) \frac{w_k}{\bar{w}} f_k + \frac{1}{n-1} \sum_{k \ne j}{C_j \frac{w_j}{\bar{w}} f_j},
 \label{eq:mutation_model_1}
 \end{equation}
-for all $k=1,2,\ldots,n$, where $\bar{w} = \sum_{k=1}^{n}{D_k f_k}$ is the population mean fitness.
+for all $k=1, 2, \ldots, n$, where $\bar{w} = \sum_{k=1}^{n}{f_k w_k}$ is the population mean fitness.
 
 This model is a special case of the general model (Eq.~\ref{eq:model}) where
 \begin{equation} 
@@ -175,28 +175,28 @@ Note that here ${M}$ is irreducible.
 \paragraph*{Mutation model 2.}\label{sec:mut_model_2}
 
 Again, we consider a large population of haploids, but here individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype, where $0 \le k \le n$.
-Specifically, the fitness of individuals with $k$ mutant alleles is $D_k$,
-And the probability $C_k$ that a mutation occurs in individuals with $k$ mutant alleles depends on $k$.
+Specifically, the fitness of individuals with $k$ mutant alleles is $w_k$ ($w_0 \ge w_1 \ge \ldots > w_n$),
+and the probability $C_k$ that a mutation occurs in individuals with $k$ mutant alleles depends on $k$.
 We assume a low mutation rate $C_k$ so that two mutations are unlikely to occur in the same individual in one generation.
 When a mutation occurs it is \emph{deleterious} with probability $\delta$, generating a mutant allele and converting the individual from $A_k$ to $A_{k+1}$,
 or it is \emph{beneficial} with probability $\beta$, converting the individual from $A_k$ to $A_{k-1}$.
 Note that such beneficial mutations can be either compensatory or back-mutations, and that mutations are neutral with probability $1-\delta-\beta$.
 This model has been analyzed by~\citet{Ram2012}.
 
-Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=0}^{n}{f_k}=1$.
+Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
 Then after selection and mutation $f'$ in the next generation is given by
 \begin{equation}
 \begin{aligned}
-f_0' &= \big(1 - \delta C_0\big) \frac{D_0}{\bar{w}} f_0 + \beta C_{1} \frac{D_{1}}{\bar{w}} f_{1}, \\
-f_n' &= \big(1 - \beta C_n\big) \frac{D_n}{\bar{w}} f_n + \delta C_{n-1} \frac{D_{n-1}}{\bar{w}} f_{n-1}, \\
-f_k' &= \big(1 - C_k(\delta+\beta)\big) \frac{D_k}{\bar{w}} f_k + \\
-	 & \delta C_{k-1} \frac{D_{k-1}}{\bar{w}} f_{k-1} + 
-	 \beta C_{k+1} \frac{D_{k+1}}{\bar{w}} f_{k+1},
+f_0' &= \big(1 - \delta C_0\big) \frac{w_0}{\bar{w}} f_0 + \beta C_{1} \frac{w_{1}}{\bar{w}} f_{1}, \\
+f_n' &= \big(1 - \beta C_n\big) \frac{w_n}{\bar{w}} f_n + \delta C_{n-1} \frac{w_{n-1}}{\bar{w}} f_{n-1}, \\
+f_k' &= \big(1 - C_k(\delta+\beta)\big) \frac{w_k}{\bar{w}} f_k + \\
+	 & \delta C_{k-1} \frac{w_{k-1}}{\bar{w}} f_{k-1} + 
+	 \beta C_{k+1} \frac{w_{k+1}}{\bar{w}} f_{k+1},
 \end{aligned}
 \label{eq:mutation_model_2}
 \end{equation}
 for $k=1,2,\ldots, n-1$.
-Here $\bar w=\sum_{k=0}^nw_kf_n$ is the mean fitness.
+Here $\bar{w}=\sum_{k=1}^{n}{f_k w_k}$ is the population mean fitness.
 
 Therefore, setting 
 \begin{equation}
@@ -208,17 +208,16 @@ Therefore, setting
 0 & 0 & 0 & \delta & 1-\beta
 \end{bmatrix},
 \end{equation}
-with the beneficial, neutral, and deleterious mutation probabilities on the three main digonals and zeros elsewhere, 
+with the beneficial, neutral, and deleterious mutation probabilities on the three main diagonals and zeros elsewhere, 
 Eq.~\ref{eq:mutation_model_2} can be viewed as a special case of Eq.~\ref{eq:model}.
 Here, too, ${M}$ is irreducible.
 
-% Migration model 1
-\paragraph*{Migration model 1.}\label{sec:mig_model_1}
+% Migration model
+\paragraph*{Migration model.}\label{sec:mig_model}
 
-%ARE THERE OTHER MIGRATION MODELS (MODEL 1)?
 In this case we consider a large population of haploids that occupy $n$ demes, $A_1, \ldots, A_n$.
 Let the frequencies of individuals in deme $A_k$ be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k} = 1$.
-The fitness of individuals in deme $A_k$ is $D_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition among individuals of all demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
+The fitness of individuals in deme $A_k$ is $w_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition among individuals of all demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
 
 After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k \cdot M_{j,k}$, where $C_k > 0$, $M_{j,k} \ge 0$, and $\sum_{k=1}^{n}{M_{j,k}} = 1$ for all $j=1, \ldots, n$.
 Therefore, $1-C_k$ can be interpreted as a \emph{homing rate}.
@@ -279,12 +278,12 @@ and $u$ and $v$ be the corresponding left and right eigenvectors.
 Then,
 \begin{equation}\label{mfp}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
-\frac{u_k v_k}{C_k} (\bar{w}^* - D_k),
+\frac{u_k v_k}{C_k} (\bar{w}^* - w_k),
 \end{equation}
 or in simpler terms,
 \begin{equation}\label{mfp_sign}
 sign\frac{\partial \bar{w}^*}{\partial C_k} = 
-sign(\bar{w}^* - D_k).
+sign(\bar{w}^* - w_k).
 \end{equation}
 
 Therefore increased transition from type $k$ will increase the stable population mean fitness if the fitness of type $k$ is below the stable population mean fitness.
@@ -307,8 +306,8 @@ Then,
 \begin{aligned}
 u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v = 
 u\tr (0 - Z_k + M Z_k)D v = \\
--v_k u_k D_k + v_k D_k u\tr[M]_k = \\
-v_k D_k (u\tr[M]_k - u_k). 
+-v_k u_k w_k + v_k w_k u\tr[M]_k = \\
+v_k w_k (u\tr[M]_k - u_k). 
 \end{aligned}
 \end{equation}
 
@@ -320,21 +319,21 @@ u\tr \bar{w}^* = u\tr (I - C + MC) D,
 which gives us a relation between $\bar{w}^*$ and the $k$
 element of $u$:
 \begin{equation}
-u_k \bar{w}^* = (1-C_k) D_k u_k + C_k D_k u\tr [M]_k.
+u_k \bar{w}^* = (1-C_k) w_k u_k + C_k w_k u\tr [M]_k.
 \end{equation}
-Multiplying both sides by $v_k$ (which is positive if $D_k>0$) and rearranging, we get 
+Multiplying both sides by $v_k$ (which is positive if $w_k>0$) and rearranging, we get 
 \begin{equation}
-\frac{u_k v_k}{C_k} (\bar{w}^* - D_k) = v_k D_k(u\tr [M]_k - u_k),
+\frac{u_k v_k}{C_k} (\bar{w}^* - w_k) = v_k w_k (u\tr [M]_k - u_k),
 \end{equation}
 which when substituted into Eq.~\ref{mfp_intermediate} yields:
 \begin{equation}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
-\frac{u_k v_k}{C_k} (\bar{w}^* - D_k).
+\frac{u_k v_k}{C_k} (\bar{w}^* - w_k).
 \end{equation}
 Finally, note that $u_k, v_k, C_k \ge 0$ and therefore
 \begin{equation}
 sign \frac{\partial \bar{w}^*}{\partial C_k} = 
-sign (\bar{w}^* - D_k),
+sign (\bar{w}^* - w_k),
 \end{equation}
 which completes the proof.
 \end{proof}
@@ -349,15 +348,15 @@ An interesting intermediate result in Eq.~\ref{mfp_intermediate} is
 \begin{equation}
 \begin{aligned}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
-v_k D_k (u\tr[M]_k - u_k) = \\
-D_k (\sum_i{u_i M_{i,k} v_k} - u_k v_k).
+v_k w_k (u\tr[M]_k - u_k) = \\
+w_k (\sum_i{u_i M_{i,k} v_k} - u_k v_k).
 \end{aligned}
 \end{equation}
 Here, $u_k$ can be regarded as the \emph{reproductive value}~\citep[pg.~27]{Fisher1930} of type $k$ (see~\nameref{sec:AppC}), which gives the relative contribution of type $k$ to the long-term population.
 Consequently, $u_k v_k$ is the \emph{ancestor frequency} of type $k$~\citep{Hermisson2002}, namely the fraction of the equilibrium population descended from type $k$.
-The sum $\sum_i{u_i M_{i,k} v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$), conditioned on transition occuring.
+The sum $\sum_i{u_i M_{i,k} v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$), conditioned on transition occurring.
 
-Given $0 < D_k \le 1$, from Eq.~\ref{mfp_intermediate} we have the following corollary.
+Given $0 < w_k \le 1$, from Eq.~\ref{mfp_intermediate} we have the following corollary.
 
 \begin{corollary}[Reproductive value principle]
 In the notation of Lemma~\ref{lemma:mfp},
@@ -388,14 +387,14 @@ rate of transition from types in $K$ can be written
 \begin{aligned}
 \frac{\partial \bar{w}^*}{\partial \tau} = 
 u\tr \Big( \sum_{k \in K}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) v = \\
-\frac{1}{\tau} \sum_{k \in K}{u_k v_k (\bar{w}^* - D_k)}.
+\frac{1}{\tau} \sum_{k \in K}{u_k v_k (\bar{w}^* - w_k)}.
 \end{aligned}
 \end{equation}
 Thus
 \begin{multline}\label{mfp_sign_threshold}
 sign \frac{\partial \bar{w}^*}{\partial \tau} = 
-sign \sum_{k \in K}{u_k v_k (\bar{w}^* - D_k)} = \\ 
-sign \Big(\bar{w}^* - \frac{\sum_{k \in K}{u_k v_k D_k}}{\sum_{k \in K}{u_k v_k}}\Big), 
+sign \sum_{k \in K}{u_k v_k (\bar{w}^* - w_k)} = \\ 
+sign \Big(\bar{w}^* - \frac{\sum_{k \in K}{u_k v_k w_k}}{\sum_{k \in K}{u_k v_k}}\Big), 
 \end{multline}
 a generalization of Eq.~\ref{mfp_sign}.
 Therefore, increased transition from types in $K$ will increase the stable population mean fitness if the average fitness of individuals descended from types in $K$ is below the stable population mean fitness.
@@ -420,7 +419,7 @@ The frequencies in the next generation, $f'$ for allele $m$ and $g'$ for allele 
 \end{cases}.
 \label{eq:modifier_model}
 \end{equation}
-Here, $\bar{w}=\sum_{k=1}^{n}{(f_k+g_k)D_k}$ is the mean fitness of the entire population (see~\nameref{sec:AppA}). 
+Here, $\bar{w}=\sum_{k=1}^{n}{(f_k + g_k) w_k}$ is the mean fitness of the entire population (see~\nameref{sec:AppA}). 
 Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} where allele $M$ is absent; i.e. $g_k=0$ for all $k$.
 
 % Evolutionary stability
@@ -453,7 +452,7 @@ If the transition rates induced by the modifier alleles $m$ and $M$ are equal, i
 and
 \begin{equation}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C_k} = 
-sign(\bar{w}^* - D_k).
+sign(\bar{w}^* - w_k).
 \end{equation}
 
 Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.
@@ -470,13 +469,13 @@ the leading eigenvalue of $\cl_{ex}\big\rvert_{\tilde{C}_k = C_k}$ is $\lambda_1
 Now, applying Lemma~\ref{lemma:mfp} (eq.~\ref{mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda_1$ with respect to $\tilde{C_k}$ is
 \begin{equation}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k} =
-sign\Big(\lambda_1 - \frac{D_k}{\bar{w}^*}\Big).
+sign\Big(\lambda_1 - \frac{w_k}{\bar{w}^*}\Big).
 \end{equation}
 Evaluating this expression at $\tilde{C}_k = C_k$, i.e. at $\lambda_1=1$, gives us
 \begin{multline}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C_k} = 
-sign\Big(1 - \frac{D_k}{\bar{w}^*}\Big) =  
-sign(\bar{w}^* - D_k),
+sign\Big(1 - \frac{w_k}{\bar{w}^*}\Big) =  
+sign(\bar{w}^* - w_k),
 \end{multline}
 since $\bar{w}^*>0$.
 This completes the proof.
@@ -493,7 +492,7 @@ $$
 \frac{\partial \bar{w}^*}{\partial \alpha} = 
 \bar{w}^* - 1 \le 0,
 $$
-because $\bar{w}^* = \sum_{k=1}^{n}{v_k D_k}$ (see~\nameref{sec:AppA}), and $D_k \le 1$ for all $k$.
+because $\bar{w}^* = \sum_{k=1}^{n}{v_k w_k}$ (see~\nameref{sec:AppA}), and $w_k \le 1$ for all $k$.
 
 
 % Discussion
@@ -530,7 +529,7 @@ Here we have provided another general example, which suggests that a modifier al
 \begin{lemma}
 The normalizing factor $\bar{w}$ in Eq.~\ref{eq:model} is the population mean fitness
 \begin{equation}
-\bar{w} = \sum_k{f_k D_k}.
+\bar{w} = \sum_k{f_k w_k}.
 \end{equation}
 \end{lemma}
 
@@ -546,12 +545,12 @@ e\tr (I - C + M C) D f = \\
 (e\tr - e\tr C + e\tr C) D f = \\
 e\tr D f = 
 \diag{D} f = 
-\sum_k{f_k D_k},
+\sum_k{f_k w_k},
 \end{multline}
 using the fact that $e\tr M = e\tr$ and $e\tr I = e\tr$ because $M$ and $I$ are stochastic matrices.
 \end{proof}
 
-Note that this lemma also ensures that the stable population mean fitness $\bar{w}^*=\sum_k{v_k D_k}$ is the leading eigenvalue of $(I - C + M C) D$; see Eq.~\ref{eq:model_equilibrium} and the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007}.
+Note that this lemma also ensures that the stable population mean fitness $\bar{w}^*=\sum_k{v_k w_k}$ is the leading eigenvalue of $(I - C + M C) D$; see Eq.~\ref{eq:model_equilibrium} and the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007}.
 
 % Appendix B: Caswell formula
 \subsection*{Appendix B}\label{sec:AppB}
@@ -672,9 +671,12 @@ $\{u_k v_k\}_{k}$ is a probability distribution, since
 
 % Appendix D: inner stability
 \subsection*{Appendix D}\label{sec:AppD}
+
 \begin{lemma}[Stability of the equilibrium $v$]
-If $C$ and $D$ are positive diagonal matrices, and $M$ is block irreducible, then
-the equilibrium $v$ of the system in Eq.~\ref{eq:model_equilibrium} is globally stable. \end{lemma}
+If $C$ and $D$ are positive diagonal matrices, and $M$ is block irreducible, 
+then the equilibrium $v$ of the system in Eq.~\ref{eq:model_equilibrium} is globally stable.
+\end{lemma}
+
 \begin{proof}
 Let $A=(I-C+MC)D$ and denote the leading eigenvalue of $A$ as $\bar{w}^*$.
 
@@ -705,19 +707,18 @@ because $f$ is positive and $u$ is non-negative.
 
 Now, let $\norm{x} = \sum_{k=1}^{n}{x_k}$, so that $x_t \goesto x$ implies
 \begin{equation}
-\norm{x_t} \goesto \norm{x}
+\norm{x_t} \goesto \norm{x},
 \label{eq:norm_limit}
 \end{equation}
-as $t \goesto \infty$.
-
-Rewrite Eq.~\ref{eq:model} as 
+as $t \goesto \infty$ and rewrite Eq.~\ref{eq:model} as 
 \begin{equation}
-f' = \frac{A f}{\norm{A f}} 
+f' = \frac{A f}{\norm{A f}}. 
 \label{eq:model_norm}
 \end{equation}
-Note that when applying eq.~\ref{eq:model_norm} $t$ times, the normalization can be applied once~\cite[Appendix~A]{Wakano2004}.
 
-Therefore, for a positive frequency vector $f$, we can apply $f \goesto f'$ (Eq.~\ref{eq:model_norm}) $t$ times, and using eqs.~\ref{eq:perron_projection} and ~\ref{eq:norm_limit}, we have
+Therefore, for a positive frequency vector $f$, we can apply $f \goesto f'$ (Eq.~\ref{eq:model_norm}) $t$ times, 
+and as $f \goesto Af$ is linear, one normalization ($x \goesto x/\norm{x}$) suffices~\citep[see][Appendix~A]{Wakano2004}.
+Using eqs.~\ref{eq:perron_projection} and ~\ref{eq:norm_limit}, we have
 \begin{multline}
 \frac{A^t f}{\norm{A^t f}} = 
 \frac{\frac{1}{(\bar{w}^*)^t} A^t f}{\frac{1}{(\bar{w}^*)^t} \norm{A^t f}} = 
