@@ -45,7 +45,7 @@
 \renewcommand\qedsymbol{} % no square at end of proof
 \newcommand{\cl}{\mathbf{L}}
 \newcommand{\cj}{\mathbf{J}}
-\newcommand{\ci}{\mathbf{I}}
+\newcommand{\ci}{I}
 
 
 % NatBib
@@ -124,9 +124,9 @@ or in matrix form
 \label{eq:model}
 \end{equation}
 where $f=(f_1, f_2, \ldots, f_n)$ is a stochastic vector such that $\sum_{k=1}^n{f_k} = 1$;
-$D$ is a diagonal matrix with diagonal elements $w_k$ such that $w_k \ne w_j$ for $k \ne j$, and we can assume $0 < w_k \le 1$, i.e., fitness values are relative to the fitness of the fittest type; 
-$C$ is a diagonal non-negative matrix with diagonal elements $C_k$;
-$M$ is a column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$ and $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$; 
+$D$ is a diagonal matrix with diagonal elements $w_k$ such that $w_k \ne w_j$ for $k \ne j$, and we can assume $0 < w_k \le 1$, i.e., fitness values are positive and relative to the fitness of the fittest type; 
+$C$ is a diagonal positive matrix with diagonal elements $C_k$;
+$M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $M^n_{j,k} > 0$ for all $j,k$ for some natural $n$.
 $\ci$ is the identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness (see~\nameref{sec:AppA}).
 
@@ -257,9 +257,9 @@ Individuals are characterized by their initial and mature phenotypes~\citep[pg.~
 Fitness is determined by the difference between the individual mature phenotype and the optimal phenotype:
 denoting the optimal phenotype as $h$, the fitness of an individual with mature phenotype $k$ is $w_{|k-h|}$.
 
-The initial phenotype is acquired by learning the mature phenotype of one of the parents (i.e. uni-parental vertical transmission).
+The initial phenotype is acquired by learning the mature phenotype of a parent.
 In individuals with initial phenotype $k$, the mature phenotype is the same as the initial phenotype with probability $1-C_k$, and is modified by individual learning or \emph{exploration}~\citep{Borenstein2008} with probability $C_k$.
-Such individual exploratory learning, which can be considered intentional or the result of transmission infidelity, modifies initial phenotype $k$ to mature phenotype $j$ with probability $M_{k,j}$.
+Such individual exploratory learning, which can be considered either intentional or the result of incorrect learning, modifies initial phenotype $k$ to mature phenotype $j$ with probability $M_{k,j}$.
 
 For example, the case of \emph{symmetric individual learning}~\citep{Borenstein2008} can be represented by
 \begin{equation}
@@ -269,7 +269,7 @@ M_{k,j} = \begin{cases}
 \end{cases},
 \end{equation}
 where the breadth of exploration is $b \ge 0$, and phenotypes $0$ and $n$ "absorb" transitions to $k<0$ and $k>n$, respectively. 
-For instance, for $n=5$ and $b=1$ we have
+For instance, with $n=5$ and $b=1$ we have
 \begin{equation}
 M = \begin{bmatrix}
 2/3 & 1/3 & 0 & 0 & 0 \\
@@ -282,7 +282,7 @@ M = \begin{bmatrix}
  
 Therefore, if the frequency of individuals with mature phenotype $k$ in the current generation is $f_k$, then the frequency in the next generation $f'_k$ is
 \begin{equation}
-f'_k = (1-C_k) f_k \frac{w_{\abs{k-h}}}{\bar{w}} \sum_{j=1}^{n}{C_j M_{k,j} \frac{w_{\abs{j-h}}}{\bar{w}} f_j },
+f'_k = (1-C_k) f_k \frac{w_{\abs{k-h}}}{\bar{w}} + \sum_{j=1}^{n}{C_j M_{k,j} \frac{w_{\abs{j-h}}}{\bar{w}} f_j },
 \end{equation}
 where $\bar{w} = \sum_{k=1}^{n}{f_k w_{\abs{k-h}}}$ is the population mean fitness.
 
@@ -311,7 +311,6 @@ in $C_k$, the probability of transition from $A_k$.
 \begin{lemma}[Mean fitness principle]\label{lemma:mfp}
 Let $\bar{w}^*$ be the leading eigenvalue of $(I-C+MC)D$,
 and $u$ and $v$ be the corresponding left and right eigenvectors.
-%TODO If $MCD$ is primitive, then
 Then,
 \begin{equation}\label{mfp}
 \frac{\partial \bar{w}^*}{\partial C_k} = 
@@ -537,19 +536,18 @@ because $\bar{w}^* = \sum_{k=1}^{n}{v_k w_k}$ (see~\nameref{sec:AppA}), and $w_k
 
 We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural evolution.
 
-% see Altenberg 2012 Ecological Monographs for a condition-dependent migration model
-We have given several examples of variation-generating processes for which this principle applies -- namely mutation, migration, and learning, see ~\nameref{sec:models} -- but our model may apply to other processes as well.
+We have given several examples of variation-generating processes for which this principle applies -- namely mutation, migration, and learning (see \emph{\nameref{sec:models}} section) -- but our model may apply to other processes as well.
 For example, the \emph{reduction principle} applies to ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the mean fitness of diploid populations and is favored by selection over uniform dispersal.
-Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see~\nameref{sec:learn_model}).
+Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \emph{\nameref{sec:learn_model}} section).
 
 Eq.~\ref{mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
-\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2}).
+\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \emph{\nameref{sec:mut_model_2}} section).
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppB} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($D_k < \bar{w}^*$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{mean fitness principle} in Eqs.~\ref{mfp_sign} and~\ref{mfp_sign_threshold}.
 
 Our analysis focuses on populations at equilibrium.
 Nevertheless, it has been demonstrated that a modifier which increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and reduce the adaptation rate~\citep{Ram2014},
 and empirical evidence suggests that \emph{stress-induced mutagenesis} is common in bacteria and yeast, and may be prevalent in plants, flies, and human cancer cells~\citep{Rosenberg2012,Fitzgerald2017b}.
-Similar theoretical results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003a,Hadany2003b}.
+Similar theoretical results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003b,Hadany2003a}.
 
 % Conclusions
 \subsection*{Conclusions}
