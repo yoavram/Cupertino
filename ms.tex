@@ -77,7 +77,7 @@ However, departures from this \emph{reduction principle} have been demonstrated.
 Here we analyze a general model of evolution under constant selection where the rate at which variation is generated can depend on the fitness of the individual.
 We find that if a modifier allele increases the rate at which individuals of below-average fitness generate variation, then it will increase in frequency and increase the  population mean fitness.
 This principle applies to phenomena such as stress-induced mutagenesis and condition-dependent dispersal,
-and exhibits the paraphrase: \emph{"Necessity is the mother of genetic invention."}
+and exemplifies \emph{"Necessity is the mother of genetic invention."}
 \end{abstract}
 
 % Introduction
@@ -92,17 +92,17 @@ The assumptions and conditions for the validity of the \emph{unified reduction p
 A departure from the latter assumption occurs if two variation-producing processes interact~\citep{Feldman1980,Altenberg2012b}.
 Departures from the \emph{reduction principle} have also been demonstrated when conditions (i)-(iii) are not met, see for example~\citet{Holsinger1986} and references therein.
 
-Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism in which the mutation rate increases in individuals with poor fitness -- a mechanism first observed in stressed bacteria~\citep{Foster2007}, although not in a constant environment.
+Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism by which the mutation rate increases in individuals of low fitness -- a mechanism first observed in stressed bacteria~\citep{Foster2007}, although not in a constant environment.
 \citet{Ram2012} demonstrated that even in a constant environment, modifiers that increase the mutation rate of individuals with below-average fitness increase the population mean fitness, rather than decrease it.
-Their analysis assumed an infinite population in which fitness is determined by the number of mutant alleles accumulated in the genotype.
-The only departure from the \emph{reduction principle} assumptions was due to the differential effect the modifier has on different genotypes.
+Their analysis assumed  infinite population size and fitness  determined by the number of mutant alleles accumulated in the genotype.
+In their models, the only departure from the \emph{reduction principle} assumptions was due to the differential effect the modifier has on different genotypes.
 A similar result has been demonstrated for fitness-associated recombination~\citep{Hadany2003a} and for condition-dependent sexual reproduction~\citep{Hadany2007a}, and evidence suggests that both mechanisms are common in nature~\citep{Ram2016}.
 
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
 Their analysis was specific to a model that classified individuals by the number of mutant genes in their genotype, similar to models studied by~\citet{Kimura1966a} and~\citet{Haigh1978}.
-Moreover, their argument was based on expected increase of the population mean fitness by alleles that modify the mutation rate, rather than on the invasion success of such modifiers~\citep[i.e., analysis of \emph{evolutionary genetic stability}, see][]{Eshel1982, Lessard1990}.
+Moreover, their argument was based on the expected increase of the population mean fitness by alleles that modify the mutation rate, rather than on the invasion success of such modifiers~\citep[i.e., analysis of \emph{evolutionary genetic stability}, see][]{Eshel1982, Lessard1990}.
 
-Here, we present a general evolutionary model where the the type of the individual determines both its fitness and the rate at which it generates variation.
+Here, we present an evolutionary model where the the type of the individual determines both its fitness and the rate at which it generates variation.
 Our results show that the population mean fitness increases if individuals with below-average fitness produce more variation than individuals with above-average fitness,
 and that modifier alleles that induce below-average individuals to produce more variation are favored by natural selection.
 
@@ -135,12 +135,12 @@ Importantly, type transmission is vertical and uni-parental (the type is transmi
 Specifically, this model precludes processes such as recombination, social learning, sexual outcrossing, and horizontal or oblique transmission, as these processes are frequency-dependent~\cite[pg.~54]{Cavalli-Sforza1981}.
 
 Transition between types is determined by a combination of two effects:
-(i) the probability to transition \emph{out} of type $A_k$ is determined by $C_k$;
+(i) the probability of transitioning \emph{out} of type $A_k$ is determined by $C_k$;
 (ii) given a transition out of type $A_k$, the distribution of the destination types $A_i$ is given by $M_{i,k}$ (note the index order).
 Importantly, different types can have different rates.
 That is, $C_i \ne C_j$ for some $i,j$. The case $C_i = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~\citep[see][]{Altenberg2017}.
 
-In the following section we present three examples of the model (Eq.~\ref{eq:model}) for mutation and migration.
+In the following section we present three examples of the model (Eq.~\ref{eq:model}) that apply to mutation and migration.
 
 % Mutation model 1
 \paragraph*{Mutation model 1.}\label{sec:mut_model_1}
@@ -148,7 +148,7 @@ In the following section we present three examples of the model (Eq.~\ref{eq:mod
 Here we consider a large population of haploids and a trait determined by a single genetic locus with $n$ possible alleles $A_1, A_2, \ldots, A_n$ and corresponding fitness values $D_1, D_2, \ldots, D_n$.
 The mutation rates $C_k$ of individuals with allele $A_k$ are potentially different;
 specifically, with probability $1-C_k$, the allele $A_k$ does not mutate, and with probability $\frac{C_k}{n-1}$, the allele $A_k$ mutates to $A_j$ for any $j \ne k$.
-This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of an individual, $C_k$, to depend on the identity of the allele $A_k$.
+This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of $A_k$, $C_k$, to depend on the identity of the allele $A_k$.
 
 Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
 Then after selection and mutation, $f'_k$ in the next generation is given by
@@ -183,7 +183,7 @@ or it is \emph{beneficial} with probability $\beta$, converting the individual f
 Note that such beneficial mutations can be either compensatory or back-mutations, and that mutations are neutral with probability $1-\delta-\beta$.
 This model has been analyzed by~\citet{Ram2012}.
 
-Let the frequency of $A_k$ in the present generation be $f_k$ such that $f_k \ge 0$ and $\sum_{k=0}^{n}{f_k}=1$.
+Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=0}^{n}{f_k}=1$.
 Then after selection and mutation $f'$ in the next generation is given by
 \begin{equation}
 \begin{aligned}
@@ -196,6 +196,7 @@ f_k' &= \big(1 - C_k(\delta+\beta)\big) \frac{D_k}{\bar{w}} f_k + \\
 \label{eq:mutation_model_2}
 \end{equation}
 for $k=1,2,\ldots, n-1$.
+Here $\bar w=\sum_{k=0}^nw_kf_n$ is the mean fitness.
 
 Therefore, setting 
 \begin{equation}
@@ -214,9 +215,10 @@ Here, too, ${M}$ is irreducible.
 % Migration model 1
 \paragraph*{Migration model 1.}\label{sec:mig_model_1}
 
+%ARE THERE OTHER MIGRATION MODELS (MODEL 1)?
 In this case we consider a large population of haploids that occupy $n$ demes, $A_1, \ldots, A_n$.
 Let the frequencies of individuals in deme $A_k$ be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k} = 1$.
-The fitness of individuals in deme $A_k$ is $D_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition between individuals of both demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
+The fitness of individuals in deme $A_k$ is $D_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition among individuals of all demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
 
 After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k \cdot M_{j,k}$, where $C_k > 0$, $M_{j,k} \ge 0$, and $\sum_{k=1}^{n}{M_{j,k}} = 1$ for all $j=1, \ldots, n$.
 Therefore, $1-C_k$ can be interpreted as a \emph{homing rate}.
@@ -298,7 +300,7 @@ Using the formula in~\citet{Caswell1978} (see eq.~\ref{eq:Caswells_formula} in~\
 u\tr \frac{\partial (I-C+MC)D}{\partial C_k} v.
 \end{equation}
 
-Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position $k$ and 0 elsewhere, $Z_k = e_k e\tr_k$ the matrix with 1 at position $(k,k)$ and 0 elsewhere, and $[M]_k$ the $k$-th column of $M$.
+Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position $k$ and 0 elsewhere, $Z_k = e_k e\tr_k$ be the matrix with 1 at position $(k,k)$ and 0 elsewhere, and $[M]_k$ be the $k$-th column of $M$.
 
 Then,
 \begin{equation}\label{mfp_intermediate}
@@ -373,7 +375,7 @@ Therefore, increased transition from type $k$ will increase the stable populatio
 We turn our attention to the case where the transition occurs from a subset $K$ of the types.
 For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated deleterious mutations, $k$, 
 and a modifier allele that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
-Similarly, if the transition rates are controlled by a threshold rule 
+If the transition rates are controlled by a threshold rule, then 
 \begin{equation}
 C_k = \begin{cases}
 \tau, & k \in K \\
@@ -406,7 +408,7 @@ We will show that modifier alleles that increase the stable population mean fitn
 
 \paragraph*{Modifier model.}
 Consider the case of two modifier alleles, $m$ and $M$, inducing different transition probabilities $C=\diag{C_1, \ldots, C_n}$ and $\tilde{C}=\diag{\tilde{C}_1, \ldots, \tilde{C}_n}$, respectively.
-The frequencies of type $A_k$ linked to modifier $m$ or $M$ are $f_k$ and $g_k$, respectively, such that $\sum_{k=1}^{n}{(f_k + g_k)}=1$.
+The frequencies of type $A_k$ linked to modifier $m$ or $M$ are $f_k$ and $g_k$, respectively, where $\sum_{k=1}^{n}{(f_k + g_k)}=1$.
 $\bar{w}$ now ensures that $\sum_{k=1}^{n}{(f_k' + g_k')}=1$, 
 and the rest of the model parameters are the same as in Eq.~\ref{eq:model}.
 
@@ -497,7 +499,7 @@ because $\bar{w}^* = \sum_{k=1}^{n}{v_k D_k}$ (see~\nameref{sec:AppA}), and $D_k
 % Discussion
 \section*{Discussion}
 
-We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that induce increased generation of variation in such individuals are favored by natural evolution.
+We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural evolution.
 
 % see Altenberg 2012 Ecological Monographs for a condition-dependent migration model
 We have given several examples of variation-generating processes for which this principle applies -- namely mutation and migration -- but our model may apply to other processes as well.
@@ -519,7 +521,7 @@ Similar theoretical results have been demonstrated for a modifier that increases
 
 General examples of departures from the \emph{reduction principle} are rare~\citep{Altenberg2017}.
 For example, it has been demonstrated that higher mutation, recombination, and migration rates are favored by selection in populations evolving under fluctuating selection; see~\citet{Carja2014} and references therein.
-Here we have provided another general example, which suggests that a modifier allele that prompts individuals with below-average fitness to increase the rate at which variation is generated, will be favored by selection and will lead to increased population mean fitness.
+Here we have provided another general example, which suggests that a modifier allele that causes individuals with below-average fitness to increase the rate at which variation is generated, will be favored by selection and will lead to increased population mean fitness.
 
 \section*{Appendices}
 % Appendix A: mean fitness
@@ -701,7 +703,7 @@ Using eqs.~\ref{eq:sum_uv} and~\ref{eq:perron_projection}
 \end{equation}
 because $f$ is positive and $u$ is non-negative.
 
-Now, let $\norm{x} = \sum_{k=1}^{n}{x_k}$, and therefore $x_t \goesto x$ implies
+Now, let $\norm{x} = \sum_{k=1}^{n}{x_k}$, so that $x_t \goesto x$ implies
 \begin{equation}
 \norm{x_t} \goesto \norm{x}
 \label{eq:norm_limit}
@@ -722,7 +724,7 @@ Therefore, for a positive frequency vector $f$, we can apply $f \goesto f'$ (Eq.
 \frac{\big(\frac{A}{\bar{w}^*}\big)^t \cdot f }{ \norm{ \big(\frac{A}{\bar{w}^*}\big)^t \cdot f }} \goesto
 \frac{\alpha v}{\norm{\alpha v}} = v,
 \end{multline}
-as $t \goesto \infty$, as $\norm{v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
+since $t \goesto \infty$, as $\norm{v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
 This completes the proof.
 \end{proof}
 
