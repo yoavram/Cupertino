@@ -124,11 +124,12 @@ or in matrix form
 \label{eq:model}
 \end{equation}
 where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\sum_{k=1}^n{f_k} = 1$;
-$D$ is a positive diagonal matrix with  elements $w_k$ such that $w_k \ne w_j$ for some $k \ne j$, and we can assume $0 < w_k \le 1$, i.e., fitness values are positive and relative to the fitness of the fittest type; 
+$D$ is a positive diagonal matrix with  elements $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
+%and we can assume $0 < w_k \le 1$, i.e., fitness values are positive and relative to the fitness of the fittest type; 
 $C$ is a positive diagonal  matrix with  elements $C_k$;
 $M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^n)_{j,k} > 0$ for all $j,k$ for some natural $n$.
 $\ci$ is the $n\times n$ identity matrix;
-and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness.
+and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness $\bar w=\sum_{k=1}^n f_kw_k$.
 
 The types $A_k$ can represent a single or multiple haploid genetic loci or non-genetic traits.
 Importantly, type transmission is vertical and uni-parental (the type is transmitted from a single parent to the offspring) and is independent of the frequencies of the other types.
@@ -184,7 +185,7 @@ Note that such beneficial mutations can be either compensatory or back-mutations
 This model has been analyzed by~\citet{Ram2012}.
 
 Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
-Then after selection and mutation $f'$ in the next generation is given by
+Then after selection and mutation $f'_k$ in the next generation is given by
 \begin{equation}
 \begin{aligned}
 f_0' &= \big(1 - \delta C_0\big) \frac{w_0}{\bar{w}} f_0 + \beta C_{1} \frac{w_{1}}{\bar{w}} f_{1}, \\
@@ -219,11 +220,11 @@ In this case we consider a large population of haploids that occupy $n$ demes, $
 Let the frequencies of individuals in deme $A_k$ be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k} = 1$.
 The fitness of individuals in deme $A_k$ is $w_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition among individuals of all demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
 
-After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k \cdot M_{j,k}$, where matrix $M$ is primitive, $C_k > 0$, $M_{j,k} \ge 0$, and $\sum_{k=1}^{n}{M_{j,k}} = 1$ for all $j=1, \ldots, n$.
+After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k \cdot M_{j,k}$, where the matrix $M$ is primitive, $C_k > 0$, $M_{j,k} \ge 0$, and $\sum_{k=1}^{n}{M_{j,k}} = 1$ for all $j=1, \ldots, n$.
 Therefore, $1-C_k$ can be interpreted as a \emph{homing rate}.
 
 Following selection and migration the new frequencies $f'_k$ are given exactly by Eq.~\ref{eq:model_sum}.
-If columns of ${M}$ are identical
+If the columns of ${M}$ are identical
 \begin{equation}
 {M} = \begin{bmatrix}
 m_1 & m_1 & \ldots & m_1 \\
@@ -310,7 +311,7 @@ in $C_k$, the probability of transition from $A_k$.
 
 \noindent{\bf Result 1. Mean fitness principle.}
 {\sl Let $\hat{\bar w}$ be the leading eigenvalue of $(I-C+MC)D$,
-and $\hat u$ and $\hat v$ be the corresponding left and right eigenvectors.
+and $\hat u$ and $\hat v$ be the corresponding left and right eigenvectors, such that $\sum_k\hat v_k=1$ and $\sum_k\hat u_k\hat v_k=1$..
 Then,
 \begin{equation}\label{mfp}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
@@ -326,9 +327,8 @@ Therefore increased transition from type $k$ will increase the stable population
 
 
 \begin{proof}
-$\hat{\bar w}$ is the leading (real positive) eigenvalue of $(I-C+MC)D$ (see eq.~\ref{eq:model_equilibrium}),
-and the corresponding left and right eigenvectors $u$ and $v$ are both non-negative and uniquely defined by $\sum_k{\hat v_k} = 1$ and $\sum_k{\hat u_k \hat v_k} = 1$.
-
+%$\hat{\bar w}$ is the leading (real positive) eigenvalue of $(I-C+MC)D$ (see eq.~\ref{eq:model_equilibrium}),
+%and the corresponding left and right eigenvectors $u$ and $v$ are both non-negative and uniquely defined by $\sum_k{\hat v_k} = 1$ and $\sum_k{\hat u_k \hat v_k} = 1$.
 Using the formula in~\citet{Caswell1978} (see eq.~\ref{eq:Caswells_formula} in~\nameref{sec:AppA}),
 \begin{equation}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
@@ -366,7 +366,7 @@ which when substituted into Eq.~\ref{mfp_intermediate} yields:
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
 \frac{\hat u_k \hat v_k}{C_k} (\hat{\bar w} - w_k).
 \end{equation}
-Finally, note that $\hat u_k, \hat v_k, C_k \ge 0$ and therefore
+Finally, note that $\hat u_k, \hat v_k, C_k > 0$ and therefore
 \begin{equation}
 sign \frac{\partial \hat{\bar w}}{\partial C_k} = 
 sign (\hat{\bar w} - w_k),
@@ -392,7 +392,7 @@ Here, $\hat u_k$ can be regarded as the \emph{reproductive value}~\citep[pg.~27]
 Consequently, $\hat u_k \hat v_k$ is the \emph{ancestor frequency} of type $k$~\citep{Hermisson2002}, namely the fraction of the equilibrium population descended from type $k$.
 The sum $\sum_i{\hat u_i M_{i,k} \hat v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$), conditioned on transition occurring.
 
-Given $0 < w_k\le 1$, from Eq.~\ref{mfp_intermediate} we have the following corollary.
+Given $w_k>0$, from Eq.~\ref{mfp_intermediate} we have the following corollary.
 
 \begin{corollary}[Reproductive value principle]
 In the notation of Result 1,
@@ -469,7 +469,7 @@ The stability of allele $m$ to invasion by allele $M$ is determined by the leadi
 \begin{equation}
 \cj = \begin{pmatrix}\cl_{in} & 0 \\ 0 & \cl_{ex} \end{pmatrix},
 \end{equation}
-and $\cl_{in}$ is the local stability matrix of the equilibrium $(v,0)$ in the space $\sum_{k=1}^n{\hat v_k}=1$.
+and $\cl_{in}$ is the local stability matrix of the equilibrium $(\hat v,0)$ in the space $\sum_{k=1}^n{v_k}=1$.
 The zero block matrices are due to the complete linkage between the modifier and the types $A_k$ and to the lack of transition (i.e., mutation) between the modifier alleles.
 
 $\cl_{ex}$ can be written as
@@ -519,16 +519,16 @@ This completes the proof.
 
 Note that if the modifier has the same effect on all individuals (i.e., $C_k = \hat\alpha$ and $\tilde{C}_k = \alpha$ for all $k$) then $\cl_{ex}$ becomes
 \begin{equation}
-\cl_{ex} = ((1 - \hat\alpha)I + \hat\alpha M) D /\hat{\bar w},
+\cl_{ex} = ((1 - \alpha)I + \alpha M) D /\hat{\bar w},
 \end{equation}  
 and the \emph{unified reduction principle} is in effect~\cite[eqs. 65, 72]{Altenberg2017}.
 Therefore, we can expect that with these modifiers, an allele $M$ that reduces the transition rate, i.e. $\alpha < \hat\alpha$, will be favored by natural selection.
-Indeed, setting $C = \alpha I$ in Eq.~\ref{eq:model_equilibrium} and proceeding as in the above, we find
+Setting $C = \alpha I$ in Eq.~\ref{eq:model_equilibrium} and proceeding as in Eq.\ 25, we find
 $$
-\frac{\partial \hat{\bar w}}{\partial \alpha} = 
-\hat{\bar w} - 1 \le 0,
+\frac{\partial \bar w}{\partial \alpha} = 
+\frac{1}{\alpha}\left[\bar w-\sum_{k=1}^nu_kv_kw_k\right]
 $$
-because $\hat{\bar w} = \sum_{k=1}^{n}{\hat v_k w_k}$, and $w_k \le 1$ for all $k$.
+(following~\citet{Altenberg2017}, $\frac{\partial\bar w}{\partial \alpha}<0$).
 
 
 % Discussion
@@ -739,7 +739,7 @@ Using eqs.~\ref{eq:sum_uv} and~\ref{eq:perron_projection}
 \end{equation}
 because $f$  $u$ are positive vectors.
 
-Now, let $\norm{x} = \sum_{k=1}^{n}\norm{x_k}$, so that $x_t \goesto x$ implies
+Now, let $\norm{x} = \sum_{k=1}^{n}|x_k|$, so that $x_t \goesto x$ implies
 \begin{equation}
 \norm{x_t} \goesto \norm{x},
 \label{eq:norm_limit}
@@ -757,7 +757,7 @@ It is easily seen that $f^t =A^tf/\|A^tf\|$. Hence
 \frac{\big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }{ \norm{ \big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }} \goesto
 \frac{\alpha \hat v}{\norm{\alpha \hat v}} = \hat v,
 \end{multline}
-as $t \goesto \infty$, since $\norm{v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
+since $\norm{v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
 This completes the proof.
 \end{proof}
 
