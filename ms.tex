@@ -197,7 +197,7 @@ f_k' &= \big(1 - C_k(\delta+\beta)\big) \frac{w_k}{\bar{w}} f_k + \\
 \label{eq:mutation_model_2}
 \end{equation}
 for $k=1,2,\ldots, n-1$.
-Here $\bar{w}=\sum_{k=1}^{n}{f_k w_k}$ is the population mean fitness.
+Here $\bar{w}=\sum_{k=0}^{n}{f_k w_k}$ is the population mean fitness.
 
 Therefore, setting 
 \begin{equation}
@@ -248,7 +248,7 @@ p_{n-1} & p_0 & \ldots & p_{n-2} \\
 p_1 & p_2 & \ldots & p_0
 \end{bmatrix},
 \end{equation}
-where $p_k > 0$ and $\sum_{k=1}^{n}{p_k}=1$.
+where $p_k > 0$ and $\sum_{k=0}^{n-1}{p_k}=1$.
 
 % Learning model
 \paragraph*{Learning model.}\label{sec:learn_model}
@@ -478,9 +478,10 @@ $\cl_{ex}$ can be written as
 \end{equation}
 where $\hat{\bar w}$ is the stable population mean fitness in the absence of modifier allele $M$.
 Note that, in general, $\hat{\bar w}$ is not an eigenvalue of $\cl_{ex}$.
+\medskip
 
-\begin{theorem}[Evolution of increased genetic variation]
-Let $\lambda_1$ be the the leading eigenvalue of the external stability matrix $\cl_{ex}$.
+\noindent{\bf Result 2. Evolution of increased genetic variation.}
+{\sl Let $\lambda_1$ be the the leading eigenvalue of the external stability matrix $\cl_{ex}$.
 If the transition rates induced by the modifier alleles $m$ and $M$ are equal, i.e., $\tilde{C}_k=C_k$ for all $k$, then the following applies
 \begin{equation}
 \lambda_1=1,
@@ -491,8 +492,7 @@ sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C
 sign(\hat{\bar w} - w_k).
 \end{equation}
 
-Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.
-\end{theorem}
+Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.}
 
 \begin{proof}
 Substituting $\tilde{C}=C$ in Eq.~\ref{eq:Lex} and multiplying both sides by $\hat{\bar w}$,
@@ -541,7 +541,7 @@ For example, the \emph{reduction principle} applies to ecological models of disp
 Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \emph{\nameref{sec:learn_model}} section).
 
 Eq.~\ref{mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
-\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \emph{\nameref{sec:mut_model_2}} section).
+\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2} section).
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppA} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($w_k < \hat{\bar w}$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{mean fitness principle} in Eqs.~\ref{mfp_sign} and~\ref{mfp_sign_threshold}.
 
 Our analysis focuses on populations at equilibrium.
