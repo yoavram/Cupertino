@@ -40,9 +40,6 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{remark}{Remark}
 \newtheorem{result}{Result}
-%\newtheorem*{mfp}{Theorem: Mean Fitness Principle}
-%\newtheorem*{rvp}{Corollary: Reproductive Value Principle}
-%\newtheorem*{frv}{Fisher's reproductive values}
 \renewcommand\qedsymbol{} % no square at end of proof
 \newcommand{\cl}{\mathbf{L}}
 \newcommand{\cj}{\mathbf{J}}
@@ -297,12 +294,11 @@ where $\bar{w} = \sum_{k=1}^{n}{f_k w_{\abs{k-h}}}$ is the population mean fitne
 % Results
 \section*{Results}
 
-\subsection*{Mean fitness principle}
+% Mean fitness principle
+\paragraph*{Mean fitness principle.}
 
 We first focus on the stable population mean fitness.
 We will show that if the transition rate from types with below-average fitness increases, then the stable population mean fitness increases, too.
-
-% Mean fitness principle
 
 Write the equilibrium  frequency vector $f$ in Eq.~\ref{eq:model} as $\hat v$ and the stable population mean fitness as $\hat{\bar w}$, then
 \begin{equation}\label{eq:model_equilibrium}
@@ -334,8 +330,6 @@ Therefore increased transition from type $k$ will increase the stable population
 \end{result}
 
 \begin{proof}
-%$\hat{\bar w}$ is the leading (real positive) eigenvalue of $(I-C+MC)D$ (see eq.~\ref{eq:model_equilibrium}),
-%and the corresponding left and right eigenvectors $u$ and $v$ are both non-negative and uniquely defined by $\sum_k{\hat v_k} = 1$ and $\sum_k{\hat u_k \hat v_k} = 1$.
 Using the formula in~\citet{Caswell1978} (see eq.~\ref{eq:Caswells_formula} in~\nameref{sec:AppA}),
 \begin{equation}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
@@ -384,16 +378,41 @@ which completes the proof.
 The above result provides a condition for the effect of changing $C_k$, the probability for transition from $A_k$, on the stable population mean fitness.
 Specifically, if $A_k$ individuals have below-average fitness, then increasing $C_k$ will increase the population mean fitness.
 
+% Multiple types
+\paragraph*{}
+We turn our attention to the case where the transition rates from a subset $K$ of the types are correlated, that is, $C_j=C_i$ for $i,j \in K$.
+In this case, the following directly results from Eq.~\ref{eq:mfp}.
+
+\begin{corollary}
+The sensitivity of the stable population mean fitness to change in the rate of transition $\tau$ from types in $K$ is
+\begin{equation}\label{eq:mfp_K}
+\begin{aligned}
+\frac{\partial \hat{\bar w}}{\partial \tau} = 
+\hat u\tr \Big( \sum_{k \in K}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) \hat v = \\
+\frac{1}{\tau} \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)},
+\end{aligned}
+\end{equation}
+and
+\begin{multline}\label{eq:mfp_sign_threshold}
+sign \frac{\partial \hat{\bar w}}{\partial \tau} = 
+sign \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)} = \\ 
+sign \Big(\hat{\bar w} - \frac{\sum_{k \in K}{\hat u_k \hat v_k w_k}}{\sum_{k \in K}{\hat u_k \hat v_k}}\Big).
+\end{multline}
+\end{corollary}
+
+Therefore, increased transition from types in $K$ will increase the stable population mean fitness if the average fitness of individuals descended from types in $K$ is below the stable population mean fitness.
+For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated mutant alleles, $k$ (see \nameref{sec:mut_model_2}), 
+and a modifier allele that increases the mutation rates in individuals with at least $\pi$ mutant alleles.
+According to Eq.~\ref{eq:mfp_sign_threshold}, this modifier will increase the stable population mean fitness if individuals with $\pi$ or more mutant alleles have below-average fitness. 
+
 % Reproductive value principle
+\paragraph*{Reproductive value principle.}
 
 An interesting intermediate result in Eq.~\ref{eq:mfp_intermediate} is
-
 \begin{equation}
-\begin{aligned}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
-\hat v_k w_k (\hat u\tr[M]_k - \hat u_k) = \\
+\hat v_k w_k (\hat u\tr[M]_k - \hat u_k) = 
 w_k \Big(\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k} - \hat u_k \hat v_k\Big).
-\end{aligned}
 \end{equation}
 Here, $\hat u_k$ can be regarded as the \emph{reproductive value} of type $k$~\citep[pg.~27]{Fisher1930}, which gives the relative contribution of type $k$ to the long-term population (see~\nameref{sec:AppB}).
 Consequently, $\hat u_k \hat v_k$ is the \emph{ancestor frequency} of type $k$~\citep{Hermisson2002}, namely the fraction of the equilibrium population descended from type $k$.
@@ -412,37 +431,8 @@ where $[M]_k$ is the $k$-th column of $M$.
 Therefore, increased transition from type $k$ will increase the stable population mean fitness if the fraction of the population descended from type $k$ is expected to increase due to a transition to another type. 
 \end{corollary}
 
-% Threshold rule
-
-We turn our attention to the case where the transition occurs from a subset $K$ of the types.
-For example, \citet[Appendix~B]{Ram2012} considered individuals that are grouped by the number of their accumulated deleterious mutations, $k$, 
-and a modifier allele that regulates the mutation rates in individuals with at least $\pi$ deleterious mutations.
-If the transition rates are controlled by a threshold rule, then 
-\begin{equation}
-C_k = \begin{cases}
-\tau, & k \in K \\
-1, & k \not\in K
-\end{cases}.
-\end{equation}
-If $\tau > 0$, then the sensitivity of the stable population mean fitness to changes in the
-rate of transition from types in $K$ can be written 
-\begin{equation}\label{eq:mfp_K}
-\begin{aligned}
-\frac{\partial \hat{\bar w}}{\partial \tau} = 
-\hat u\tr \Big( \sum_{k \in K}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) \hat v = \\
-\frac{1}{\tau} \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)}.
-\end{aligned}
-\end{equation}
-Thus
-\begin{multline}\label{eq:mfp_sign_threshold}
-sign \frac{\partial \hat{\bar w}}{\partial \tau} = 
-sign \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)} = \\ 
-sign \Big(\hat{\bar w} - \frac{\sum_{k \in K}{\hat u_k \hat v_k w_k}}{\sum_{k \in K}{\hat u_k \hat v_k}}\Big), 
-\end{multline}
-a generalization of Eq.~\ref{eq:mfp_sign}.
-Therefore, increased transition from types in $K$ will increase the stable population mean fitness if the average fitness of individuals descended from types in $K$ is below the stable population mean fitness.
-
-\subsection*{Evolutionary genetic stability}
+% Evolutionary stability
+\paragraph*{Evolutionary genetic stability.}
 
 % Modifier model
 We now focus on a neutral modifier locus in complete linkage to the types $A_k$, with no direct effect on fitness, and whose sole function is to determine $C_k$, the rates of transition from the different types.
@@ -464,8 +454,6 @@ The frequencies in the next generation, $f'$ for allele $m$ and $g'$ for allele 
 \end{equation}
 Here, $\bar{w}=\sum_{k=1}^{n}{(f_k + g_k) w_k}$ is the mean fitness of the entire population. 
 Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} where allele $M$ is absent, i.e. $g_k=0$ for all $k$.
-
-% Evolutionary stability
 
 We have found a condition for a modifier allele that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness (Result~\ref{result:mfp}).
 Could such an allele increase in frequency when initially rare in the population?
@@ -525,21 +513,23 @@ since $\hat{\bar w}>0$.
 This completes the proof.
 \end{proof}
 
+% Reduction principle & mutational loss
+\paragraph*{Reduction principle and mutational loss.}
+
 Note that if the modifier has the same effect on all individuals (i.e., $C_k = \hat\alpha$ and $\tilde{C}_k = \alpha$ for all $k$) then $\cl_{ex}$ becomes
 \begin{equation}
 \cl_{ex} = ((1 - \alpha)I + \alpha M) D /\hat{\bar w},
 \end{equation}  
 and the \emph{unified reduction principle} is in effect~\cite[eqs. 65, 72]{Altenberg2017}.
 Therefore, we can expect that with these modifiers, an allele $M$ that reduces the transition rate, i.e. $\alpha < \hat\alpha$, will be favored by natural selection.
-Setting $C = \alpha I$ in Eq.~\ref{eq:model_equilibrium} and proceeding as in Eq.~\ref{eq:mfp_K}, we find
+Setting $C = \alpha I$ in Eq.~\ref{eq:model_equilibrium} and proceeding as in Eq.~\ref{eq:mfp_K}, we have
 \begin{equation}\label{eq:mutational_loss}
-\frac{\partial \bar w}{\partial \alpha} = 
--\frac{1}{\alpha}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \bar w \Big).
+\frac{\partial \hat{\bar{w}}}{\partial \alpha} = 
+-\frac{1}{\alpha}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \Big),
 \end{equation}
-Eq.~\ref{eq:mutational_loss} has been derived by~\citet[eq.~24]{Hermisson2002}.
-Furthermore, the term in the parentheses of Eq.~\ref{eq:mutational_loss} is the difference between the 
-\emph{ancestral mean fitness} and the \emph{stable population mean fitness}, and has been termed the \emph{mutational loss} by~\citet[eq.~24]{Hermisson2002} -- "the linear response of the equilibrium mean fitness to changes in the mutation rates".
-Following~\citet{Altenberg2017}, $\frac{\partial\bar w}{\partial \alpha}<0$, and therefore we can conclude that the \emph{mutational loss} is positive and that the \emph{ancestral mean fitness} is higher then the \emph{stable population mean fitness}.
+which has been derived by~\citet[eq.~24]{Hermisson2002}.
+They called the term in the parentheses of Eq.~\ref{eq:mutational_loss}, which is equal to the difference between the \emph{ancestral mean fitness} $\sum_{k=1}^{n} \hat u_k \hat v_k w_k$ and the \emph{stable population mean fitness} $\hat{\bar{w}}$, the \emph{mutational loss}.
+Following~\citet{Altenberg2017}, $\frac{\partial\bar w}{\partial \alpha}<0$, and we can conclude that the \emph{mutational loss} is positive and that the \emph{ancestral mean fitness} is higher then the \emph{stable population mean fitness}.
 
 
 % Discussion
@@ -561,41 +551,13 @@ and empirical evidence suggests that \emph{stress-induced mutagenesis} is common
 Similar theoretical results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003b,Hadany2003a}.
 
 % Conclusions
-\subsection*{Conclusions}
+\paragraph*{Conclusions.}
 
 General examples of departures from the \emph{reduction principle} are rare~\citep{Altenberg2017}.
 For example, it has been demonstrated that higher mutation, recombination, and migration rates are favored by selection in populations evolving under fluctuating selection; see~\citet{Carja2014} and references therein.
 Here we have provided another general example, which suggests that a modifier allele that causes individuals with below-average fitness to increase the rate at which variation is generated, will be favored by selection and will lead to increased population mean fitness.
 
 \section*{Appendices}
-% Appendix A: mean fitness
-%\subsection*{Appendix A}\label{sec:AppA}
-
-%\begin{lemma}
-%The normalizing factor $\bar{w}$ in Eq.~\ref{eq:model} is the population mean fitness
-%\begin{equation}
-%\bar{w} = \sum_k{f_k w_k}.
-%\end{equation}
-%\end{lemma}
-
-%\begin{proof}
-%By definition, the normalizing factor $\bar{w}$ ensures that $\sum_k{f'_k}=1$.
-%Denote $e = (1, ..., 1)$ the vector with ones at all positions and rewrite $e\tr f' = 1$.
-%Therefore, 
-%\begin{multline}\label{eq:mean_fitness}
-%\bar{w} = 
-%\bar{w} e\tr f' = 
-%e\tr (I - C + M C) D f = \\
-%(e\tr I - e\tr C + e\tr M C) D f = \\
-%(e\tr - e\tr C + e\tr C) D f = \\
-%e\tr D f = 
-%\diag{D} f = 
-%\sum_k{f_k w_k},
-%\end{multline}
-%using the fact that $e\tr M = e\tr$ and $e\tr I = e\tr$ because $M$ and $I$ are stochastic matrices.
-%\end{proof}
-
-%Note that this lemma also ensures that the stable population mean fitness $\hat{\bar w}=\sum_k{v_k w_k}$ is the leading eigenvalue of $(I - C + M %C) D$; see Eq.~\ref{eq:model_equilibrium} and the \emph{Perron-Frobenius theorem}~\cite[Appendix~A]{Otto2007}.
 
 % Appendix B: Caswell formula
 \subsection*{Appendix A}\label{sec:AppA}
