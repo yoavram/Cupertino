@@ -39,6 +39,7 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
 \newtheorem{remark}{Remark}
+\newtheorem{result}{Result}
 %\newtheorem*{mfp}{Theorem: Mean Fitness Principle}
 %\newtheorem*{rvp}{Corollary: Reproductive Value Principle}
 %\newtheorem*{frv}{Fisher's reproductive values}
@@ -127,7 +128,7 @@ where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\s
 $D$ is a positive diagonal matrix with  elements $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
 %and we can assume $0 < w_k \le 1$, i.e., fitness values are positive and relative to the fitness of the fittest type; 
 $C$ is a positive diagonal  matrix with  elements $C_k$;
-$M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^n)_{j,k} > 0$ for all $j,k$ for some natural $n$.
+$M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^n)_{j,k} > 0$ for all $j,k$ for some natural $n$;
 $\ci$ is the $n\times n$ identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness $\bar w=\sum_{k=1}^n f_kw_k$.
 
@@ -149,7 +150,7 @@ In the following section we present four examples of the model (Eq.~\ref{eq:mode
 Here we consider a large population of haploids and a trait determined by a single genetic locus with $n$ possible alleles $A_1, A_2, \ldots, A_n$ and corresponding fitness values $w_1, w_2, \ldots, w_n$.
 The mutation rates $C_k$ of individuals with allele $A_k$ are potentially different;
 specifically, with probability $1-C_k$, the allele $A_k$ does not mutate, and with probability $\frac{C_k}{n-1}$, the allele $A_k$ mutates to $A_j$ for any $j \ne k$.
-This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of $A_k$, $C_k$, to depend on the identity of the allele $A_k$.
+This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of $A_k$, $C_k$, to depend on properties of the allele $A_k$.
 
 Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
 Then after selection and mutation, $f'_k$ in the next generation is given by
@@ -184,15 +185,15 @@ or it is \emph{beneficial} with probability $\beta$, converting the individual f
 Note that such beneficial mutations can be either compensatory or back-mutations, and that mutations are neutral with probability $1-\delta-\beta$.
 This model has been analyzed by~\citet{Ram2012}.
 
-Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
+Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=0}^{n}{f_k}=1$.
 Then after selection and mutation $f'_k$ in the next generation is given by
 \begin{equation}
 \begin{aligned}
 f_0' &= \big(1 - \delta C_0\big) \frac{w_0}{\bar{w}} f_0 + \beta C_{1} \frac{w_{1}}{\bar{w}} f_{1}, \\
-f_n' &= \big(1 - \beta C_n\big) \frac{w_n}{\bar{w}} f_n + \delta C_{n-1} \frac{w_{n-1}}{\bar{w}} f_{n-1}, \\
-f_k' &= \big(1 - C_k(\delta+\beta)\big) \frac{w_k}{\bar{w}} f_k + \\
+f_k' &= \big(1 - (\delta+\beta) C_k\big) \frac{w_k}{\bar{w}} f_k + \\
 	 & \delta C_{k-1} \frac{w_{k-1}}{\bar{w}} f_{k-1} + 
-	 \beta C_{k+1} \frac{w_{k+1}}{\bar{w}} f_{k+1},
+	 \beta C_{k+1} \frac{w_{k+1}}{\bar{w}} f_{k+1}, \\
+f_n' &= \big(1 - \beta C_n\big) \frac{w_n}{\bar{w}} f_n + \delta C_{n-1} \frac{w_{n-1}}{\bar{w}} f_{n-1},	 
 \end{aligned}
 \label{eq:mutation_model_2}
 \end{equation}
@@ -220,7 +221,7 @@ In this case we consider a large population of haploids that occupy $n$ demes, $
 Let the frequencies of individuals in deme $A_k$ be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k} = 1$.
 The fitness of individuals in deme $A_k$ is $w_k$, but the entire population comes together for reproduction, and therefore reproductive success is determined by competition among individuals of all demes -- this has been termed \emph{hard selection}~\citep{Wallace1975,Karlin1982}.
 
-After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k \cdot M_{j,k}$, where the matrix $M$ is primitive, $C_k > 0$, $M_{j,k} \ge 0$, and $\sum_{k=1}^{n}{M_{j,k}} = 1$ for all $j=1, \ldots, n$.
+After reproduction, offspring of individuals from deme $A_k$ return to their parental deme with probability $1-C_k$, or migrate to a different deme $A_j$ with probability $C_k M_{j,k}$, where the matrix $M$ is primitive, $C_k > 0$, $M_{j,k} \ge 0$, and $\sum_{j=1}^{n}{M_{j,k}} = 1$ for all $k=1, \ldots, n$.
 Therefore, $1-C_k$ can be interpreted as a \emph{homing rate}.
 
 Following selection and migration the new frequencies $f'_k$ are given exactly by Eq.~\ref{eq:model_sum}.
@@ -256,20 +257,15 @@ where $p_k > 0$ and $\sum_{k=0}^{n-1}{p_k}=1$.
 In our final example, we consider a large population and an integer phenotype $k$ where $1 \le k \le n$.
 Individuals are characterized by their initial and mature phenotypes~\citep[pg.~94]{Boyd1985}.
 Fitness is determined by the difference between the individual mature phenotype and the optimal phenotype:
-denoting the optimal phenotype as $h$, the fitness of an individual with mature phenotype $k$ is $w_{|k-h|}$.
+denoting the optimal phenotype as $h$, the fitness of an individual with mature phenotype $k$ is $w_{\abs{k-h}}$.
 
 The initial phenotype is acquired by learning the mature phenotype of a parent.
 In individuals with initial phenotype $k$, the mature phenotype is the same as the initial phenotype with probability $1-C_k$, and is modified by individual learning or \emph{exploration}~\citep{Borenstein2008} with probability $C_k$.
-Such individual exploratory learning, which can be considered either intentional or the result of incorrect learning, modifies initial phenotype $k$ to mature phenotype $j$ with probability $M_{k,j}$.
+Such individual exploratory learning, which can be considered either intentional or the result of incorrect learning, modifies initial phenotype $k$ to mature phenotype $j$ with probability $M_{j,k}$.
 
-For example, the case of \emph{symmetric individual learning}~\citep{Borenstein2008} can be represented by
-\begin{equation}
-M_{k,j} = \begin{cases}
-\frac{1}{2b+1}, & \abs{k-j} \le b \\
-0, & otherwise
-\end{cases},
-\end{equation}
-where the breadth of exploration is $b \ge 0$, and phenotypes $0$ and $n$ "absorb" transitions to $k<0$ and $k>n$, respectively. 
+For example, in the case of \emph{symmetric individual learning}~\citep{Borenstein2008}, the mature phenotype is randomly drawn from $2b+1$ phenotypes symmetrically and uniformly distributed around the initial phenotype, with the limitation that any "spillover" of phenotypes below $1$ or above $n$ is "absorbed" by those boundaries.
+This ensures that $M$ is primitive and column-stochastic. 
+
 For instance, with $n=5$ and $b=1$ we have
 \begin{equation}
 M = \begin{bmatrix}
@@ -278,6 +274,17 @@ M = \begin{bmatrix}
 0 & 1/3 & 1/3 & 1/3 & 0 \\
 0 & 0 & 1/3 & 1/3 & 1/3 \\
 0 & 0 & 0 & 1/3 & 2/3
+\end{bmatrix},
+\end{equation}
+and with $n=6$ and $b=2$ we have
+\begin{equation}
+M = \begin{bmatrix}
+3/5 & 2/5 & 1/5 & 0 & 0 & 0 \\
+1/5 & 1/5 & 1/5 & 1/5 & 0 & 0 \\
+1/5 & 1/5 & 1/5 & 1/5 & 1/5 & 0 \\
+0 & 1/5 & 1/5 & 1/5 & 1/5 & 1/5 \\
+0 & 0 & 1/5 & 1/5 & 1/5 & 1/5 \\
+0 & 0 & 0 & 1/5 & 2/5 & 3/5
 \end{bmatrix}.
 \end{equation}
  
@@ -309,22 +316,22 @@ sensitivity of the equilbrium mean fitness $\hat{\bar w}$ to changes
 in $C_k$, the probability of transition from $A_k$.
 \medskip
 
-\noindent{\bf Result 1. Mean fitness principle.}
-{\sl Let $\hat{\bar w}$ be the leading eigenvalue of $(I-C+MC)D$,
-and $\hat u$ and $\hat v$ be the corresponding left and right eigenvectors, such that $\sum_k\hat v_k=1$ and $\sum_k\hat u_k\hat v_k=1$..
+\begin{result}[Mean fitness principle]\label{result:mfp}
+Let $\hat{\bar w}$ be the leading eigenvalue of $(I-C+MC)D$,
+and $\hat u$ and $\hat v$ be the corresponding left and right eigenvectors, such that $\sum_{k=1}^{n}\hat v_k=1$ and $\sum_{k=1}^{n}\hat u_k\hat v_k=1$.
 Then,
-\begin{equation}\label{mfp}
+\begin{equation}\label{eq:mfp}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
 \frac{\hat u_k \hat v_k}{C_k} (\hat{\bar w} - w_k),
 \end{equation}
 or in simpler terms,
-\begin{equation}\label{mfp_sign}
+\begin{equation}\label{eq:mfp_sign}
 sign\frac{\partial \hat{\bar w}}{\partial C_k} = 
 sign(\hat{\bar w} - w_k).
 \end{equation}
 
-Therefore increased transition from type $k$ will increase the stable population mean fitness if the fitness of type $k$ is below the stable population mean fitness.}
-
+Therefore increased transition from type $k$ will increase the stable population mean fitness if the fitness of type $k$ is below the stable population mean fitness.
+\end{result}
 
 \begin{proof}
 %$\hat{\bar w}$ is the leading (real positive) eigenvalue of $(I-C+MC)D$ (see eq.~\ref{eq:model_equilibrium}),
@@ -338,7 +345,7 @@ Using the formula in~\citet{Caswell1978} (see eq.~\ref{eq:Caswells_formula} in~\
 Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position $k$ and 0 elsewhere, $Z_k = e_k e\tr_k$ be the matrix with 1 at position $(k,k)$ and 0 elsewhere, and $[M]_k$ be the $k$-th column of $M$.
 
 Then,
-\begin{equation}\label{mfp_intermediate}
+\begin{equation}\label{eq:mfp_intermediate}
 \begin{aligned}
 \hat u\tr \frac{\partial (I-C+MC)D}{\partial C_k} \hat v = 
 \hat u\tr (0 - Z_k + M Z_k)D \hat v = \\
@@ -353,7 +360,7 @@ eigenvector $u$ is
 \hat u\tr \hat{\bar w} = \hat u\tr (I - C + MC) D,
 \end{equation}
 which gives us a relation between $\hat{\bar w}$ and the $k$
-element of $u$:
+element of $\hat u$:
 \begin{equation}
 \hat u_k \hat{\bar w} = (1-C_k) w_k \hat u_k + C_k w_k \hat u\tr [M]_k.
 \end{equation}
@@ -361,7 +368,7 @@ Multiplying both sides by $\hat v_k$  and rearranging, we get
 \begin{equation}
 \frac{\hat u_k \hat v_k}{C_k} (\hat{\bar w} - w_k) = \hat v_k w_k (\hat u\tr [M]_k - \hat u_k),
 \end{equation}
-which when substituted into Eq.~\ref{mfp_intermediate} yields:
+which when substituted into Eq.~\ref{eq:mfp_intermediate} yields:
 \begin{equation}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
 \frac{\hat u_k \hat v_k}{C_k} (\hat{\bar w} - w_k).
@@ -379,23 +386,23 @@ Specifically, if $A_k$ individuals have below-average fitness, then increasing $
 
 % Reproductive value principle
 
-An interesting intermediate result in Eq.~\ref{mfp_intermediate} is
+An interesting intermediate result in Eq.~\ref{eq:mfp_intermediate} is
 
 \begin{equation}
 \begin{aligned}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
 \hat v_k w_k (\hat u\tr[M]_k - \hat u_k) = \\
-w_k (\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k} - \hat u_k \hat v_k).
+w_k \Big(\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k} - \hat u_k \hat v_k\Big).
 \end{aligned}
 \end{equation}
-Here, $\hat u_k$ can be regarded as the \emph{reproductive value}~\citep[pg.~27]{Fisher1930} of type $k$ (see~\nameref{sec:AppB}), which gives the relative contribution of type $k$ to the long-term population.
+Here, $\hat u_k$ can be regarded as the \emph{reproductive value} of type $k$~\citep[pg.~27]{Fisher1930}, which gives the relative contribution of type $k$ to the long-term population (see~\nameref{sec:AppB}).
 Consequently, $\hat u_k \hat v_k$ is the \emph{ancestor frequency} of type $k$~\citep{Hermisson2002}, namely the fraction of the equilibrium population descended from type $k$.
-The sum $\sum_i{\hat u_i M_{i,k} \hat v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$), conditioned on transition occurring.
+The sum $\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$), conditioned on transition occurring.
 
-Given $w_k>0$, from Eq.~\ref{mfp_intermediate} we have the following corollary.
+Since $w_k>0$, from Eq.~\ref{eq:mfp_intermediate} we have the following corollary.
 
 \begin{corollary}[Reproductive value principle]
-In the notation of Result 1,
+In the notation of Result~\ref{result:mfp},
 \begin{equation}
 sign \frac{\partial \hat{\bar w}}{\partial C_k} = 
 sign (\hat u\tr [M]_k - \hat u_k),
@@ -419,7 +426,7 @@ C_k = \begin{cases}
 \end{equation}
 If $\tau > 0$, then the sensitivity of the stable population mean fitness to changes in the
 rate of transition from types in $K$ can be written 
-\begin{equation}
+\begin{equation}\label{eq:mfp_K}
 \begin{aligned}
 \frac{\partial \hat{\bar w}}{\partial \tau} = 
 \hat u\tr \Big( \sum_{k \in K}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) \hat v = \\
@@ -427,19 +434,19 @@ rate of transition from types in $K$ can be written
 \end{aligned}
 \end{equation}
 Thus
-\begin{multline}\label{mfp_sign_threshold}
+\begin{multline}\label{eq:mfp_sign_threshold}
 sign \frac{\partial \hat{\bar w}}{\partial \tau} = 
 sign \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)} = \\ 
 sign \Big(\hat{\bar w} - \frac{\sum_{k \in K}{\hat u_k \hat v_k w_k}}{\sum_{k \in K}{\hat u_k \hat v_k}}\Big), 
 \end{multline}
-a generalization of Eq.~\ref{mfp_sign}.
+a generalization of Eq.~\ref{eq:mfp_sign}.
 Therefore, increased transition from types in $K$ will increase the stable population mean fitness if the average fitness of individuals descended from types in $K$ is below the stable population mean fitness.
 
 \subsection*{Evolutionary genetic stability}
 
 % Modifier model
 We now focus on a neutral modifier locus in complete linkage to the types $A_k$, with no direct effect on fitness, and whose sole function is to determine $C_k$, the rates of transition from the different types.
-We will show that modifier alleles that increase the stable population mean fitness in accordance with Result 1 are favored by natural selection.
+We will show that modifier alleles that increase the stable population mean fitness in accordance with Result~\ref{result:mfp} are favored by natural selection.
 
 \paragraph*{Modifier model.}
 Consider the case of two modifier alleles, $m$ and $M$, inducing different transition probabilities $C=\diag{C_1, \ldots, C_n}$ and $\tilde{C}=\diag{\tilde{C}_1, \ldots, \tilde{C}_n}$, respectively.
@@ -456,16 +463,16 @@ The frequencies in the next generation, $f'$ for allele $m$ and $g'$ for allele 
 \label{eq:modifier_model}
 \end{equation}
 Here, $\bar{w}=\sum_{k=1}^{n}{(f_k + g_k) w_k}$ is the mean fitness of the entire population. 
-Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} where allele $M$ is absent; i.e. $g_k=0$ for all $k$.
+Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} where allele $M$ is absent, i.e. $g_k=0$ for all $k$.
 
 % Evolutionary stability
 
-We have found a condition for a modifier allele that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness (Result 1).
+We have found a condition for a modifier allele that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness (Result~\ref{result:mfp}).
 Could such an allele increase in frequency when initially rare in the population?
 To answer this we analyze the stability of resident modifier allele $m$ with transition rates $C_k$ to the invasion by a modifier allele $M$ with rates $\tilde{C}_k$, see Eq.~\ref{eq:modifier_model}~\citep[for an introduction to \emph{evolutionary invasion analysis}, see][ch.~12]{Otto2007}
 
-The equilibrium of Eqs.~\ref{eq:modifier_model} when modifier allele $M$ is absent from the population is $(v, 0)$, where $v$ is given in Eq.~\ref{eq:model_equilibrium} and $g_k=0$ for all $k$. 
-The stability of allele $m$ to invasion by allele $M$ is determined by the leading eigenvalue $\lambda_1$ of $\cl_{ex}$ the external stability matrix of the equilibrium $(v,0)$, which, in turn, is determined by the Jacobian $\cj$ of the system in Eq.~\ref{eq:modifier_model} evaluated at the equilibrium $(v,0)$, where
+The equilibrium of Eqs.~\ref{eq:modifier_model} when modifier allele $M$ is absent from the population is $(\hat v,0)$, where $\hat v$ is given in Eq.~\ref{eq:model_equilibrium} and $g_k=0$ for all $k$. 
+The stability of allele $m$ to invasion by allele $M$ is determined by the leading eigenvalue $\lambda_1$ of $\cl_{ex}$ the external stability matrix of the equilibrium $(\hat v,0)$, which, in turn, is determined by the Jacobian $\cj$ of the system in Eq.~\ref{eq:modifier_model} evaluated at the equilibrium $(\hat v,0)$, where
 \begin{equation}
 \cj = \begin{pmatrix}\cl_{in} & 0 \\ 0 & \cl_{ex} \end{pmatrix},
 \end{equation}
@@ -480,8 +487,8 @@ where $\hat{\bar w}$ is the stable population mean fitness in the absence of mod
 Note that, in general, $\hat{\bar w}$ is not an eigenvalue of $\cl_{ex}$.
 \medskip
 
-\noindent{\bf Result 2. Evolution of increased genetic variation.}
-{\sl Let $\lambda_1$ be the the leading eigenvalue of the external stability matrix $\cl_{ex}$.
+\begin{result}[Evolution of increased genetic variation]
+Let $\lambda_1$ be the the leading eigenvalue of the external stability matrix $\cl_{ex}$.
 If the transition rates induced by the modifier alleles $m$ and $M$ are equal, i.e., $\tilde{C}_k=C_k$ for all $k$, then the following applies
 \begin{equation}
 \lambda_1=1,
@@ -492,7 +499,8 @@ sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C
 sign(\hat{\bar w} - w_k).
 \end{equation}
 
-Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.}
+Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.
+\end{result}
 
 \begin{proof}
 Substituting $\tilde{C}=C$ in Eq.~\ref{eq:Lex} and multiplying both sides by $\hat{\bar w}$,
@@ -502,7 +510,7 @@ Substituting $\tilde{C}=C$ in Eq.~\ref{eq:Lex} and multiplying both sides by $\h
 and since $\hat{\bar w}$ is the leading eigenvalue of the RHS (see Eq.~\ref{eq:model_equilibrium}),
 the leading eigenvalue of $\cl_{ex}\big\rvert_{\tilde{C}_k = C_k}$ is $\lambda_1=1$.
 
-Now, applying Result 1 (eq.~\ref{mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda_1$ with respect to $\tilde{C_k}$ is
+Now, applying Result~\ref{result:mfp} (eq.~\ref{eq:mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda_1$ with respect to $\tilde{C_k}$ is
 \begin{equation}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k} =
 sign\Big(\lambda_1 - \frac{w_k}{\hat{\bar w}}\Big).
@@ -523,12 +531,15 @@ Note that if the modifier has the same effect on all individuals (i.e., $C_k = \
 \end{equation}  
 and the \emph{unified reduction principle} is in effect~\cite[eqs. 65, 72]{Altenberg2017}.
 Therefore, we can expect that with these modifiers, an allele $M$ that reduces the transition rate, i.e. $\alpha < \hat\alpha$, will be favored by natural selection.
-Setting $C = \alpha I$ in Eq.~\ref{eq:model_equilibrium} and proceeding as in Eq.\ 25, we find
-$$
+Setting $C = \alpha I$ in Eq.~\ref{eq:model_equilibrium} and proceeding as in Eq.~\ref{eq:mfp_K}, we find
+\begin{equation}\label{eq:mutational_loss}
 \frac{\partial \bar w}{\partial \alpha} = 
-\frac{1}{\alpha}\left[\bar w-\sum_{k=1}^nu_kv_kw_k\right]
-$$
-(following~\citet{Altenberg2017}, $\frac{\partial\bar w}{\partial \alpha}<0$).
+-\frac{1}{\alpha}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \bar w \Big).
+\end{equation}
+Eq.~\ref{eq:mutational_loss} has been derived by~\citet[eq.~24]{Hermisson2002}.
+Furthermore, the term in the parentheses of Eq.~\ref{eq:mutational_loss} is the difference between the 
+\emph{ancestral mean fitness} and the \emph{stable population mean fitness}, and has been termed the \emph{mutational loss} by~\citet[eq.~24]{Hermisson2002} -- "the linear response of the equilibrium mean fitness to changes in the mutation rates".
+Following~\citet{Altenberg2017}, $\frac{\partial\bar w}{\partial \alpha}<0$, and therefore we can conclude that the \emph{mutational loss} is positive and that the \emph{ancestral mean fitness} is higher then the \emph{stable population mean fitness}.
 
 
 % Discussion
@@ -538,11 +549,11 @@ We have shown that under constant-viability selection and in an effectively infi
 
 We have given several examples of variation-generating processes for which this principle applies -- namely mutation, migration, and learning (see \emph{\nameref{sec:models}} section) -- but our model may apply to other processes as well.
 For example, the \emph{reduction principle} applies to ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the mean fitness of diploid populations and is favored by selection over uniform dispersal.
-Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \emph{\nameref{sec:learn_model}} section).
+Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \nameref{sec:learn_model}).
 
-Eq.~\ref{mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
-\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2} section).
-Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppA} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($w_k < \hat{\bar w}$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{mean fitness principle} in Eqs.~\ref{mfp_sign} and~\ref{mfp_sign_threshold}.
+Eq.~\ref{eq:mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
+\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2}).
+Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppA} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($w_k < \hat{\bar w}$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{\nameref{result:mfp}} in Eqs.~\ref{eq:mfp_sign} and~\ref{eq:mfp_sign_threshold}.
 
 Our analysis focuses on populations at equilibrium.
 Nevertheless, it has been demonstrated that a modifier which increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and reduce the adaptation rate~\citep{Ram2014},
@@ -623,8 +634,8 @@ $\partial \lambda = \hat u\tr \partial T \hat v$.
 % Appendix B: Fisher's reproductive value
 \subsection*{Appendix B}\label{sec:AppB}
 \begin{remark}[Fisher's reproductive value]
-Let $M$ be a stochastic matrix and $D$ be a diagonal matrix with positive diagonal elements. 
-The elements of the left \emph{Perron} eigenvector $u$ of the matrix $MD$ can be regarded as \emph{Fisher's reproductive values}~\citep[pg.~27]{Fisher1930}
+Let $M$ be an irreducible column-stochastic matrix and $D$ be a positive diagonal matrix. 
+The elements of the left \emph{Perron} eigenvector $\hat u$ of the matrix $MD$ can be regarded as \emph{Fisher's reproductive values}~\citep[pg.~27]{Fisher1930}
 \end{remark}
 
 \emph{Fisher's reproductive values} can be understood as follows~\citep[ch.~10]{Grafen2006,Otto2007}.
@@ -649,7 +660,8 @@ N(k,t) = \sum_i{n_i(k,t)} = e\tr (MD)^t e_k.
 Now we can compare the sizes of populations based on what type they started
 with:
 \begin{equation}
-\frac{N(j,t)}{N(k,t)} = \frac{e\tr (MD)^t e_j}{e\tr (MD)^t e_k}.
+\frac{N(j,t)}{N(k,t)} = 
+\frac{e\tr (MD)^t e_j}{e\tr (MD)^t e_k}.
 \end{equation}
 
 Now write $MD$ in its Jordan canonical form 
@@ -687,19 +699,19 @@ for all $k > 1$, and
 \begin{equation}
 \lim_{t \goesto \infty}\frac{N(j,t)}{N(k,t)} =
 \frac{e\tr V (e_1 e_1\tr) U\tr e_j} { e\tr V (e_1 e_1\tr) U\tr e_k} = 
-\frac{ e\tr v u_j} { e\tr v  u_k} =
-\frac{u_j} {u_k}.
+\frac{ e\tr \hat v \hat u_j} { e\tr \hat v  \hat u_k} =
+\frac{\hat u_j} {\hat u_k}.
 \end{equation}
 
-The vector $u$ is the left \emph{Perron} eigenvector of $MD$, and $u_k$ is $k$-th element of $u$.
-This is why the value $u_k$ can be interpreted as the \emph{reproductive value} of type $i$: it is a weighting for the size of the population generated by a single individual of type $k$.
+The vector $\hat u$ is the left \emph{Perron} eigenvector of $MD$, and $\hat u_k$ is $k$-th element of $\hat u$.
+This is why the value $\hat u_k$ can be interpreted as the \emph{reproductive value} of type $k$: it is a weighting for the size of the population generated by a single individual of type $k$.
 
 If we begin with a population at the equilibrium distribution $\hat v$,
 and ask what fraction of long-term descendants descended from type $k$ at that time,
 we weight the equilibrium frequency $\hat v_k$ by the reproductive value $\hat u_k$, to get $\hat u_k \hat v_k$.
 $\{\hat u_k \hat v_k\}_{k}$ is a probability distribution, since
 \begin{equation}
-\sum_k {\hat u_k \hat v_k} = \hat u\tr v = 1.
+\sum_k {\hat u_k \hat v_k} = \hat u\tr \hat v = 1.
 \end{equation}
 \citet{Hermisson2002} called this distribution the \emph{ancestor} or \emph{ancestral distribution}.
 
@@ -708,7 +720,7 @@ $\{\hat u_k \hat v_k\}_{k}$ is a probability distribution, since
 
 \begin{lemma}[Stability of the equilibrium $\hat v$]
 If $C$ and $D$ are positive diagonal matrices, and $M$ is primitive, 
-then the equilibrium $v$ of the system in Eq.~\ref{eq:model_equilibrium} is globally stable.
+then the equilibrium $\hat v$ of the system in Eq.~\ref{eq:model_equilibrium} is globally stable.
 \end{lemma}
 
 \begin{proof}
@@ -720,7 +732,7 @@ According to the \emph{Perron-Frobenius theorem},
 \end{equation}
 where $\hat u$ and $\hat v$ are the left and right Perron eigenvectors of $A$ such that 
 \begin{equation}
-\sum_{k=1}^{n}{v_k}=1, \quad
+\sum_{k=1}^{n}{\hat v_k}=1, \quad
 \hat u\tr \hat v=\sum_{k=1}^{n}{\hat u_k \hat v_k}=1,
 \label{eq:sum_uv}
 \end{equation}
@@ -737,9 +749,9 @@ Using eqs.~\ref{eq:sum_uv} and~\ref{eq:perron_projection}
 \alpha = \alpha \hat u\tr \hat v = \hat u\tr \alpha \hat v = \hat u\tr \hat v \hat u\tr f = \hat u\tr f = \sum_{k=1}^{n}{\hat u_k f_k} > 0,
 \label{eq:alpha0}
 \end{equation}
-because $f$  $u$ are positive vectors.
+because $f$ and $\hat u$ are positive vectors.
 
-Now, let $\norm{x} = \sum_{k=1}^{n}|x_k|$, so that $x_t \goesto x$ implies
+Now, let $\norm{x} = \sum_{k=1}^{n}\abs{x_k}$, so that $x_t \goesto x$ implies
 \begin{equation}
 \norm{x_t} \goesto \norm{x},
 \label{eq:norm_limit}
@@ -757,7 +769,7 @@ It is easily seen that $f^t =A^tf/\|A^tf\|$. Hence
 \frac{\big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }{ \norm{ \big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }} \goesto
 \frac{\alpha \hat v}{\norm{\alpha \hat v}} = \hat v,
 \end{multline}
-since $\norm{v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
+since $\norm{\hat v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
 This completes the proof.
 \end{proof}
 
