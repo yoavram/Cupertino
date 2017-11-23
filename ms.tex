@@ -253,15 +253,22 @@ where $p_k > 0$ and $\sum_{k=0}^{n-1}{p_k}=1$.
 
 In our final example, we consider a large population and an integer phenotype $k$ where $1 \le k \le n$.
 Individuals are characterized by their initial and mature phenotypes~\citep[pg.~94]{Boyd1985}.
-Fitness is determined by the difference between the individual mature phenotype and the optimal phenotype:
-denoting the optimal phenotype as $h$, the fitness of an individual with mature phenotype $k$ is $w_{\abs{k-h}}$.
+Fitness is determined by the mature phenotype: the fitness of an individual with mature phenotype $k$ is $w_k$.
 
-The initial phenotype is acquired by learning the mature phenotype of a parent.
+An offspring's initial phenotype is acquired by learning the mature phenotype of its parent (assuming uni-parental transmission).
 In individuals with initial phenotype $k$, the mature phenotype is the same as the initial phenotype with probability $1-C_k$, and is modified by individual learning or \emph{exploration}~\citep{Borenstein2008} with probability $C_k$.
 Such individual exploratory learning, which can be considered either intentional or the result of incorrect learning, modifies initial phenotype $k$ to mature phenotype $j$ with probability $M_{j,k}$.
 
-For example, in the case of \emph{symmetric individual learning}~\citep{Borenstein2008}, the mature phenotype is randomly drawn from $2b+1$ phenotypes symmetrically and uniformly distributed around the initial phenotype, with the limitation that any "spillover" of phenotypes below $1$ or above $n$ is "absorbed" by those boundaries.
-This ensures that $M$ is primitive and column-stochastic. 
+Therefore, if the frequency of individuals with mature phenotype $k$ in the current generation is $f_k$, then the frequency in the next generation $f'_k$ is
+\begin{equation}
+f'_k = (1-C_k) f_k \frac{w_{k}}{\bar{w}} + \sum_{j=1}^{n}{C_j M_{k,j} \frac{w_{j}}{\bar{w}} f_j },
+\end{equation}
+where $\bar{w} = \sum_{k=1}^{n}{f_k w_{k}}$ is the population mean fitness.
+
+For example, in the case of \emph{symmetric individual learning}~\citep{Borenstein2008}, learning is parameterized by its breadth of exploration $b$ and the mature phenotype $j$ is randomly drawn from $2b+1$ phenotypes symmetrically and uniformly distributed around the initial phenotype $k$, with the limitation that any "spillover" of phenotypes below $1$ or above $n$ is "absorbed" by those boundaries.
+This "absorption" ensures $M$ is column-stochastic. 
+In other words, given initial phenotype $k$, the probability for maturation to phenotype $j$ such that $k-b \le j \le k+b$ is $1/(2b+1)$, but any phenotype $j<1$ actually becomes $j=1$ and any phenotype $j>n$ actually becomes $j=n$.
+The probability for maturation to other phenotypes is $0$.
 
 For instance, with $n=5$ and $b=1$ we have
 \begin{equation}
@@ -284,12 +291,6 @@ M = \begin{bmatrix}
 0 & 0 & 0 & 1/5 & 2/5 & 3/5
 \end{bmatrix}.
 \end{equation}
- 
-Therefore, if the frequency of individuals with mature phenotype $k$ in the current generation is $f_k$, then the frequency in the next generation $f'_k$ is
-\begin{equation}
-f'_k = (1-C_k) f_k \frac{w_{\abs{k-h}}}{\bar{w}} + \sum_{j=1}^{n}{C_j M_{k,j} \frac{w_{\abs{j-h}}}{\bar{w}} f_j },
-\end{equation}
-where $\bar{w} = \sum_{k=1}^{n}{f_k w_{\abs{k-h}}}$ is the population mean fitness.
 
 % Results
 \section*{Results}
