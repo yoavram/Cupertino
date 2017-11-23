@@ -516,20 +516,22 @@ This completes the proof.
 % Reduction principle & mutational loss
 \paragraph*{Reduction principle and mutational loss.}
 
-Note that if the modifier has the same effect on all individuals (i.e., $C_k = \hat\alpha$ and $\tilde{C}_k = \alpha$ for all $k$) then $\cl_{ex}$ becomes
-\begin{equation}
-\cl_{ex} = ((1 - \alpha)I + \alpha M) D /\hat{\bar w},
-\end{equation}  
-and the \emph{unified reduction principle} is in effect~\cite[eqs. 65, 72]{Altenberg2017}.
-Therefore, we can expect that with these modifiers, an allele $M$ that reduces the transition rate, i.e. $\alpha < \hat\alpha$, will be favored by natural selection.
-Setting $C = \alpha I$ in Eq.~\ref{eq:model_equilibrium} and proceeding as in Eq.~\ref{eq:mfp_K}, we have
+Note that if the modifier has the same effect on all types,
+then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilibrium}, and proceeding as in Eq.~\ref{eq:mfp_K}, we have
 \begin{equation}\label{eq:mutational_loss}
-\frac{\partial \hat{\bar{w}}}{\partial \alpha} = 
--\frac{1}{\alpha}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \Big),
+\frac{\partial \hat{\bar{w}}}{\partial \mu} = 
+-\frac{1}{\mu}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \Big) = -\frac{1}{\mu} G.
 \end{equation}
-which has been derived by~\citet[eq.~24]{Hermisson2002}.
-They called the term in the parentheses of Eq.~\ref{eq:mutational_loss}, which is equal to the difference between the \emph{ancestral mean fitness} $\sum_{k=1}^{n} \hat u_k \hat v_k w_k$ and the \emph{stable population mean fitness} $\hat{\bar{w}}$, the \emph{mutational loss}.
-Following~\citet{Altenberg2017}, $\frac{\partial\bar w}{\partial \alpha}<0$, and we can conclude that the \emph{mutational loss} is positive and that the \emph{ancestral mean fitness} is higher then the \emph{stable population mean fitness}.
+This relationship been derived by~\citet[eq.~24]{Hermisson2002}.
+They called $G$ the \emph{mutational loss}: it is the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $(\hat{\bar{w}})$, .
+
+If an invading modifier allele $M$ reduces the transition rate compared to the resident allele $m$, i.e. $C_k = \hat \mu$ and $\tilde{C}_k = \mu$ for all $k$ in Eq.~\ref{eq:Lex} and $\mu < \hat \mu$, then $\cl_{ex}$ becomes
+\begin{equation}
+\cl_{ex} = ((1 - \mu)I + \mu M) D /\hat{\bar w},
+\end{equation} 
+and we can we can expect that $M$ will be favored by natural selection.
+That is, the \emph{unified reduction principle} is in effect~\cite[eqs. 65, 72]{Altenberg2017}.
+Thus, we can conclude that the \emph{mutational loss} $G$ is positive and that the \emph{ancestral mean fitness} is higher then the \emph{stable population mean fitness}.
 
 
 % Discussion
