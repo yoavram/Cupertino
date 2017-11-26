@@ -516,15 +516,14 @@ This completes the proof.
 \paragraph*{Reduction principle and mutational loss.}
 
 Note that if the modifier has the same effect on all types,
-then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilibrium}, and proceeding as in Eq.~\ref{eq:mfp_K}, we have
+then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilibrium}, and proceeding as in Eq.~\ref{eq:mfp_K}, we find a relationship previously described by~\citet[eq.~24]{Hermisson2002},
 \begin{equation}\label{eq:mutational_loss}
 \frac{\partial \hat{\bar{w}}}{\partial \mu} = 
--\frac{1}{\mu}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \Big) = -\frac{1}{\mu} G.
+-\frac{1}{\mu}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \Big) = -\frac{1}{\mu} G,
 \end{equation}
-This relationship has been derived by~\citet[eq.~24]{Hermisson2002}.
-They called $G$ the \emph{mutational loss}: it is the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $(\hat{\bar{w}})$, .
+where $G$, equal to the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $(\hat{\bar{w}})$, is called the \emph{mutational loss}~\citep{Hermisson2002}.
 
-If an invading modifier allele $M$ reduces the transition rate compared to the resident allele $m$, i.e. $C_k = \hat \mu$ and $\tilde{C}_k = \mu$ for all $k$ in Eq.~\ref{eq:Lex} and $\mu < \hat \mu$, then $\cl_{ex}$ becomes
+If an invading modifier allele $M$ reduces the transition probability compared to the resident allele $m$, i.e. $C_k = \hat \mu$ and $\tilde{C}_k = \mu$ for all $k$ in Eq.~\ref{eq:Lex} and $\mu < \hat \mu$, then $\cl_{ex}$ becomes
 \begin{equation}
 \cl_{ex} = ((1 - \mu)I + \mu M) D /\hat{\bar w},
 \end{equation} 
