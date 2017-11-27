@@ -50,7 +50,8 @@
 \usepackage[round,colon,authoryear]{natbib}
 
 % Title page
-\title{Conditional Generation of Variation and Mean Fitness Increase: \\ Necessity is the Mother of Genetic Invention}
+\title{Generation of Variation and Mean Fitness Increase: \\ Necessity is the Mother of Genetic Invention}
+%\title{Conditional Generation of Variation and Mean Fitness Increase: \\ Necessity is the Mother of Genetic Invention}
 % \title{A General Principle for the Evolution of Fitness-Associated Generation of Variation}
 
 \author[a]{Yoav Ram}
@@ -91,12 +92,12 @@ Departures from the \emph{reduction principle} have also been demonstrated when 
 Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism by which the mutation rate increases in individuals of low fitness -- a mechanism first observed in stressed bacteria~\citep{Foster2007}, although not in a constant environment.
 \citet{Ram2012} demonstrated that even in a constant environment, increasing the mutation rate of individuals with below-average fitness increases the population mean fitness, rather than decreases it.
 Their analysis assumed  infinite population size and fitness  determined by the number of mutant alleles accumulated in the genotype.
-In their models, the only departure from the \emph{reduction principle} assumptions was due to the differential effect the modifier has on different genotypes.
+In their models, the only departure from the \emph{reduction principle} assumptions was the unequal scaling of mutation probabilities between different genotypes introduced by the correlation between the mutation rate and fitness.
 A similar result has been demonstrated for conditional dispersal~\citep[Th.~39]{Altenberg2012b}, fitness-associated recombination~\citep{Hadany2003a} and for condition-dependent sexual reproduction~\citep{Hadany2007a}, and evidence suggests that both mechanisms are common in nature~\citep{Ram2016}.
 
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
-Their analysis was specific to a model that classified individuals by the number of mutant genes in their genotype, similar to models studied by~\citet{Kimura1966a} and~\citet{Haigh1978}.
-Moreover, their argument was based on the expected increase of the population mean fitness by alleles that modify the mutation rate, rather than on the invasion success of such modifiers~\citep[i.e., analysis of \emph{evolutionary genetic stability}, see][]{Eshel1982, Lessard1990}.
+Their analysis was specific to a model that classified individuals by the number of mutant alleles in their genotype, similar to models studied by~\citet{Kimura1966a} and~\citet{Haigh1978}.
+Moreover, their argument was based on the expected increase of the stable population mean fitness, rather than on the invasion success of modifier alleles that modify the mutation rate~\citep[i.e., analysis of \emph{evolutionary genetic stability}, see][]{Eshel1982, Lessard1990}.
 
 Here, we present an evolutionary model where the the type of the individual determines both its fitness and the rate at which it generates variation.
 Our results show that the population mean fitness increases if individuals with below-average fitness produce more variation than individuals with above-average fitness,
@@ -172,12 +173,12 @@ Note that here ${M}$ is irreducible and primitive.
 \paragraph*{Mutation model 2.}\label{sec:mut_model_2}
 
 Again, we consider a large population of haploids, but here individuals with genotype $A_k$ are characterized by the number $k$ of deleterious or mutant alleles in their genotype, where $0 \le k \le n$.
-Specifically, the fitness of individuals with $k$ mutant alleles is $w_k$ ($w_0 \ge w_1 \ge \ldots \ge w_n$),
+Specifically, the fitness of individuals with $k$ mutant alleles is $w_k$ ($w_0 > w_1 > \ldots > w_n$),
 and the probability $C_k$ that a mutation occurs in individuals with $k$ mutant alleles depends on $k$.
-We assume a low mutation rate $C_k$ so that two mutations are unlikely to occur in the same individual in one generation.
 When a mutation occurs it is \emph{deleterious} with probability $\delta$, generating a mutant allele and converting the individual from $A_k$ to $A_{k+1}$,
 or it is \emph{beneficial} with probability $\beta$, converting the individual from $A_k$ to $A_{k-1}$.
 Note that such beneficial mutations can be either compensatory or back-mutations, and that mutations are neutral with probability $1-\delta-\beta$.
+We assume that both the deleterious and the beneficial mutation rates are low, such that two mutations are unlikely to occur in the same individual in one generation: $C_k(\delta + \beta) \ll 1$ for all $k=1, \ldots, n$.
 This model has been analyzed by~\citet{Ram2012}.
 
 Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=0}^{n}{f_k}=1$.
@@ -207,7 +208,7 @@ Therefore, setting
 \end{equation}
 with the beneficial, neutral, and deleterious mutation probabilities on the three main diagonals and zeros elsewhere, 
 Eq.~\ref{eq:mutation_model_2} can be viewed as a special case of Eq.~\ref{eq:model}.
-Here, too, ${M}$ is irreducible and primitive.
+Here, too, ${M}$ is irreducible and primitive as long as $\delta, \beta > 0$.
 
 % Migration model
 \paragraph*{Migration model.}\label{sec:mig_model}
@@ -419,7 +420,7 @@ The sum $\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k}$ can be similarly interpreted
 
 Since $w_k>0$, from Eq.~\ref{eq:mfp_intermediate} we have the following corollary.
 
-\begin{corollary}[Reproductive value principle]
+\begin{corollary}[Reproductive value principle]\label{cor:rvp}
 In the notation of Result~\ref{result:mfp},
 \begin{equation}
 sign \frac{\partial \hat{\bar w}}{\partial C_k} = 
@@ -429,6 +430,12 @@ where $[M]_k$ is the $k$-th column of $M$.
 
 Therefore, increased transition from type $k$ will increase the stable population mean fitness if the fraction of the population descended from type $k$ is expected to increase due to a transition to another type. 
 \end{corollary}
+
+Corollary~\ref{cor:rvp} sheds light on why we require $M$ to be primitive.
+If $M$ is primitive then individuals of type $k$ can transition into any other type in a finite number of generations.
+So individuals with below-average fitness can have descendants with above-average fitness, and increased generation of variation in these individuals will increase the stable population mean fitness.
+In contrast, if $M$ is imprimitive, individuals with below-average fitness are "doomed" and increasing the generation of variation in these individuals can only hasten their removal from the population.
+For example, if we set $\beta=0$ in \nameref{sec:mut_model_2}, $M$ becomes triangular and imprimitive, and the stable mean fitness becomes $\bar{w} = (1-\delta C_0)w_0$, which is not affected by changes in $C_k$ for $k \ge 1$~\citep[see also][Fig.~1A]{Agrawal2002,Ram2012}.
 
 % Evolutionary stability
 \paragraph*{Evolutionary genetic stability.}
@@ -535,18 +542,19 @@ Thus, we can conclude that the \emph{mutational loss} $G$ is positive and that t
 % Discussion
 \section*{Discussion}
 
-We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural evolution.
+We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural selection.
+These results apply as long as there is a chance for the variation-generating process to transform an individual with below-average fitness into one with above-average fitness (e.g. $M$ in Eq.~\ref{eq:model} is primitive).
 
 We have given several examples of variation-generating processes for which this principle applies -- namely mutation, migration, and learning (see \emph{\nameref{sec:models}} section) -- but our model may apply to other processes as well.
 For example, the \emph{reduction principle} applies to ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the mean fitness of diploid populations and is favored by selection over uniform dispersal.
 Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \nameref{sec:learn_model}).
 
 Eq.~\ref{eq:mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
-\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population evolving at the mutation-selection balance (see \nameref{sec:mut_model_2}).
+\citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population (see \nameref{sec:mut_model_2}).
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppA} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($w_k < \hat{\bar w}$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{\nameref{result:mfp}} in Eqs.~\ref{eq:mfp_sign} and~\ref{eq:mfp_sign_threshold}.
 
 Our analysis focuses on populations at equilibrium.
-Nevertheless, it has been demonstrated that a modifier which increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and reduce the adaptation rate~\citep{Ram2014},
+Nevertheless, it has been demonstrated that during adaptive evolution (i.e., in non-equilibrium populations), a modifier that increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and increase the adaptation rate~\citep{Ram2014},
 and empirical evidence suggests that \emph{stress-induced mutagenesis} is common in bacteria and yeast, and may be prevalent in plants, flies, and human cancer cells~\citep{Rosenberg2012,Fitzgerald2017b}.
 Similar theoretical results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003b,Hadany2003a}.
 
