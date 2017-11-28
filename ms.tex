@@ -121,9 +121,8 @@ or in matrix form
 \label{eq:model}
 \end{equation}
 where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\sum_{k=1}^n{f_k} = 1$;
-$D$ is a positive diagonal matrix with  elements $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
-%and we can assume $0 < w_k \le 1$, i.e., fitness values are positive and relative to the fitness of the fittest type; 
-$C$ is a positive diagonal  matrix with  elements $C_k$;
+$D$ is a positive diagonal matrix with entries $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
+$C$ is a positive diagonal  matrix with entries $C_k$;
 $M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^{\ell})_{j,k} > 0$ for all $j,k$ for some positive integer $\ell$;
 $\ci$ is the $n\times n$ identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness $\bar w=\sum_{k=1}^n f_kw_k$.
@@ -470,16 +469,16 @@ The stability of allele $m$ to invasion by allele $M$ is determined by the leadi
 \begin{equation}
 \cj = \begin{pmatrix}\cl_{in} & 0 \\ 0 & \cl_{ex} \end{pmatrix},
 \end{equation}
-and $\cl_{in}$ is the local stability matrix of the equilibrium $(\hat v,0)$ in the space $\sum_{k=1}^n{v_k}=1$.
+and $\cl_{in}$ is the local stability matrix of the equilibrium $(\hat v,0)$ in the space $\sum_{k=1}^n{f_k}=1$.
 The zero block matrices are due to the complete linkage between the modifier and the types $A_k$ and to the lack of transition (i.e., mutation) between the modifier alleles.
 
 $\cl_{ex}$ can be written as
 \begin{equation}\label{eq:Lex}
 \cl_{ex} = (I - \tilde{C} + M \tilde{C}) \tilde{D} ,
 \end{equation}
-where $\tilde{D} =D/\hat{\bar{w}}$ is the diagonal matrix with elements $w_k/\hat{\bar{w}}$ for all $k$, and $\hat{\bar{w}}$ is the stable population mean fitness in the absence of the modifier allele $M$.
-$\lambda_1$, the leading eigenvalue of $\cl_{ex}$, coincides with $\tilde{\bar{w}}$, the maximal mean fitness associated with (28).
-Thus we can apply Result 1 to $\lambda_1$ and obtain the following result. %TODO refs, maximal?
+where $\tilde{D} =D/\hat{\bar{w}}$ is the diagonal matrix with entries $w_k/\hat{\bar{w}}$ for all $k$, and $\hat{\bar{w}}$ is the stable population mean fitness in the absence of the modifier allele $M$.
+$\lambda_1$, the leading eigenvalue of $\cl_{ex}$, coincides with $\tilde{\bar{w}}$, the maximal mean fitness associated with Eq.~\ref{eq:Lex}.
+Thus we can apply Result~\ref{result:mfp} to $\lambda_1$ and obtain the following result.
 
 \begin{result}[Evolution of increased genetic variation]
 Let $\lambda_1$ be the the leading eigenvalue of the external stability matrix $\cl_{ex}$.
@@ -528,14 +527,15 @@ then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilib
 \frac{\partial \hat{\bar{w}}}{\partial \mu} = 
 -\frac{1}{\mu}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \Big) = -\frac{1}{\mu} G,
 \end{equation}
-where $G$, equal to the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $\hat{\bar{w}}$ when $C_k=\mu$, is  called the \emph{mutational loss}~\citep{Hermisson2002}.
+where $G$, equal to the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $(\hat{\bar{w}})$ when $C_k=\mu$, is  called the \emph{mutational loss}~\citep{Hermisson2002}.
 
-If an invading  allele $M$ reduces the transition probability compared to the resident allele $m$, i.e. $C_k = \mu$ and $\tilde{C}_k = \tilde\mu$ with $\tilde\mu<\mu$,  then $\cl_{ex}$ becomes
-\begin{equation}
-\cl_{ex} = \bigl[(1 - \tilde\mu)I + \tilde\mu M\bigr] \bar D,
+If an invading  allele $M$ reduces the transition probability compared to the resident allele $m$, i.e., $C_k = \mu$ and $\tilde{C}_k = \tilde{\mu}$ for all $k$ with $\tilde{\mu}<\mu$, then $\cl_{ex}$ becomes
+\begin{equation} \label{eq:Lex_mu}
+\cl_{ex} = \bigl[(1 - \tilde\mu)I + \tilde\mu M\bigr] \tilde{D},
 \end{equation} 
-where $\bar D =D/\bar w$ is  the diagonal matrix with entries $w_k/\bar w$ for $k=1,2,\dots,n$. Using the unified reduction principle \citep{Altenberg2017} we know that the leading eigenvalue $\lambda_1$  of $\cl_{ex}$ in Eq.\ (35) satisfies $\partial\lambda_1/\partial\tilde\mu<0$. Thus we can conclude that the mutational loss $G$ is positive and the ancestral mean fitness is higher than the population mean fitness. 
-% TODO check above for refs, hats, etc. 
+where $\tilde{D} =D/\hat{\bar{w}}$ is  the diagonal matrix with entries $w_k/\hat{\bar{w}}$ for all $k$.
+Using the \emph{unified reduction principle}~\citep{Altenberg2017} we know that the leading eigenvalue $\lambda_1$  of $\cl_{ex}$ in Eq.~\ref{eq:Lex_mu} satisfies $\partial\lambda_1 / \partial\tilde{\mu} < 0$.
+Thus we can conclude that the mutational loss $G$ is positive and the ancestral mean fitness is higher than the stable population mean fitness. 
 
 % Discussion
 \section*{Discussion}
@@ -552,7 +552,7 @@ Eq.~\ref{eq:mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppA} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($w_k < \hat{\bar w}$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{\nameref{result:mfp}} in Eqs.~\ref{eq:mfp_sign} and~\ref{eq:mfp_sign_threshold}.
 
 Our analysis focuses on populations at equilibrium.
-Nevertheless, it has been demonstrated that during adaptive evolution (i.e., in non-equilibrium populations), a modifier that increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012} and increase the adaptation rate~\citep{Ram2014},
+Nevertheless, it has been demonstrated that during adaptive evolution (i.e., in non-equilibrium populations), a modifier that increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012,Lukacisinova2017} and increase the adaptation rate~\citep{Ram2014},
 and empirical evidence suggests that \emph{stress-induced mutagenesis} is common in bacteria and yeast, and may be prevalent in plants, flies, and human cancer cells~\citep{Rosenberg2012,Fitzgerald2017b}.
 Similar theoretical results have been demonstrated for a modifier that increases the recombination rate in maladapted individuals~\citep{Hadany2003b,Hadany2003a}.
 
@@ -568,7 +568,7 @@ Here we have provided another general example, which suggests that a modifier al
 \subsection*{Appendix A}\label{sec:AppA}
 
 \citet{Caswell1978} gave a \emph{formula for the sensitivity of the population growth rate to changes in life history parameters}.
-In this formula, the \emph{population growth rate} is the leading eigenvalue of the population transformation matrix $T$, the \emph{life history parameters} are elements of $T$, and the \emph{sensitivity} is the derivative of the former with respect to the latter.
+In this formula, the \emph{population growth rate} is the leading eigenvalue of the population transformation matrix $T$, the \emph{life history parameters} are entries of $T$, and the \emph{sensitivity} is the derivative of the former with respect to the latter.
 This is a useful formula~\citep[ch.~10]{Caswell1978,Hermisson2002,Ram2012,Otto2007}, and therefore we reproduce it here.
 
 \begin{lemma}
@@ -602,7 +602,7 @@ $\partial \lambda = \hat u\tr \partial T \hat v$.
 \subsection*{Appendix B}\label{sec:AppB}
 \begin{remark}[Fisher's reproductive value]
 Let $M$ be an irreducible column-stochastic matrix and $D$ be a positive diagonal matrix. 
-The elements of the left \emph{Perron} eigenvector $\hat u$ of the matrix $MD$ can be regarded as \emph{Fisher's reproductive values}~\citep[pg.~27]{Fisher1930}
+The entries of the left \emph{Perron} eigenvector $\hat u$ of the matrix $MD$ can be regarded as \emph{Fisher's reproductive values}~\citep[pg.~27]{Fisher1930}
 \end{remark}
 
 \emph{Fisher's reproductive values} can be understood as follows~\citep[ch.~10]{Grafen2006,Otto2007}.
