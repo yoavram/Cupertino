@@ -81,7 +81,7 @@ We find that if a modifier allele increases the rate at which individuals of bel
 \section*{Introduction}
 
 According to the \emph{reduction principle}, in populations at a balance between natural selection and a process that generates variation (i.e. mutation, migration, or recombination), selection favors neutral modifiers that decrease the rate at which variation is generated. 
-The \emph{reduction principle} was demonstrated for modifiers of the recombination~\citep{Feldman1972}, mutation~\citep{Liberman1986a}, and migration~\citep{Feldman1986}.
+The \emph{reduction principle} was demonstrated for modifiers of  recombination~\citep{Feldman1972}, mutation~\citep{Liberman1986a}, and migration~\citep{Feldman1986}.
 These results were unified in a series of studies ~\citep{Altenberg1984,Altenberg1987,Altenberg2009,Altenberg2012b,Altenberg2012a,Altenberg2017}.
 
 The latter studies have established the conditions for a \emph{unified reduction principle} by neutral genetic modifiers:
@@ -99,7 +99,7 @@ A similar result has been demonstrated for conditional dispersal~\citep[Th.~39]{
 Their analysis was specific to a model that classified individuals by the number of mutant alleles in their genotype, similar to models studied by~\citet{Kimura1966a} and~\citet{Haigh1978}.
 Moreover, their argument was based on the expected increase of the stable population mean fitness, rather than on the invasion success of modifier alleles that modify the mutation rate~\citep[i.e., analysis of \emph{evolutionary genetic stability}, see][]{Eshel1982, Lessard1990}.
 
-Here, we present an evolutionary model where the the type of the individual determines both its fitness and the rate at which it generates variation.
+Here, we present an evolutionary model in which the type of the individual determines both its fitness and the rate at which it generates variation.
 Our results show that the population mean fitness increases if individuals with below-average fitness produce more variation than individuals with above-average fitness,
 and that modifier alleles that induce below-average individuals to produce more variation are favored by natural selection.
 
@@ -124,13 +124,13 @@ where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\s
 $D$ is a positive diagonal matrix with  elements $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
 %and we can assume $0 < w_k \le 1$, i.e., fitness values are positive and relative to the fitness of the fittest type; 
 $C$ is a positive diagonal  matrix with  elements $C_k$;
-$M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^n)_{j,k} > 0$ for all $j,k$ for some natural $n$;
+$M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^{\ell})_{j,k} > 0$ for all $j,k$ for some positive integer $\ell$;
 $\ci$ is the $n\times n$ identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness $\bar w=\sum_{k=1}^n f_kw_k$.
 
 The types $A_k$ can represent a single or multiple haploid genetic loci or non-genetic traits.
 Importantly, type transmission is vertical and uni-parental (the type is transmitted from a single parent to the offspring) and is independent of the frequencies of the other types.
-Specifically, this model precludes processes such as recombination, social learning, sexual outcrossing, and horizontal or oblique transmission, as these processes are frequency-dependent~\cite[pg.~54]{Cavalli-Sforza1981}.
+This model precludes processes such as recombination, social learning, sexual outcrossing, and horizontal or oblique transmission, as these processes are frequency-dependent~\citep[pg.~54]{Cavalli-Sforza1981}.
 
 Transition between types is determined by a combination of two effects:
 (i) the probability of transitioning \emph{out} of type $A_k$ is determined by $C_k$;
@@ -154,7 +154,7 @@ Then after selection and mutation, $f'_k$ in the next generation is given by
 f_k' = \big(1 - C_k\big) \frac{w_k}{\bar{w}} f_k + \frac{1}{n-1} \sum_{j \ne k}{C_j \frac{w_j}{\bar{w}} f_j},
 \label{eq:mutation_model_1}
 \end{equation}
-for all $k=1, 2, \ldots, n$, where $\bar{w} = \sum_{k=1}^{n}{f_k w_k}$ is the population mean fitness.
+for  $k=1, 2, \ldots, n$, where $\bar{w} = \sum_{k=1}^{n}{f_k w_k}$ is the population mean fitness.
 
 This model is a special case of the general model (Eq.~\ref{eq:model}) where
 \begin{equation} 
@@ -178,7 +178,7 @@ and the probability $C_k$ that a mutation occurs in individuals with $k$ mutant 
 When a mutation occurs it is \emph{deleterious} with probability $\delta$, generating a mutant allele and converting the individual from $A_k$ to $A_{k+1}$,
 or it is \emph{beneficial} with probability $\beta$, converting the individual from $A_k$ to $A_{k-1}$.
 Note that such beneficial mutations can be either compensatory or back-mutations, and that mutations are neutral with probability $1-\delta-\beta$.
-We assume that both the deleterious and the beneficial mutation rates are low, such that two mutations are unlikely to occur in the same individual in one generation: $C_k(\delta + \beta) \ll 1$ for all $k=1, \ldots, n$.
+We assume that both the deleterious and the beneficial mutation rates are low enough that two mutations are unlikely to occur in the same individual in one generation: $C_k(\delta + \beta) \ll 1$ for all $k=1, \ldots, n$.
 This model has been analyzed by~\citet{Ram2012}.
 
 Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=0}^{n}{f_k}=1$.
@@ -266,7 +266,7 @@ where $\bar{w} = \sum_{k=1}^{n}{f_k w_{k}}$ is the population mean fitness.
 
 For example, in the case of \emph{symmetric individual learning}~\citep{Borenstein2008}, learning is parameterized by its breadth of exploration $b$ and the mature phenotype $j$ is randomly drawn from $2b+1$ phenotypes symmetrically and uniformly distributed around the initial phenotype $k$, with the limitation that any "spillover" of phenotypes below $1$ or above $n$ is "absorbed" by those boundaries.
 This "absorption" ensures $M$ is column-stochastic. 
-In other words, given initial phenotype $k$, the probability for maturation to phenotype $j$ such that $k-b \le j \le k+b$ is $1/(2b+1)$, but any phenotype $j<1$ actually becomes $j=1$ and any phenotype $j>n$ actually becomes $j=n$.
+In other words, given initial phenotype $k$, the probability of maturation to phenotype $j$, where $k-b \le j \le k+b$ is $1/(2b+1)$, but any phenotype $j<1$ actually becomes $j=1$ and any phenotype $j>n$ actually becomes $j=n$.
 The probability for maturation to other phenotypes is $0$.
 
 For instance, with $n=5$ and $b=1$ we have
@@ -298,7 +298,7 @@ M = \begin{bmatrix}
 \paragraph*{Mean fitness principle.}
 
 We first focus on the stable population mean fitness.
-We will show that if the transition rate from types with below-average fitness increases, then the stable population mean fitness increases, too.
+We  show that if the transition rate from types with below-average fitness increases, then the stable population mean fitness increases, too.
 
 Write the equilibrium  frequency vector $f$ in Eq.~\ref{eq:model} as $\hat v$ and the stable population mean fitness as $\hat{\bar w}$, then
 \begin{equation}\label{eq:model_equilibrium}
@@ -434,7 +434,7 @@ Therefore, increased transition from type $k$ will increase the stable populatio
 Corollary~\ref{cor:rvp} sheds light on why we require $M$ to be primitive.
 If $M$ is primitive then individuals of type $k$ can transition into any other type in a finite number of generations.
 So individuals with below-average fitness can have descendants with above-average fitness, and increased generation of variation in these individuals will increase the stable population mean fitness.
-In contrast, if $M$ is imprimitive, individuals with below-average fitness are "doomed" and increasing the generation of variation in these individuals can only hasten their removal from the population.
+In contrast, if $M$ is  not primitive, individuals with below-average fitness are "doomed" and increasing the generation of variation in these individuals can only hasten their removal from the population.
 For example, if we set $\beta=0$ in \nameref{sec:mut_model_2}, $M$ becomes triangular and imprimitive, and the stable mean fitness becomes $\bar{w} = (1-\delta C_0)w_0$, which is not affected by changes in $C_k$ for $k \ge 1$~\citep[see also][Fig.~1A]{Agrawal2002,Ram2012}.
 
 % Evolutionary stability
@@ -461,9 +461,9 @@ The frequencies in the next generation, $f'$ for allele $m$ and $g'$ for allele 
 Here, $\bar{w}=\sum_{k=1}^{n}{(f_k + g_k) w_k}$ is the mean fitness of the entire population. 
 Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} where allele $M$ is absent, i.e. $g_k=0$ for all $k$.
 
-We have found a condition for a modifier allele that controls that transition rate $C_k$ from type $A_k$ to increase the stable population mean fitness (Result~\ref{result:mfp}).
-Could such an allele increase in frequency when initially rare in the population?
-To answer this we analyze the stability of resident modifier allele $m$ with transition rates $C_k$ to the invasion by a modifier allele $M$ with rates $\tilde{C}_k$, see Eqs.~\ref{eq:modifier_model}.
+Result~\ref{result:mfp} provides a condition under which increasing the transition rate $C_k$ from type $A_k$ will increase the stable population mean fitness.
+Could a modifier allele that increases $C_k$ increase in frequency when initially rare in the population?
+To answer this we analyze the stability of resident modifier allele $m$ with transition rates $C_k$ to  invasion by a modifier allele $M$ with rates $\tilde{C}_k$ under Eqs.~\ref{eq:modifier_model}.
 
 The equilibrium of Eqs.~\ref{eq:modifier_model} when modifier allele $M$ is absent from the population is $(\hat v,0)$, where $\hat v$ is given in Eq.~\ref{eq:model_equilibrium} and $g_k=0$ for all $k$. 
 The stability of allele $m$ to invasion by allele $M$ is determined by the leading eigenvalue $\lambda_1$ of $\cl_{ex}$ the external stability matrix of the equilibrium $(\hat v,0)$, which, in turn, is determined by the Jacobian $\cj$ of the system in Eqs.~\ref{eq:modifier_model} evaluated at the equilibrium $(\hat v,0)$, where
@@ -475,11 +475,11 @@ The zero block matrices are due to the complete linkage between the modifier and
 
 $\cl_{ex}$ can be written as
 \begin{equation}\label{eq:Lex}
-\cl_{ex} = (I - \tilde{C} + M \tilde{C}) D /\hat{\bar w},
+\cl_{ex} = (I - \tilde{C} + M \tilde{C}) \tilde{D} ,
 \end{equation}
-where $\hat{\bar w}$ is the stable population mean fitness in the absence of modifier allele $M$.
-Note that, in general, $\hat{\bar w}$ is not an eigenvalue of $\cl_{ex}$.
-\medskip
+where $\tilde{D} =D/\hat{\bar{w}}$ is the diagonal matrix with elements $w_k/\hat{\bar{w}}$ for all $k$, and $\hat{\bar{w}}$ is the stable population mean fitness in the absence of the modifier allele $M$.
+$\lambda_1$, the leading eigenvalue of $\cl_{ex}$, coincides with $\tilde{\bar{w}}$, the maximal mean fitness associated with (28).
+Thus we can apply Result 1 to $\lambda_1$ and obtain the following result. %TODO refs, maximal?
 
 \begin{result}[Evolution of increased genetic variation]
 Let $\lambda_1$ be the the leading eigenvalue of the external stability matrix $\cl_{ex}$.
@@ -493,7 +493,7 @@ sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C
 sign(\hat{\bar w} - w_k).
 \end{equation}
 
-Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the stable population mean fitness.
+Therefore, an initially rare modifier allele $M$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $M$ increases the probability of transition from types with below-average fitness, thereby increasing the  mean fitness $\tilde{\bar w}$.
 \end{result}
 
 \begin{proof}
@@ -528,16 +528,14 @@ then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilib
 \frac{\partial \hat{\bar{w}}}{\partial \mu} = 
 -\frac{1}{\mu}\Big(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \Big) = -\frac{1}{\mu} G,
 \end{equation}
-where $G$, equal to the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $(\hat{\bar{w}})$, is called the \emph{mutational loss}~\citep{Hermisson2002}.
+where $G$, equal to the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $\hat{\bar{w}}$ when $C_k=\mu$, is  called the \emph{mutational loss}~\citep{Hermisson2002}.
 
-If an invading modifier allele $M$ reduces the transition probability compared to the resident allele $m$, i.e. $C_k = \hat \mu$ and $\tilde{C}_k = \mu$ for all $k$ in Eq.~\ref{eq:Lex} and $\mu < \hat \mu$, then $\cl_{ex}$ becomes
+If an invading  allele $M$ reduces the transition probability compared to the resident allele $m$, i.e. $C_k = \mu$ and $\tilde{C}_k = \tilde\mu$ with $\tilde\mu<\mu$,  then $\cl_{ex}$ becomes
 \begin{equation}
-\cl_{ex} = ((1 - \mu)I + \mu M) D /\hat{\bar w},
+\cl_{ex} = \bigl[(1 - \tilde\mu)I + \tilde\mu M\bigr] \bar D,
 \end{equation} 
-and we can we can expect that $M$ will be favored by natural selection.
-That is, the \emph{unified reduction principle} is in effect~\cite[eqs. 65, 72]{Altenberg2017}.
-Thus, we can conclude that the \emph{mutational loss} $G$ is positive and that the \emph{ancestral mean fitness} is higher then the \emph{stable population mean fitness}.
-
+where $\bar D =D/\bar w$ is  the diagonal matrix with entries $w_k/\bar w$ for $k=1,2,\dots,n$. Using the unified reduction principle \citep{Altenberg2017} we know that the leading eigenvalue $\lambda_1$  of $\cl_{ex}$ in Eq.\ (35) satisfies $\partial\lambda_1/\partial\tilde\mu<0$. Thus we can conclude that the mutational loss $G$ is positive and the ancestral mean fitness is higher than the population mean fitness. 
+% TODO check above for refs, hats, etc. 
 
 % Discussion
 \section*{Discussion}
@@ -561,8 +559,7 @@ Similar theoretical results have been demonstrated for a modifier that increases
 % Conclusions
 \paragraph*{Conclusions.}
 
-General examples of departures from the \emph{reduction principle} are rare~\citep{Altenberg2017}.
-For example, it has been demonstrated that higher mutation, recombination, and migration rates are favored by selection in populations evolving under fluctuating selection; see~\citet{Carja2014} and references therein.
+Departures from the \emph{reduction principle} for mutation, recombination, and migration rates usually involve fluctuating selection,  non-equilibrium dynamics, or departures from random mating (see~\cite{Carja2014} and references therein).
 Here we have provided another general example, which suggests that a modifier allele that causes individuals with below-average fitness to increase the rate at which variation is generated, will be favored by selection and will lead to increased population mean fitness.
 
 \section*{Appendices}
