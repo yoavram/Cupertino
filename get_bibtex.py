@@ -37,6 +37,9 @@ def main(keys_filename, bibtex_filename, output_filename, verbose):
 		if m:
 			prefix, species, postfix = m.groups()
 			ent['title'] = prefix + r"\emph{" + species + r"}" + postfix
+		for key in ['file', 'abstract', 'mendeley-tags', 'keyword']:
+			if key in ent:
+				ent.pop(key)		
 
 	writer = BibTexWriter()
 	with open(output_filename, 'w') as f:
