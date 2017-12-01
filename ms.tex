@@ -524,11 +524,10 @@ This completes the proof.
 Note that if the modifier has the same effect on all types,
 then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilibrium}, and proceeding as in Eq.~\ref{eq:mfp_K}, we find a relationship previously described by~\citet[eq.~24]{Hermisson2002},
 \begin{equation}\label{eq:mutational_loss}
-\frac{\partial \hat{\bar{w}}}{\partial \mu} = 
--\frac{1}{\mu}\left(\sum_{k=1}^{n} \hat u_k \hat v_k w_k - \hat{\bar{w}} \right) = -\frac{1}{\mu} G,
+\frac{\partial {\bar{w}}}{\partial \mu} = 
+-\frac{1}{\mu}\left(\sum_{k=1}^{n}  u_k  v_k w_k - {\bar{w}} \right) = -\frac{1}{\mu} G,
 \end{equation}
-where $\hat u_k$ and $\hat v_k$ are computed at the equilibrium associated with $\mu$ and $\hat{\bar{w}}$ is the mean fitness at that equilibrium.
-$G$, the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n} \hat u_k \hat v_k w_k)$ and the \emph{stable population mean fitness} $(\hat{\bar{w}})$ when $C_k=\mu$, is  called the \emph{mutational loss}~\citep{Hermisson2002}.
+where $u_k,v_k$ are computed at the equilibrium associated with $\mu$ and $\bar w$ is the mean fitness at that equilibrium. $G$ is the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n}  u_k  v_k w_k)$ and the \emph{stable population mean fitness} $({\bar{w}})$ when $C_k=\mu$, is  called the \emph{mutational loss}~\citep{Hermisson2002}.
 
 If an invading  allele $M$ reduces the transition probability compared to the resident allele $m$, i.e., $C_k = \mu$ and $\tilde{C}_k = \tilde{\mu}$ for all $k$ with $\tilde{\mu}<\mu$, then $\cl_{ex}$ becomes
 \begin{equation} \label{eq:Lex_mu}
