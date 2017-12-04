@@ -529,13 +529,12 @@ then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilib
 \end{equation}
 where $u_k,v_k$ are computed at the equilibrium associated with $\mu$ and $\bar w$ is the mean fitness at that equilibrium. $G$ is the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n}  u_k  v_k w_k)$ and the \emph{stable population mean fitness} $({\bar{w}})$ when $C_k=\mu$, is  called the \emph{mutational loss}~\citep{Hermisson2002}.
 
-If an invading  allele $M$ reduces the transition probability compared to the resident allele $m$, i.e., $C_k = \mu$ and $\tilde{C}_k = \tilde{\mu}$ for all $k$ with $\tilde{\mu}<\mu$, then $\cl_{ex}$ becomes
+If an invading  allele $M$ changes the transition probability from that of the resident allele $m$, i.e., $C_k=\mu$ and $\tilde C_k=\tilde\mu$, then $\cl_{ex}$ becomes
 \begin{equation} \label{eq:Lex_mu}
 \cl_{ex} = \bigl[(1 - \tilde\mu)I + \tilde\mu M\bigr] \tilde{D},
 \end{equation} 
-where $\tilde{D} =D/\hat{\bar{w}}$ is  the diagonal matrix with entries $w_k/\hat{\bar{w}}$ for all $k$.
-Using the \emph{unified reduction principle}~\citep{Altenberg2017} we know that the leading eigenvalue $\lambda_1$  of $\cl_{ex}$ in Eq.~\ref{eq:Lex_mu} satisfies $\partial\lambda_1 / \partial\tilde{\mu} < 0$.
-Thus we can conclude that the mutational loss $G$ is positive and the ancestral mean fitness is higher than the stable population mean fitness. 
+where $\tilde{D} =D/{\bar{w}}$ is  the diagonal matrix with entries $w_k/{\bar{w}}$ for all $k$.
+Using the \emph{unified reduction principle}~\citep{Altenberg2017} the leading eigenvalue $\lambda_1=\lambda(\tilde\mu)$ of $\cl_{ex}$ satisfies $\partial\lambda_1/\partial\tilde\mu<0$, $\lambda_1(\tilde\mu)=1$ when $\tilde\mu=\mu$, and $\lambda_1(\tilde\mu)=\bar w(\tilde\mu)$. Thus we can conclude that the mutational loss $G$ is positive, the reduction principle holds, and the mean fitness is a decreasing function of $\tilde\mu$.
 
 % Discussion
 \section*{Discussion}
