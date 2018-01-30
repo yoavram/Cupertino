@@ -9,9 +9,9 @@
 \usepackage{commath}
 \usepackage{longtable}
 \usepackage[hyphens]{url}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[unicode=true,colorlinks=true,urlcolor=CadetBlue,citecolor=black,linkcolor=black]{hyperref}
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-\usepackage[unicode=true]{hyperref}
-%\usepackage{nameref} % included in hyperref
 \usepackage[auth-sc]{authblk}
 
 % messes up nameref
@@ -85,15 +85,15 @@ The \emph{reduction principle} was demonstrated for modifiers of  recombination~
 These results were unified in a series of studies ~\citep{Altenberg1984,Altenberg1987,Altenberg2009,Altenberg2012b,Altenberg2012a,Altenberg2017}.
 
 The latter studies have established the conditions for a \emph{unified reduction principle} by neutral genetic modifiers:
-(i) effectively infinite population size, (ii) constant-viability selection, (iii) a population at an equilibrium, and (iv) \emph{linear variation} -- the equal scaling of transition probabilities by the modifier.
+(i) effectively infinite population size, (ii) constant-viability selection, (iii) a population at an equilibrium, and (iv) \emph{linear variation} -- the equal scaling of transition probabilities by the modifier, i.e., the modifier has the same effect on all individuals.
 A departure from the latter assumption occurs if two variation-producing processes interact~\citep{Feldman1980,Altenberg2012b}.
 Departures from the \emph{reduction principle} have also been demonstrated when conditions (i)-(iii) are not met, see for example~\citet{Holsinger1986} and references therein.
 
 Another departure from the \emph{linear variation} assumption of the \emph{reduction principle} for mutation rates involves a mechanism by which the mutation rate increases in individuals of low fitness -- a mechanism first observed in stressed bacteria~\citep{Foster2007}, although not in a constant environment.
 \citet{Ram2012} demonstrated that even in a constant environment, increasing the mutation rate of individuals with below-average fitness increases the population mean fitness, rather than decreases it.
 Their analysis assumed  infinite population size and fitness  determined by the number of mutant alleles accumulated in the genotype.
-In their models, the only departure from the \emph{reduction principle} assumptions was the unequal scaling of mutation probabilities between different genotypes introduced by the correlation between the mutation rate and fitness.
-A similar result has been demonstrated for conditional dispersal~\citep[Th.~39]{Altenberg2012b}, fitness-associated recombination~\citep{Hadany2003a} and for condition-dependent sexual reproduction~\citep{Hadany2007a}, and evidence suggests that both mechanisms are common in nature~\citep{Ram2016}.
+In their models, the only departure from the \emph{reduction principle} conditions was the unequal scaling of mutation probabilities between different genotypes introduced by the correlation between the mutation rate and fitness.
+A similar result has been demonstrated for conditional dispersal~\citep[Th.~39]{Altenberg2012b}, fitness-associated recombination~\citep{Hadany2003a} and for condition-dependent sexual reproduction~\citep{Hadany2007a}, and empirical evidence suggests these mechanisms are common in nature~\citep{Ram2016}.
 
 \citet{Ram2012} stated that their result represents a departure from the \emph{reduction principle}, but did not explain this departure.
 Their analysis was specific to a model that classified individuals by the number of mutant alleles in their genotype, similar to models studied by~\citet{Kimura1966a} and~\citet{Haigh1978}.
@@ -123,7 +123,7 @@ or in matrix form
 where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\sum_{k=1}^n{f_k} = 1$;
 $D$ is a positive diagonal matrix with entries $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
 $C$ is a positive diagonal  matrix with entries $C_k$;
-$M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^{\ell})_{j,k} > 0$ for all $j,k$ for some positive integer $\ell$;
+$M$ is a primitive column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^{\ell})_{j,k} > 0$ for all $j,k$ for some positive integer $\ell$ (the latter is the condition for primitivity~\citep[see][Appendix 3]{Otto2007});
 $\ci$ is the $n\times n$ identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness $\bar w=\sum_{k=1}^n f_kw_k$.
 
@@ -303,7 +303,7 @@ Write the equilibrium  frequency vector $f$ in Eq.~\ref{eq:model} as $\hat v$ an
 \begin{equation}\label{eq:model_equilibrium}
 \hat{\bar w} \hat v = (I-C+MC)D \hat v.
 \end{equation}
-Note that (i) the existence and uniqueness of $\hat{\bar w}$ and $\hat v$ are guaranteed by the \emph{Perron-Frobenius theorem}~(\cite{Otto2007}) because $(I-C+MC)D$ is a non-negative primitive matrix; 
+Note that (i) the existence and uniqueness of $\hat{\bar w}$ and $\hat v$ are guaranteed by the \emph{Perron-Frobenius theorem}~~\citep[][Appendix 3]{Otto2007} because $(I-C+MC)D$ is a non-negative primitive matrix; 
 (ii) the global stability of this equilibrium is proven in~\nameref{sec:AppC}.
 
 The following result constitutes a \emph{mean fitness principle} for the
@@ -379,8 +379,8 @@ Specifically, if $A_k$ individuals have below-average fitness, then increasing $
 
 % Multiple types
 \paragraph*{}
-We turn our attention to the case where the transition rates from a subset $K$ of the types are correlated, that is, $C_j=C_i$ for $i,j \in K$.
-In this case, Eq.~\ref{eq:mfp} leads directly to the following.
+We turn our attention to the case where the transition rates from a subset $K$ of the types are equal, that is, $C_j \equiv C_i$ for $i,j \in K$.
+In this case, Eq.~\ref{eq:mfp} leads directly to the following by setting $\tau \coloneqq C_i$.
 
 \begin{corollary}
 The sensitivity of the stable population mean fitness to change in the rate of transition $\tau$ from types in $K$ is
@@ -407,7 +407,7 @@ According to Eq.~\ref{eq:mfp_sign_threshold}, this will result in increased stab
 % Reproductive value principle
 \paragraph*{Reproductive value principle.}
 
-An interesting interpretation of Eq.~\ref{eq:mfp_intermediate} is
+An interesting consequence of Eq.~\ref{eq:mfp_intermediate} is
 \begin{equation}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
 \hat v_k w_k (\hat u\tr[M]_k - \hat u_k) = 
@@ -433,7 +433,7 @@ Therefore, increased transition from type $k$ will increase the stable populatio
 Corollary~\ref{cor:rvp} sheds light on why we require $M$ to be primitive.
 If $M$ is primitive then individuals of type $k$ can transition into any other type in a finite number of generations.
 So individuals with below-average fitness can have descendants with above-average fitness, and increased generation of variation in these individuals will increase the stable population mean fitness.
-In contrast, if $M$ is  not primitive, individuals with below-average fitness are "doomed" and increasing the generation of variation in these individuals can only hasten their removal from the population.
+In contrast, if $M$ is not primitive, individuals with below-average fitness are "doomed" and increasing the generation of variation in these individuals can only hasten their removal from the population, affecting the rate at which the population converges to the stable equilibrium, but not necessarily the stable population mean fitness.
 For example, if we set $\beta=0$ in \nameref{sec:mut_model_2}, $M$ becomes triangular and imprimitive, and the stable mean fitness becomes $\bar{w} = (1-\delta C_0)w_0$, which is not affected by changes in $C_k$ for $k \ge 1$~\citep[see also][Fig.~1A]{Agrawal2002,Ram2012}.
 
 % Evolutionary stability
@@ -540,15 +540,16 @@ Using the \emph{unified reduction principle}~\citep{Altenberg2017} the leading e
 \section*{Discussion}
 
 We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural selection.
-These results apply as long as there is a chance for the variation-generating process to transform an individual with below-average fitness into one with above-average fitness (e.g. $M$ in Eq.~\ref{eq:model} is primitive).
-
-We have given several examples of variation-generating processes for which this principle applies -- namely mutation, migration, and learning (see \emph{\nameref{sec:models}} section) -- but our model may apply to other processes as well.
-For example, the \emph{reduction principle} applies to ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the mean fitness of diploid populations and is favored by selection over uniform dispersal.
-Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \nameref{sec:learn_model}).
+These results apply as long as there is a chance for the variation-generating process to transform an individual with below-average fitness into one with above-average fitness.
+This condition is satisfied by the requirement that $M$ in Eq.~\ref{eq:model} be primitive. Further work will be required to find a sufficient and \emph{necessary} condition on $M$.
 
 Eq.~\ref{eq:mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
 \citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population (see \nameref{sec:mut_model_2}).
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppA} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($w_k < \hat{\bar w}$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our \emph{\nameref{result:mfp}} in Eqs.~\ref{eq:mfp_sign} and~\ref{eq:mfp_sign_threshold}.
+
+Besides mutation, our principle applies to other variation-generating processes such as migration and learning (see \emph{\nameref{sec:models}} section).
+For example, the \emph{reduction principle} applies to ecological models of dispersal, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the mean fitness of diploid populations and is favored by selection over uniform dispersal.
+Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \nameref{sec:learn_model}).
 
 Our analysis focuses on populations at equilibrium.
 Nevertheless, it has been demonstrated that during adaptive evolution (i.e., in non-equilibrium populations), a modifier that increases the mutation rate of maladapted individuals can be favored by selection~\citep{Ram2012,Lukacisinova2017} and increase the adaptation rate~\citep{Ram2014},
