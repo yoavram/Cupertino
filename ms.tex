@@ -1,6 +1,13 @@
-\documentclass[9pt, a4paper, twocolumn]{extarticle}
-\usepackage[margin=1in]{geometry} % See geometry.pdf to learn the layout options.
-\geometry{a4paper}
+\documentclass[11pt, twocolumn]{extarticle}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={170mm,257mm},
+left=20mm,
+top=20mm,
+headheight=12pt
+}
+
 %\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx} % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
 % TeX will automatically convert eps --> pdf in pdflatex		
@@ -14,11 +21,18 @@
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
 \usepackage[auth-sc]{authblk}
 
-% messes up nameref
-%\usepackage{titlesec}
-%\titleformat{\subsection}[runin]
-%  {\bf}{\thesection}{1em}{}
-  
+% titles
+\usepackage{titlesec}
+% \titleformat{command}[shape]{format}{label}{sep}{before}[after]
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}[]
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}[]
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}[]
+
+% 					left margin	| space before (vertical) | space after (horizontal)
+\titlespacing{\section}{0em}{0.25\baselineskip}{0.25\baselineskip}
+\titlespacing{\subsection}{0em}{0.25\baselineskip}{0.25\baselineskip}
+\titlespacing{\paragraph}{0em}{0.25\baselineskip}{1em}
+
 %SetFonts
 % newtxtext+newtxmath
 \usepackage{newtxtext} %loads helv for ss, txtt for tt
@@ -44,7 +58,6 @@
 \newcommand{\cl}{\mathbf{L}}
 \newcommand{\cj}{\mathbf{J}}
 \newcommand{\ci}{I}
-
 
 % NatBib
 \usepackage[round,colon,authoryear]{natbib}
@@ -338,14 +351,14 @@ Using the formula in~\citet{Caswell1978} (see eq.~\ref{eq:Caswells_formula} in~\
 Let $e_k$ and $e\tr_k$ be the column and row vectors with 1 at position $k$ and 0 elsewhere, $Z_k = e_k e\tr_k$ be the matrix with 1 at position $(k,k)$ and 0 elsewhere, and $[M]_k$ be the $k$-th column of $M$.
 
 Then,
-\begin{equation}\label{eq:mfp_intermediate}
-\begin{aligned}
+\begin{multline}\label{eq:mfp_intermediate}
+%\begin{aligned}
 \hat u\tr \frac{\partial (I-C+MC)D}{\partial C_k} \hat v = 
 \hat u\tr (0 - Z_k + M Z_k)D \hat v = \\
 -\hat v_k \hat u_k w_k + \hat v_k w_k \hat u\tr[M]_k = \\
 \hat v_k w_k (\hat u\tr[M]_k - \hat u_k). 
-\end{aligned}
-\end{equation}
+%\end{aligned}
+\end{multline}
 
 The corresponding equation to Eq.~\ref{eq:model_equilibrium} for the left
 eigenvector $u$ is 
@@ -384,13 +397,13 @@ In this case, Eq.~\ref{eq:mfp} leads directly to the following by setting $\tau 
 
 \begin{corollary}
 The sensitivity of the stable population mean fitness to change in the rate of transition $\tau$ from types in $K$ is
-\begin{equation}\label{eq:mfp_K}
-\begin{aligned}
+\begin{multline}\label{eq:mfp_K}
+%\begin{aligned}
 \frac{\partial \hat{\bar w}}{\partial \tau} = 
 \hat u\tr \Big( \sum_{k \in K}{\frac{\partial (I - C + MC)D}{\partial \tau}} \Big) \hat v = \\
 \frac{1}{\tau} \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)},
-\end{aligned}
-\end{equation}
+%\end{aligned}
+\end{multline}
 and
 \begin{multline}\label{eq:mfp_sign_threshold}
 sign \frac{\partial \hat{\bar w}}{\partial \tau} = 
@@ -409,9 +422,11 @@ According to Eq.~\ref{eq:mfp_sign_threshold}, this will result in increased stab
 
 An interesting consequence of Eq.~\ref{eq:mfp_intermediate} is
 \begin{equation}
+\begin{aligned}
 \frac{\partial \hat{\bar w}}{\partial C_k} = 
-\hat v_k w_k (\hat u\tr[M]_k - \hat u_k) = 
+\hat v_k w_k (\hat u\tr[M]_k - \hat u_k) = \\
 w_k \Big(\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k} - \hat u_k \hat v_k\Big).
+\end{aligned}
 \end{equation}
 Here, $\hat u_k$ can be regarded as the \emph{reproductive value} of type $k$~\citep[pg.~27]{Fisher1930}, which gives the relative contribution of type $k$ to the long-term population (see~\nameref{sec:AppB}).
 Consequently, $\hat u_k \hat v_k$ is the \emph{ancestor frequency} of type $k$~\citep{Hermisson2002}, namely the fraction of the equilibrium population descended from type $k$.
@@ -509,11 +524,13 @@ sign \frac{\partial \lambda_1}{\partial \tilde{C}_k} =
 sign\left(\lambda_1 - \frac{w_k}{\hat{\bar w}}\right).
 \end{equation}
 Thus
-\begin{multline}
+\begin{equation}
+\begin{aligned}
 sign \left.\frac{\partial \lambda_1}{\partial \tilde{C}_k}\right\rvert_{\tilde{C}_k = C_k} = 
-sign\left(1 - \frac{w_k}{\hat{\bar w}}\right) =  
+sign\left(1 - \frac{w_k}{\hat{\bar w}}\right) = \\
 sign(\hat{\bar w} - w_k),
-\end{multline}
+\end{aligned}
+\end{equation}
 since $\hat{\bar w}>0$.
 This completes the proof.
 \end{proof}
@@ -589,15 +606,15 @@ Then the sensitivity of $\lambda$ to changes in any element $t$ of the matrix $T
 Using the lemma assumptions,
 $\lambda = \lambda \hat u\tr \hat v = \hat u\tr \lambda \hat v = \hat u\tr T \hat v$ and differentiating both sides we get $\partial \lambda = \partial (\hat \hat u\tr T \hat v)$.
 Using the product rule (once in each direction),
-
-\begin{multline}
+\begin{equation}
+\begin{aligned}
 \partial (\hat u\tr T \hat v) = 
 \partial \hat u\tr T \hat v + \hat u\tr \partial T \hat v + \hat u\tr T \partial \hat v = \\
 \hat u\tr \partial T \hat v + \partial \hat u\tr \lambda \hat v  + \lambda \hat u\tr \partial \hat v = \\
 \hat u\tr \partial T \hat v + \lambda(\partial \hat u\tr \hat v  + \hat u\tr \partial \hat v) = \\
 \hat u\tr \partial T \hat v + \lambda \partial(\hat u\tr \hat v).
-\end{multline}
-
+\end{aligned}
+\end{equation}
 Because $\hat u\tr \hat v = 1$,
 we have $\partial (\hat u\tr \hat v) = 0$ and
 $\partial \lambda = \hat u\tr \partial T \hat v$.
@@ -669,10 +686,12 @@ Therefore,
 \end{equation}
 for all $k > 1$, and
 \begin{equation}
-\lim_{t \goesto \infty}\frac{N(j,t)}{N(k,t)} =
-\frac{e\tr V (e_1 e_1\tr) U\tr e_j} { e\tr V (e_1 e_1\tr) U\tr e_k} = 
+\begin{aligned}
+\lim_{t \goesto \infty}\frac{N(j,t)}{N(k,t)} = 
+\frac{e\tr V (e_1 e_1\tr) U\tr e_j} { e\tr V (e_1 e_1\tr) U\tr e_k} = \\
 \frac{ e\tr \hat v \hat u_j} { e\tr \hat v  \hat u_k} =
 \frac{\hat u_j} {\hat u_k}.
+\end{aligned}
 \end{equation}
 
 The vector $\hat u$ is the left \emph{Perron} eigenvector of $MD$, and $\hat u_k$ is $k$-th element of $\hat u$.
@@ -718,8 +737,14 @@ Therefore, for any positive frequency vector $f$
 where $\alpha \in \mathbb{R}$.
 Using eqs.~\ref{eq:sum_uv} and~\ref{eq:perron_projection}
 \begin{equation}
-\alpha = \alpha \hat u\tr \hat v = \hat u\tr \alpha \hat v = \hat u\tr \hat v \hat u\tr f = \hat u\tr f = \sum_{k=1}^{n}{\hat u_k f_k} > 0,
+\begin{aligned}
+\alpha = \alpha \hat u\tr \hat v = 
+\hat u\tr \alpha \hat v = 
+\hat u\tr \hat v \hat u\tr f = \\
+\hat u\tr f = 
+\sum_{k=1}^{n}{\hat u_k f_k} > 0,
 \label{eq:alpha0}
+\end{aligned}
 \end{equation}
 because $f$ and $\hat u$ are positive vectors.
 
@@ -738,7 +763,7 @@ It is easily seen that $f^t =A^tf/\|A^tf\|$. Hence
 \begin{multline}
 \frac{A^t f}{\norm{A^t f}} = 
 \frac{\frac{1}{(\hat{\bar w})^t} A^t f}{\frac{1}{(\hat{\bar w})^t} \norm{A^t f}} = 
-\frac{\big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }{ \norm{ \big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }} \goesto
+\frac{\big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }{ \norm{ \big(\frac{A}{\hat{\bar w}}\big)^t \cdot f }} \goesto \\
 \frac{\alpha \hat v}{\norm{\alpha \hat v}} = \hat v,
 \end{multline}
 since $\norm{\hat v}=1$ (eq.~\ref{eq:sum_uv}) and $\alpha \ne 0$ (eq.~\ref{eq:alpha0}).
