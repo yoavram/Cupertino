@@ -250,7 +250,7 @@ where $p_k > 0$ and $\sum_{k=0}^{n-1}{p_k}=1$.
 \paragraph*{Learning model.}\label{sec:learn_model}
 
 In our final example, we consider a large population and an integer phenotype $k$ where $1 \le k \le n$.
-Individuals are characterized by their initial and mature phenotypes~\citep[pg.~94]{Boyd1985}.
+Individuals are characterized by their initial and mature phenotypes~\citep[pg.~94]{Boyd1988}.
 Fitness is determined by the mature phenotype: the fitness of an individual with mature phenotype $k$ is $w_k$.
 
 An offspring's initial phenotype is acquired by learning the mature phenotype of its parent (assuming uni-parental transmission).
@@ -542,6 +542,11 @@ Using the \emph{unified reduction principle}~\citep{Altenberg2017} the leading e
 We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural selection.
 These results apply as long as there is a chance for the variation-generating process to transform an individual with below-average fitness into one with above-average fitness.
 This condition is satisfied by the requirement that $M$ in Eq.~\ref{eq:model} be primitive. Further work will be required to find a sufficient and \emph{necessary} condition on $M$.
+
+How can individuals estimate their fitness relative to the population mean fitness? 
+In microbes, empirical evidence suggests that the mutation rate is negatively-correlated with population density~\citep{Krasovec2017} and is probably regulated by quorum sensing mechanisms~\citep{Krasovec2014,Dellus-Gur2017}.
+Animals can assess the well-being of other individuals, for example via rival and mutual assessment~\citep{Parker1974,Arnott2017,Reichert2017}, and possibly integrate these assessments over a population sample.
+Our results suggest that these assessment might affect the tendency of individuals to generate variation, e.g. explore new environments and behaviors.
 
 Eq.~\ref{eq:mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
 \citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population (see \nameref{sec:mut_model_2}).
