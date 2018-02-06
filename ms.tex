@@ -21,18 +21,6 @@ headheight=12pt
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
 \usepackage[auth-sc]{authblk}
 
-% titles
-\usepackage{titlesec}
-% \titleformat{command}[shape]{format}{label}{sep}{before}[after]
-\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}[]
-\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}[]
-\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}[]
-
-% 					left margin	| space before (vertical) | space after (horizontal)
-\titlespacing{\section}{0em}{0.25\baselineskip}{0.25\baselineskip}
-\titlespacing{\subsection}{0em}{0.25\baselineskip}{0.25\baselineskip}
-\titlespacing{\paragraph}{0em}{0.25\baselineskip}{1em}
-
 %SetFonts
 % newtxtext+newtxmath
 \usepackage{newtxtext} %loads helv for ss, txtt for tt
