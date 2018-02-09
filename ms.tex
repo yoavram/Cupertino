@@ -30,6 +30,15 @@ headheight=12pt
 \usepackage{textcomp}
 %SetFonts
 
+% less space before sections 
+% \@startsection {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE} 
+%            optional * [ALTHEADING]{HEADING} 
+\makeatletter
+ \renewcommand\section{\@startsection {section}{1}{\z@}%
+     {-2.5ex \@plus -1ex \@minus -.2ex}%
+     {1.3ex \@plus.2ex}%
+    {\Large\bfseries}}
+
 % Yoav & Lee commands
 \newcommand*{\tr}{^\intercal}
 \let\vec\mathbf
@@ -94,7 +103,7 @@ Another departure from the \emph{linear variation} assumption of the \emph{reduc
 transformations occurring at loci under selection, then it may be possible for the part which it controls to evolve an increase in rates.''
 
 \citet{Ram2012} demonstrated that even in a constant environment, increasing the mutation rate of individuals with below-average fitness increases the population mean fitness, rather than decreases it.
-Their analysis assumed  infinite population size and fitness  determined by the number of mutant alleles accumulated in the genotype.
+Their analysis assumed effectively infinite population size and fitness determined by the number of mutant alleles accumulated in the genotype.
 In their models, the only departure from the \emph{reduction principle} conditions was the unequal scaling of mutation probabilities between different genotypes introduced by the correlation between the mutation rate and fitness.
 A similar result has been demonstrated for conditional dispersal~\citep[Th.~39]{Altenberg2012b}, fitness-associated recombination~\citep{Hadany2003a} and for condition-dependent sexual reproduction~\citep{Hadany2007a}, and empirical evidence suggests these mechanisms are common in nature~\citep{Ram2016}.
 
@@ -113,12 +122,13 @@ and that modifier alleles that induce below-average individuals to produce more 
 Consider a large  population with an arbitrary set of types $A_1, A_2, \ldots, A_n$.
 The frequency and fitness of individuals of type $A_k$ are $f_k$ and $w_k$, respectively.
 The probability that an individual of type $A_k$ will transition to some other type is $C_k$, and given a transition occurs, the probability that it will transition to type $A_j$ is $M_{j,k}$.
-Therefore, the change in the frequencies of type $A_k$ is described by the transformation $f \to f'$: 
+Therefore, the change in the frequencies of type $A_k$ is described by the transformation $f \to f'$
 \begin{equation}
 \bar{w} f'_k = (1-C_k) w_k f_k + \sum_{j=1}^{n}{C_j M_{k,j} w_j f_j},
 \label{eq:model_sum}
 \end{equation}
-or in matrix form (introduced to describe conditional dispersal in \citet{Altenberg2012a})
+or in matrix form 
+%(introduced to describe conditional dispersal in \citet{Altenberg2012a})
 \begin{equation}
 \bar{w} f' = (\ci - C + MC)D f,
 \label{eq:model}
@@ -126,7 +136,7 @@ or in matrix form (introduced to describe conditional dispersal in \citet{Altenb
 where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\sum_{k=1}^n{f_k} = 1$;
 $D$ is a positive diagonal matrix with entries $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
 $C$ is a positive diagonal  matrix with entries $C_k$, where $C_k<1$ for at least one $k$;
-$M$ is an irreducible  column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^{\ell})_{j,k} > 0$ for all $j,k$ for some positive integer $\ell$ (the latter is the condition for primitivity~\citep[see][Appendix 3]{Otto2007});
+$M$ is an irreducible  column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^{\ell})_{j,k} > 0$ for all $j,k$ for some positive integer $\ell$ (the latter is the condition for primitivity, \citealp[see][Appendix 3]{Otto2007});
 $\ci$ is the $n\times n$ identity matrix;
 and $\bar{w}$ is the normalizing factor such that $\sum_{k=1}^n{f'_k}=1$ and is equal to the population mean fitness $\bar w=\sum_{k=1}^n f_kw_k$.
 
@@ -138,7 +148,7 @@ Transition between types is determined by a combination of two effects:
 (i) the probability of transitioning \emph{out} of type $A_k$ is determined by $C_k$;
 (ii) given a transition out of type $A_k$, the distribution of the destination types $A_i$ is given by $M_{i,k}$ (note the index order).
 Importantly, different types can have different rates.
-That is, $C_i \ne C_j$ for some $i,j$. The case $C_i = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~(see \citealt{Altenberg1984,Altenberg1987,Altenberg2009,Altenberg2017}).
+That is, $C_i \ne C_j$ for some $i,j$. The case $C_i = C_j$ for all $i,j$ is covered by the \emph{reduction principle}~\citep[see][]{Altenberg2017}.
 
 In the following section we present four examples of the model (Eq.~\ref{eq:model}) that apply to mutation, migration, and learning.
 
@@ -148,7 +158,7 @@ In the following section we present four examples of the model (Eq.~\ref{eq:mode
 Here we consider a large population of haploids and a trait determined by a single genetic locus with $n$ possible alleles $A_1, A_2, \ldots, A_n$ and corresponding fitness values $w_1, w_2, \ldots, w_n$.
 The mutation rates $C_k$ of individuals with allele $A_k$ are potentially different;
 specifically, with probability $1-C_k$, the allele $A_k$ does not mutate, and with probability $\frac{C_k}{n-1}$, the allele $A_k$ mutates to $A_j$ for any $j \ne k$.
-This is an extension of a model studied by~\citet{Altenberg2017} that allows for the mutation rate of $A_k$, $C_k$, to depend on properties of the allele $A_k$.
+This is an extension of a model studied by~\citet{Altenberg2017} that allows for $C_k$, the mutation rate of $A_k$, to depend on properties of the allele $A_k$.
 
 Let the frequency of $A_k$ in the present generation be $f_k$ with $f_k \ge 0$ and $\sum_{k=1}^{n}{f_k}=1$.
 Then after selection and mutation, $f'_k$ in the next generation is given by
@@ -264,7 +274,7 @@ f'_k = (1-C_k) f_k \frac{w_{k}}{\bar{w}} + \sum_{j=1}^{n}{C_j M_{k,j} \frac{w_{j
 \end{equation}
 where $\bar{w} = \sum_{k=1}^{n}{f_k w_{k}}$ is the population mean fitness.
 
-When $C_k = \tau$ for all $k$ and fitnesses are not all equal, then a culturally transmitted variant in $\tau$ will spread if and only if $\tau$ is reduced, the first manifestation of the reduction principle shown in cultural evolution \citep[pp. 203--206]{Altenberg1984}.  
+When $C_k = \tau$ for all $k$ and fitnesses are not all equal, then a culturally transmitted variant in $\tau$ will spread if and only if $\tau$ is reduced, the first manifestation of the reduction principle shown in cultural evolution \citep[pg.~203--206]{Altenberg1984}.  
 
 In a more specific example, for the case of \emph{symmetric individual learning}~\citep{Borenstein2008}, learning is parameterized by its breadth of exploration $b$ and the mature phenotype $j$ is randomly drawn from $2b+1$ phenotypes symmetrically and uniformly distributed around the initial phenotype $k$, with the limitation that any "spillover" of phenotypes below $1$ or above $n$ is "absorbed" by those boundaries.
 This "absorption" ensures $M$ is column-stochastic. 
@@ -297,7 +307,7 @@ M = \begin{bmatrix}
 \section*{Results}
 
 % Mean fitness principle
-\paragraph*{A modified mean-fitness principle.}
+\paragraph*{Modified mean-fitness principle.}
 
 We first focus on the stable population mean fitness.
 We  show that if the transition rate from types with below-average fitness increases, then the stable population mean fitness increases, too.  We refer to this as a ``modified'' mean fitness principle (MMFP) because for modifiers of mutation and migration rates the standard mean fitness principle involves a decrease in the mean fitness with increasing rates.
@@ -306,7 +316,7 @@ Write the equilibrium  frequency vector $f$ in Eq.~\ref{eq:model} as $\hat v$ an
 \begin{equation}\label{eq:model_equilibrium}
 \hat{\bar w} \hat v = (I-C+MC)D \hat v.
 \end{equation}
-Note that (i) the existence and uniqueness of $\hat{\bar w}$ and $\hat v$ are guaranteed by the \emph{Perron-Frobenius theorem}~~\citep[][Appendix 3]{Otto2007} because $(I-C+MC)D$ is a non-negative primitive matrix; 
+Note that (i) the existence and uniqueness of $\hat{\bar w}$ and $\hat v$ are guaranteed by the \emph{Perron-Frobenius theorem}~\citep[][Appendix 3]{Otto2007} because $(I-C+MC)D$ is a non-negative primitive matrix; 
 (ii) the global stability of this equilibrium is proven in~\nameref{sec:AppC}.
 
 The following result constitutes an MMFP for the
@@ -351,7 +361,7 @@ Then,
 \end{multline}
 
 The corresponding equation to Eq.~\ref{eq:model_equilibrium} for the left
-eigenvector $u$ is 
+eigenvector $\hat u$ is 
 \begin{equation}
 \hat u\tr \hat{\bar w} = \hat u\tr (I - C + MC) D,
 \end{equation}
@@ -419,7 +429,7 @@ w_k \Big(\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k} - \hat u_k \hat v_k\Big).
 \end{aligned}
 \end{equation}
 Here, $\hat u_k$ can be regarded as the \emph{reproductive value} of type $k$~\citep[pg.~27]{Fisher1930}, which gives the relative contribution of type $k$ to the long-term population (see~\nameref{sec:AppB}).
-Consequently, $\hat u_k \hat v_k$ is what ~\citet{Hermisson2002} call the \emph{ancestor frequency} of type $k$, which is better described as the fraction of the population in the distant future that descended from the individuals of type $k$ present at a particular moment in a population at equilibrium.
+Consequently, $\hat u_k \hat v_k$ is what ~\citet{Hermisson2002} call the \emph{ancestor frequency} of type $k$, which is the fraction of the population in the distant future that descended from individuals of type $k$ present at a particular moment in a population at equilibrium.
 The sum $\sum_{j=1}^{n}{\hat u_j M_{j,k} \hat v_k}$ can be similarly interpreted as the fraction of the equilibrium population descended from individuals that transitioned from type $k$ to another type (via the $k$ column of the transition matrix $M$), conditioned on transition occurring.
 
 Since $w_k>0$, from Eq.~\ref{eq:mfp_intermediate} we have the following corollary.
@@ -463,7 +473,7 @@ The frequencies in the next generation, $f'$ for allele $b$ and $g'$ for allele 
 \label{eq:modifier_model}
 \end{equation}
 Here, $\bar{w}=\sum_{k=1}^{n}{(f_k + g_k) w_k}$ is the mean fitness of the entire population. 
-Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} where allele $M$ is absent, i.e. $g_k=0$ for all $k$.
+Note that Eq.~\ref{eq:model} is the special case of Eq.~\ref{eq:modifier_model} where allele $B$ is absent, i.e. $g_k=0$ for all $k$.
 
 Result~\ref{result:mfp} provides a condition under which increasing the transition rate $C_k$ from type $A_k$ will increase the stable population mean fitness.
 Could a modifier allele that increases $C_k$ increase in frequency when initially rare in the population?
@@ -508,7 +518,7 @@ Substituting $\tilde{C}=C$ in Eq.~\ref{eq:Lex} and multiplying both sides by $\h
 and since $\hat{\bar w}$ is the leading eigenvalue of the RHS (see Eq.~\ref{eq:model_equilibrium}),
 the leading eigenvalue of $\cl_{ex}\big\rvert_{\tilde{C}_k = C_k}$ is $\lambda_1=1$.
 
-Now, applying Result~\ref{result:mfp} (eq.~\ref{eq:mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda_1$ with respect to $\tilde{C_k}$ is
+Now, applying Result~\ref{result:mfp} (Eq.~\ref{eq:mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda_1$ with respect to $\tilde{C_k}$ is
 \begin{equation}
 sign \frac{\partial \lambda_1}{\partial \tilde{C}_k} =
 sign\left(\lambda_1 - \frac{w_k}{\hat{\bar w}}\right).
@@ -529,19 +539,19 @@ This completes the proof.
 \paragraph*{Reduction principle and mutational loss.}
 
 Note that if the modifier has the same effect on all types,
-then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilibrium}, and proceeding as in Eq.~\ref{eq:mfp_K}, we find a relationship previously described by~\citet[eq.~24]{Hermisson2002},
+then we can substitute $C = \mu I$ (with $\mu > 0$) in Eq.~\ref{eq:model_equilibrium}, and proceeding as in Eq.~\ref{eq:mfp_K}, we find a relationship previously described by~\citet[Eq.~24]{Hermisson2002},
 \begin{equation}\label{eq:mutational_loss}
 \frac{\partial {\bar{w}}}{\partial \mu} = 
 -\frac{1}{\mu}\left(\sum_{k=1}^{n}  u_k  v_k w_k - {\bar{w}} \right) = -\frac{1}{\mu} G,
 \end{equation}
-where $u_k,v_k$ are computed at the equilibrium associated with $\mu$ and $\bar w$ is the mean fitness at that equilibrium. $G$ is the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n}  u_k  v_k w_k)$ and the \emph{stable population mean fitness} $({\bar{w}})$ when $C_k=\mu$, is  called the \emph{mutational loss}~\citep{Hermisson2002}.
+where $u_k,v_k$ are computed at the equilibrium associated with $\mu$ and $\bar w$ is the mean fitness at that equilibrium. $G$ is the difference between the \emph{ancestral mean fitness} $(\sum_{k=1}^{n}  u_k  v_k w_k)$ and the \emph{stable population mean fitness} $({\bar{w}})$ when $C_k=\mu$, called the \emph{mutational loss}~\citep{Hermisson2002}.
 
 If an invading  allele $B$ changes the transition probability from that of the resident allele $b$, i.e., $C_k=\mu$ and $\tilde C_k=\tilde\mu$, then $\cl_{ex}$ becomes
 \begin{equation} \label{eq:Lex_mu}
 \cl_{ex} = \bigl[(1 - \tilde\mu)I + \tilde\mu M\bigr] \tilde{D},
 \end{equation} 
 where $\tilde{D} =D/{\bar{w}}$ is  the diagonal matrix with entries $w_k/{\bar{w}}$ for all $k$.
-Using the \emph{unified reduction principle}~\citep{Altenberg1984,Altenberg1987,Altenberg2009,Altenberg2017} the leading eigenvalue $\lambda_1=\lambda(\tilde\mu)$ of $\cl_{ex}$ satisfies $\partial\lambda_1/\partial\tilde\mu<0$, $\lambda_1(\tilde\mu)=1$ when $\tilde\mu=\mu$, and $\lambda_1(\tilde\mu)=\bar w(\tilde\mu)$. Thus we can conclude that the mutational loss $G$ is positive, the reduction principle holds, and the mean fitness is a decreasing function of $\tilde\mu$.
+Using the \emph{unified reduction principle}~\citep{Altenberg2017} the leading eigenvalue $\lambda_1=\lambda(\tilde\mu)$ of $\cl_{ex}$ satisfies $\partial\lambda_1/\partial\tilde\mu<0$, $\lambda_1(\tilde\mu)=1$ when $\tilde\mu=\mu$, and $\lambda_1(\tilde\mu)=\bar w(\tilde\mu)$. Thus we can conclude that the mutational loss $G$ is positive, the reduction principle holds, and the mean fitness is a decreasing function of $\tilde\mu$.
 
 % Discussion
 \section*{Discussion}
@@ -549,19 +559,19 @@ Using the \emph{unified reduction principle}~\citep{Altenberg1984,Altenberg1987,
 We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural selection.
 These results apply as long as there is a chance for the variation-generating process to transform an individual with below-average fitness into one with above-average fitness. 
 This condition is satisfied by the requirement that $M$ in Eq.~\ref{eq:model} be irreducible. Further work will be required to find a sufficient and \emph{necessary} condition on $M$.
-We refer to this as a ``modified mean-fitness principle'' because, unlike the situation with mutation and migration modifiers, the mean fitness here can increase as rates increase.
+We refer to this as a ``modified mean-fitness principle'' because, unlike the situation with mutation and migration modifiers that uniformly affect all individuals, the mean fitness here can increase as rates increase.
 
 How can individuals estimate their fitness relative to the population mean fitness? 
 In microbes, empirical evidence suggests that the mutation rate is negatively-correlated with population density~\citep{Krasovec2017} and is probably regulated by quorum sensing mechanisms~\citep{Krasovec2014,Dellus-Gur2017}.
 Animals can assess the well-being of other individuals, for example via rival and mutual assessment~\citep{Parker1974,Arnott2017,Reichert2017}, and possibly integrate these assessments over a population sample.
-Our results suggest that such assessments might affect the tendency of individuals to generate variation, e.g. explore new genetic backgrounds, environments, and behaviors.
+Our results suggest that such assessments might affect the tendency of individuals to generate variation, e.g., explore new genetic backgrounds, environments, and behaviors.
 
 Eq.~\ref{eq:mfp} is a generalization of a result of~\citet[Eq.~4]{Ram2012}.
 \citeauthor{Ram2012} modeled the accumulation of mutant alleles in a population (see \nameref{sec:mut_model_2}).
 Using Eq.~\ref{eq:Caswells_formula} in \nameref{sec:AppA} and a recursion on the ratios of the reproductive values \cite[see][eqs.~A5-6]{Ram2012}, they concluded that at the mutation-selection balance, if individuals with below-average fitness ($w_k < \hat{\bar w}$) increase their mutation rate, then the population mean fitness will increase -- a result generalized by our  \emph{modified mean-fitness principle} in Eqs.~\ref{eq:mfp_sign} and~\ref{eq:mfp_sign_threshold}.
 
 Besides mutation, our principle applies to other variation-generating processes such as conditional dispersal and migration, and learning (see \emph{\nameref{sec:models}} section).
-For example, the \emph{reduction principle} applies to ecological models of dispersal~\citep{Hastings1983, Hutson1995,Dockery1998,Cantrell2010,Altenberg2012a}, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the mean fitness of diploid populations and is favored by selection over uniform dispersal. These results parallel similar results found for reaction-diffusion models for the evolution of conditional dispersal in continuous time and space \cite{Chen2008,Hambrock2009,Cosner2009,Cantrell2010Ideal,Lam2014}.
+For example, the \emph{reduction principle} applies to ecological models of dispersal~\citep{Hastings1983, Hutson1995,Dockery1998,Cantrell2010,Altenberg2012a}, and~\citet{Gueijman2013} have demonstrated that even in homogeneous environments, fitness-associated dispersal increases the mean fitness of diploid populations and is favored by selection over uniform dispersal. These results parallel similar results found for reaction-diffusion models for the evolution of conditional dispersal in continuous time and space \citep{Chen2008,Hambrock2009,Cosner2009,Cantrell2010Ideal,Lam2014}.
 Similarly, if the transmission fidelity of culturally-transmitted traits depends on the type or fitness of the transmitting individual, we expect that our results will hold (see \nameref{sec:learn_model}).
 
 Our analysis focuses on populations at equilibrium.
@@ -585,17 +595,17 @@ In this formula, the \emph{population growth rate} is the leading eigenvalue of 
 This is a useful formula~\citep[ch.~10]{Caswell1978,Hermisson2002,Ram2012,Otto2007}, and therefore we reproduce it here.
 
 \begin{lemma}
-$T$ be a non-negative matrix with leading eigenvalue $\lambda$ and left and right eigenvectors $\hat u$ and $\hat v$ such that $\sum{\hat v_k}=1$ and $\hat u\tr \hat v = \sum{\hat u_k \hat v_k} = 1$.
+Let $T$ be a non-negative matrix with leading eigenvalue $\lambda$ and left and right eigenvectors $\hat u$ and $\hat v$ such that $\sum{\hat v_k}=1$ and $\hat u\tr \hat v = \sum{\hat u_k \hat v_k} = 1$.
 Then the sensitivity of $\lambda$ to changes in any element $t$ of the matrix $T$ is
 \begin{equation}\label{eq:Caswells_formula}
 \frac{\partial \lambda}{\partial t} = 
-\hat u\tr \frac{\partial T}{\partial t} \hat v
+\hat u\tr \frac{\partial T}{\partial t} \hat v.
 \end{equation}
 \end{lemma}
 
 \begin{proof} 
 Using the lemma assumptions,
-$\lambda = \lambda \hat u\tr \hat v = \hat u\tr \lambda \hat v = \hat u\tr T \hat v$ and differentiating both sides we get $\partial \lambda = \partial (\hat \hat u\tr T \hat v)$.
+$\lambda = \lambda \hat u\tr \hat v = \hat u\tr \lambda \hat v = \hat u\tr T \hat v$ and differentiating both sides we get $\partial \lambda = \partial (\hat u\tr T \hat v)$.
 Using the product rule (once in each direction),
 \begin{equation}
 \begin{aligned}
@@ -752,7 +762,7 @@ f' = \frac{E f}{\norm{E f}}.
 \label{eq:model_norm}
 \end{equation}
 
-It is easily seen that $f^t =E^tf/\|E^tf\|$. Hence 
+It can be seen that $f^t =E^tf/\|E^tf\|$. Hence 
 \begin{multline}
 \frac{E^t f}{\norm{E^t f}} = 
 \frac{\frac{1}{(\hat{\bar w})^t} E^t f}{\frac{1}{(\hat{\bar w})^t} \norm{E^t f}} = 
@@ -776,7 +786,6 @@ and the Morrison Institute for Population and Resources Studies, Stanford Univer
 }
 
 \bibliographystyle{agsm}
-%\bibliography{/Users/yoavram/Documents/library}
-\bibliography{ms+Lee2}
+\bibliography{ms}
 
 \end{document}  
