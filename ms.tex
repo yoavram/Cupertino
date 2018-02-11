@@ -133,7 +133,7 @@ or in matrix form
 \bar{w} f' = (\ci - C + MC)D f,
 \label{eq:model}
 \end{equation}
-where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\sum_{k=1}^n{f_k} = 1$;
+\citep{Kirkland2006,Altenberg2012b} where $f=(f_1, f_2, \ldots, f_n)$ is a frequency vector with $f_k\ge 0$ and  $\sum_{k=1}^n{f_k} = 1$;
 $D$ is a positive diagonal matrix with entries $w_k$ such that $w_k \ne w_j$ for some $k \ne j$; 
 $C$ is a positive diagonal  matrix with entries $C_k$, where $C_k<1$ for at least one $k$;
 $M$ is an irreducible  column-stochastic matrix: $M_{j,k} \ge 0$ for all $j,k$, $\sum_{j=1}^n {M_{j,k}} = 1$ for all $k$, and $(M^{\ell})_{j,k} > 0$ for all $j,k$ for some positive integer $\ell$ (the latter is the condition for primitivity, \citealp[see][Appendix 3]{Otto2007});
@@ -274,10 +274,10 @@ f'_k = (1-C_k) f_k \frac{w_{k}}{\bar{w}} + \sum_{j=1}^{n}{C_j M_{k,j} \frac{w_{j
 \end{equation}
 where $\bar{w} = \sum_{k=1}^{n}{f_k w_{k}}$ is the population mean fitness.
 
-When $C_k = \tau$ for all $k$ and fitnesses are not all equal, then a culturally transmitted variant in $\tau$ will spread if and only if $\tau$ is reduced, the first manifestation of the reduction principle shown in cultural evolution \citep[pg.~203--206]{Altenberg1984}.  
+When $C_k = \tau$ for all $k$ and fitnesses are not all equal, then a culturally transmitted variant in $\tau$ will spread if and only if $\tau$ is reduced, the first manifestation of the reduction principle shown in cultural evolution \citep[pp.~203--206]{Altenberg1984}.  
 
-In a more specific example, for the case of \emph{symmetric individual learning}~\citep{Borenstein2008}, learning is parameterized by its breadth of exploration $b$ and the mature phenotype $j$ is randomly drawn from $2b+1$ phenotypes symmetrically and uniformly distributed around the initial phenotype $k$, with the limitation that any "spillover" of phenotypes below $1$ or above $n$ is "absorbed" by those boundaries.
-This "absorption" ensures $M$ is column-stochastic. 
+In a more specific example, for the case of \emph{symmetric individual learning}~\citep{Borenstein2008}, learning is parameterized by its breadth of exploration $b$ and the mature phenotype $j$ is randomly drawn from $2b+1$ phenotypes symmetrically and uniformly distributed around the initial phenotype $k$, with the limitation that any ``spillover'' of phenotypes below $1$ or above $n$ is ``absorbed'' by those boundaries.
+This ``absorption'' ensures $M$ is column-stochastic. 
 In other words, given initial phenotype $k$, the probability of maturation to phenotype $j$, where $k-b \le j \le k+b$ is $1/(2b+1)$, but any phenotype $j<1$ actually becomes $j=1$ and any phenotype $j>n$ actually becomes $j=n$.
 The probability for maturation to other phenotypes is $0$.
 
@@ -310,7 +310,7 @@ M = \begin{bmatrix}
 \paragraph*{Modified mean-fitness principle.}
 
 We first focus on the stable population mean fitness.
-We  show that if the transition rate from types with below-average fitness increases, then the stable population mean fitness increases, too.  We refer to this as a ``modified'' mean fitness principle (MMFP) because for modifiers of mutation and migration rates the standard mean fitness principle involves a decrease in the mean fitness with increasing rates.
+We  show that if the transition rate from types with below-average fitness increases, then the stable population mean fitness increases, too.  We refer to this as a ``modified'' mean fitness principle (MMFP) because for modifiers of mutation and migration rates the standard mean fitness principle~\citep{Karlin1972}  involves a decrease in the mean fitness with increasing rates.
 
 Write the equilibrium  frequency vector $f$ in Eq.~\ref{eq:model} as $\hat v$ and the stable population mean fitness as $\hat{\bar w}$, then
 \begin{equation}\label{eq:model_equilibrium}
@@ -334,8 +334,8 @@ Then,
 \end{equation}
 or in simpler terms,
 \begin{equation}\label{eq:mfp_sign}
-sign\frac{\partial \hat{\bar w}}{\partial C_k} = 
-sign(\hat{\bar w} - w_k).
+{\rm sign}\frac{\partial \hat{\bar w}}{\partial C_k} = 
+{\rm sign}(\hat{\bar w} - w_k).
 \end{equation}
 
 Therefore increased transition from type $k$ will increase the stable population mean fitness if the fitness of type $k$ is below the stable population mean fitness.
@@ -381,8 +381,8 @@ which when substituted into Eq.~\ref{eq:mfp_intermediate} yields:
 \end{equation}
 Finally, since $\hat u_k, \hat v_k, C_k > 0$, we have
 \begin{equation}
-sign \frac{\partial \hat{\bar w}}{\partial C_k} = 
-sign (\hat{\bar w} - w_k),
+{\rm sign} \frac{\partial \hat{\bar w}}{\partial C_k} = 
+{\rm sign} (\hat{\bar w} - w_k),
 \end{equation}
 which completes the proof.
 \end{proof}
@@ -406,9 +406,9 @@ The sensitivity of the stable population mean fitness to change in the rate of t
 \end{multline}
 and
 \begin{multline}\label{eq:mfp_sign_threshold}
-sign \frac{\partial \hat{\bar w}}{\partial \tau} = 
-sign \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)} = \\ 
-sign \Big(\hat{\bar w} - \frac{\sum_{k \in K}{\hat u_k \hat v_k w_k}}{\sum_{k \in K}{\hat u_k \hat v_k}}\Big).
+{\rm sign} \frac{\partial \hat{\bar w}}{\partial \tau} = 
+{\rm sign} \sum_{k \in K}{\hat u_k \hat v_k (\hat{\bar w} - w_k)} = \\ 
+{\rm sign} \Big(\hat{\bar w} - \frac{\sum_{k \in K}{\hat u_k \hat v_k w_k}}{\sum_{k \in K}{\hat u_k \hat v_k}}\Big).
 \end{multline}
 \end{corollary}
 
@@ -437,8 +437,8 @@ Since $w_k>0$, from Eq.~\ref{eq:mfp_intermediate} we have the following corollar
 \begin{corollary}[Reproductive value principle]\label{cor:rvp}
 In the notation of Result~\ref{result:mfp},
 \begin{equation}
-sign \frac{\partial \hat{\bar w}}{\partial C_k} = 
-sign (\hat u\tr [M]_k - \hat u_k),
+{\rm sign} \frac{\partial \hat{\bar w}}{\partial C_k} = 
+{\rm sign} (\hat u\tr [M]_k - \hat u_k),
 \end{equation}
 where $[M]_k$ is the $k$-th column of $M$.
 
@@ -503,8 +503,8 @@ If the transition rates induced by the modifier alleles $b$ and $B$ are equal, i
 \end{equation}
 and
 \begin{equation}
-sign \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C_k} = 
-sign(\hat{\bar w} - w_k).
+{\rm sign} \frac{\partial \lambda_1}{\partial \tilde{C}_k}\bigg\rvert_{\tilde{C}_k = C_k} = 
+{\rm sign}(\hat{\bar w} - w_k).
 \end{equation}
 
 Therefore, an initially rare modifier allele $B$ with transition rates slightly different from the resident allele $m$ can successfully invade the population ($\lambda_1>1$) if $B$ increases the probability of transition from types with below-average fitness, thereby increasing the  mean fitness $\tilde{\bar w}$.
@@ -520,15 +520,15 @@ the leading eigenvalue of $\cl_{ex}\big\rvert_{\tilde{C}_k = C_k}$ is $\lambda_1
 
 Now, applying Result~\ref{result:mfp} (Eq.~\ref{eq:mfp_sign}) to Eq.~\ref{eq:Lex}, the sign of the derivative of $\lambda_1$ with respect to $\tilde{C_k}$ is
 \begin{equation}
-sign \frac{\partial \lambda_1}{\partial \tilde{C}_k} =
-sign\left(\lambda_1 - \frac{w_k}{\hat{\bar w}}\right).
+{\rm sign} \frac{\partial \lambda_1}{\partial \tilde{C}_k} =
+{\rm sign}\left(\lambda_1 - \frac{w_k}{\hat{\bar w}}\right).
 \end{equation}
 Thus
 \begin{equation}
 \begin{aligned}
-sign \left.\frac{\partial \lambda_1}{\partial \tilde{C}_k}\right\rvert_{\tilde{C}_k = C_k} = 
-sign\left(1 - \frac{w_k}{\hat{\bar w}}\right) = \\
-sign(\hat{\bar w} - w_k),
+{\rm sign} \left.\frac{\partial \lambda_1}{\partial \tilde{C}_k}\right\rvert_{\tilde{C}_k = C_k} = 
+{\rm sign}\left(1 - \frac{w_k}{\hat{\bar w}}\right) = \\
+{\rm sign}(\hat{\bar w} - w_k),
 \end{aligned}
 \end{equation}
 since $\hat{\bar w}>0$.
@@ -559,7 +559,7 @@ Using the \emph{unified reduction principle}~\citep{Altenberg2017} the leading e
 We have shown that under constant-viability selection and in an effectively infinite haploid population at mutation-selection or migration-selection equilibrium, the stable population mean fitness increases if individuals with below-average fitness increase the rate at which variation is generated. Furthermore, modifier alleles that  increase generation of variation in such individuals are favored by natural selection.
 These results apply as long as there is a chance for the variation-generating process to transform an individual with below-average fitness into one with above-average fitness. 
 This condition is satisfied by the requirement that $M$ in Eq.~\ref{eq:model} be irreducible. Further work will be required to find a sufficient and \emph{necessary} condition on $M$.
-We refer to this as a ``modified mean-fitness principle'' because, unlike the situation with mutation and migration modifiers that uniformly affect all individuals, the mean fitness here can increase as rates increase.
+We refer to our result as a ``modified mean-fitness principle'' because, unlike the situation with mutation and migration modifiers that uniformly affect all individuals, the mean fitness here can increase as rates increase.
 
 How can individuals estimate their fitness relative to the population mean fitness? 
 In microbes, empirical evidence suggests that the mutation rate is negatively-correlated with population density~\citep{Krasovec2017} and is probably regulated by quorum sensing mechanisms~\citep{Krasovec2014,Dellus-Gur2017}.
@@ -718,7 +718,7 @@ then the equilibrium $\hat v$ of the system in Eq.~\ref{eq:model_equilibrium} is
 \begin{proof}
 Let $E=(I-C+MC)D$ and denote the spectral radius of $E$ as $\hat{\bar w}$. 
 
-Since $D$ is a positive diagonal matrix, and by assumption $C_k < 1$ for at least one $k$, $E$ has at least one positive diagonal element, making it aperiodic.  Further more, since $D$ is a positive diagonal matrix and $M$ is irreducible, $E$ is also irreducible.  Hence $E$ is primitive.
+Since $D$ is a positive diagonal matrix, and by assumption $C_k < 1$ for at least one $k$, $E$ has at least one positive diagonal element, making it aperiodic.  Furthermore, since $D$ is a positive diagonal matrix and $M$ is irreducible, $E$ is also irreducible.  Hence $E$ is primitive.
 
 According to the \emph{Perron-Frobenius theorem}, 
 \begin{equation}
